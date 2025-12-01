@@ -5320,3 +5320,21 @@ body::after {
 .darkmode #footer {
   background: rgba(30,30,30,0.8) !important;
 }
+main {
+  background: transparent !important;
+}
+.darkmode main {
+  background: transparent !important;
+}
+.darkmode .post-block {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode #main {
+  background: transparent !important;
+}
+.darkmode #container {
+  background: transparent !important;
+}
+.darkmode body {
+  background: transparent !important;
+}
