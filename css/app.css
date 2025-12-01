@@ -5338,3 +5338,24 @@ main {
 .darkmode body {
   background: transparent !important;
 }
+.darkmode .post {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode article {
+  background: transparent !important;
+}
+.darkmode .post-card {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode section {
+  background: transparent !important;
+}
+.darkmode div:not(.inner):not(#sidebar):not(#footer) {
+  background: transparent;
+}
+.darkmode .post-body {
+  background: transparent !important;
+}
+.darkmode .post-content {
+  background: transparent !important;
+}
