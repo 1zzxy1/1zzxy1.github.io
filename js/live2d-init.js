@@ -6,18 +6,37 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initLive2D);
     } else {
-        initLive2D();
+        // Wait a bit for other scripts to load
+        setTimeout(initLive2D, 1000);
     }
 
     async function initLive2D() {
         try {
+            console.log('[Live2D] Starting initialization...');
+
             // Check if Live2dRender is loaded
-            if (typeof Live2dRender === 'undefined' || typeof Live2dRender.initializeLive2D !== 'function') {
-                console.error('[Live2D] Live2dRender library not loaded');
+            if (typeof Live2dRender === 'undefined') {
+                console.error('[Live2D] Live2dRender library not found');
                 return;
             }
 
+            if (typeof Live2dRender.initializeLive2D !== 'function') {
+                console.error('[Live2D] initializeLive2D function not found');
+                return;
+            }
+
+            console.log('[Live2D] Live2dRender library loaded successfully');
             console.log('[Live2D] Initializing Live2D model...');
+
+            // Get base path
+            var basePath = window.location.pathname;
+            if (!basePath.endsWith('/')) {
+                basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
+            }
+
+            // Use relative path
+            var modelPath = basePath + 'live2d-model/Mao/Mao.model3.json';
+            console.log('[Live2D] Model path:', modelPath);
 
             // Initialize Live2D with Mao model
             await Live2dRender.initializeLive2D({
@@ -25,7 +44,7 @@
                 BackgroundRGBA: [0.0, 0.0, 0.0, 0.0],
 
                 // Path to the model3.json file
-                ResourcesPath: '/live2d-model/Mao/Mao.model3.json',
+                ResourcesPath: modelPath,
 
                 // Canvas size
                 CanvasSize: {
@@ -40,10 +59,10 @@
                 ShowToolBox: true,
 
                 // Enable caching with IndexedDB
-                LoadFromCache: true,
+                LoadFromCache: false, // Disable cache for debugging
 
                 // External library URLs (using CDN)
-                MinifiedJSUrl: 'https://unpkg.com/core-js-bundle@3.6.1/minified.js',
+                MinifiedJSUrl: 'https://cdn.jsdelivr.net/npm/core-js-bundle@3.6.1/minified.js',
                 Live2dCubismcoreUrl: 'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js'
             });
 
@@ -51,6 +70,7 @@
 
         } catch (error) {
             console.error('[Live2D] Failed to initialize:', error);
+            console.error('[Live2D] Error stack:', error.stack);
         }
     }
 })();
