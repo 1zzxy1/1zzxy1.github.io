@@ -5338,7 +5338,7 @@ body {
   background: transparent !important;
 }
 [data-theme="dark"] body::after {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.3);
 }
 [data-theme="dark"] #container {
   background: transparent !important;
