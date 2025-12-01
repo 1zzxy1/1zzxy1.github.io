@@ -5323,6 +5323,10 @@ body::after {
 main {
   background: transparent !important;
 }
+#main {
+  background: transparent !important;
+  box-shadow: none !important;
+}
 .darkmode main {
   background: transparent !important;
 }
@@ -5331,11 +5335,25 @@ main {
 }
 .darkmode #main {
   background: transparent !important;
+  box-shadow: none !important;
 }
 .darkmode #container {
   background: transparent !important;
 }
 .darkmode body {
+  background: transparent !important;
+}
+[data-theme="dark"] main {
+  background: transparent !important;
+}
+[data-theme="dark"] #main {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+[data-theme="dark"] body {
+  background: transparent !important;
+}
+[data-theme="dark"] #container {
   background: transparent !important;
 }
 .darkmode .post {
