@@ -5280,8 +5280,6 @@ body::before {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  filter: blur(5px);
-  transform: scale(1.1);
 }
 body::after {
   content: '';
@@ -5291,7 +5289,7 @@ body::after {
   width: 100%;
   height: 100%;
   z-index: -99;
-  background: rgba(0,0,0,0.1);
+  background: transparent;
 }
 #container {
   position: relative;
@@ -5342,7 +5340,7 @@ body {
   background: transparent !important;
 }
 [data-theme="dark"] body::after {
-  background: rgba(0,0,0,0.1);
+  background: transparent;
 }
 [data-theme="dark"] #container {
   background: transparent !important;
