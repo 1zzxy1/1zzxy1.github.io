@@ -5332,13 +5332,13 @@ body {
   background: transparent !important;
 }
 [data-theme="dark"] html {
-  background: #1a1a1a !important;
+  background: transparent !important;
 }
 [data-theme="dark"] body {
   background: transparent !important;
 }
 [data-theme="dark"] body::after {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
 }
 [data-theme="dark"] #container {
   background: transparent !important;
