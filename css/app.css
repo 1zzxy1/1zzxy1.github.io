@@ -1049,7 +1049,7 @@ body {
   height: 100%;
 }
 body {
-  background: transparent;
+  background: linear-gradient(to top, var(--body-bg-shadow) 0, var(--grey-1) 20%) no-repeat bottom;
   color: var(--text-color);
   font-family: 'Mulish', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1em;
@@ -1461,7 +1461,7 @@ textarea {
   width: 100%;
 }
 main {
-  background: transparent;
+  background: linear-gradient(to top, var(--body-bg-shadow) 0, var(--grey-1) 20%) no-repeat bottom;
 }
 main >.inner {
   width: calc(100% - 0.625rem);
@@ -1481,7 +1481,7 @@ main >.inner {
   }
 }
 #main {
-  background: transparent;
+  background: linear-gradient(to top, var(--grey-0) 0, var(--grey-1) 20%) no-repeat top;
   box-shadow: 0rem 1.25rem 1rem 0.3125rem var(--body-bg-shadow);
   width: calc(100% - 15.75rem);
   min-height: 37.5rem;
@@ -5275,11 +5275,13 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -100;
+  z-index: -2;
   background-image: url("/img/background.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  filter: blur(5px);
+  transform: scale(1.1);
 }
 body::after {
   content: '';
@@ -5288,117 +5290,72 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -99;
-  background: transparent;
-}
-#container {
-  position: relative;
-  z-index: 1;
-  background: transparent !important;
-}
-#waves {
-  overflow: visible !important;
-  width: 100vw !important;
-  margin-left: calc(-50vw + 50%) !important;
+  z-index: -1;
+  background: rgba(0,0,0,0.3);
 }
 .inner {
   background: rgba(255,255,255,0.85) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 10px;
+}
+.darkmode .inner {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode body::after {
+  background: rgba(0,0,0,0.5);
 }
 #sidebar .inner {
   background: rgba(255,255,255,0.9) !important;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
+.darkmode #sidebar .inner {
+  background: rgba(30,30,30,0.9) !important;
+}
 #footer {
   background: rgba(255,255,255,0.8) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+.darkmode #footer {
+  background: rgba(30,30,30,0.8) !important;
+}
 main {
   background: transparent !important;
 }
-#main {
+.darkmode main {
   background: transparent !important;
 }
-html {
+.darkmode .post-block {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode #main {
   background: transparent !important;
 }
-body {
+.darkmode #container {
   background: transparent !important;
 }
-html,
-body {
+.darkmode body {
   background: transparent !important;
 }
-[data-theme="dark"] html {
+.darkmode .post {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode article {
   background: transparent !important;
 }
-[data-theme="dark"] body {
+.darkmode .post-card {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode section {
   background: transparent !important;
 }
-[data-theme="dark"] body::after {
+.darkmode div:not(.inner):not(#sidebar):not(#footer) {
   background: transparent;
 }
-[data-theme="dark"] #container {
+.darkmode .post-body {
   background: transparent !important;
 }
-[data-theme="dark"] main {
+.darkmode .post-content {
   background: transparent !important;
-}
-[data-theme="dark"] #main {
-  background: transparent !important;
-}
-[data-theme="dark"] .inner {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] #sidebar {
-  background: transparent !important;
-}
-[data-theme="dark"] #sidebar .inner {
-  background: rgba(30,30,30,0.9) !important;
-}
-[data-theme="dark"] #footer {
-  background: rgba(30,30,30,0.8) !important;
-}
-[data-theme="dark"] .post-block {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] .post {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] .post-card {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] article {
-  background: transparent !important;
-}
-[data-theme="dark"] section {
-  background: transparent !important;
-}
-[data-theme="dark"] .post-body {
-  background: transparent !important;
-}
-[data-theme="dark"] .post-content {
-  background: transparent !important;
-}
-[data-theme="dark"] .content {
-  background: transparent !important;
-}
-[data-theme="dark"] .wrap {
-  background: transparent !important;
-}
-[data-theme="dark"] div {
-  background-color: transparent;
-}
-[data-theme="dark"] .inner {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] #sidebar .inner {
-  background: rgba(30,30,30,0.9) !important;
-}
-[data-theme="dark"] #footer {
-  background: rgba(30,30,30,0.8) !important;
 }
