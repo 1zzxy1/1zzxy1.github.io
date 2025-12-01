@@ -5268,3 +5268,55 @@ span.label {
 .audio.playing .cover .disc {
   animation-play-state: running;
 }
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: url("/img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: blur(5px);
+  transform: scale(1.1);
+}
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgba(0,0,0,0.3);
+}
+.inner {
+  background: rgba(255,255,255,0.85) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.darkmode .inner {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode body::after {
+  background: rgba(0,0,0,0.5);
+}
+#sidebar .inner {
+  background: rgba(255,255,255,0.9) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+.darkmode #sidebar .inner {
+  background: rgba(30,30,30,0.9) !important;
+}
+#footer {
+  background: rgba(255,255,255,0.8) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.darkmode #footer {
+  background: rgba(30,30,30,0.8) !important;
+}
