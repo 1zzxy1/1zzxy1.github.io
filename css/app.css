@@ -5332,7 +5332,7 @@ body {
   background: transparent !important;
 }
 [data-theme="dark"] html {
-  background: #1a1a1a !important;
+  background: transparent !important;
 }
 [data-theme="dark"] body {
   background: transparent !important;
@@ -5388,12 +5388,15 @@ body {
 [data-theme="dark"] .wrap {
   background: transparent !important;
 }
-[data-theme="dark"] #container > div {
+[data-theme="dark"] div {
   background-color: transparent;
 }
-[data-theme="dark"] .wrap > div {
-  background-color: transparent;
+[data-theme="dark"] .inner {
+  background: rgba(30,30,30,0.85) !important;
 }
-[data-theme="dark"] #main > div {
-  background-color: transparent;
+[data-theme="dark"] #sidebar .inner {
+  background: rgba(30,30,30,0.9) !important;
+}
+[data-theme="dark"] #footer {
+  background: rgba(30,30,30,0.8) !important;
 }
