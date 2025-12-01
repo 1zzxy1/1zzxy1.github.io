@@ -28,14 +28,8 @@
             console.log('[Live2D] Live2dRender library loaded successfully');
             console.log('[Live2D] Initializing Live2D model...');
 
-            // Get base path
-            var basePath = window.location.pathname;
-            if (!basePath.endsWith('/')) {
-                basePath = basePath.substring(0, basePath.lastIndexOf('/') + 1);
-            }
-
-            // Use relative path
-            var modelPath = basePath + 'live2d-model/Mao/Mao.model3.json';
+            // Use absolute path from root
+            var modelPath = '/live2d-model/Mao/Mao.model3.json';
             console.log('[Live2D] Model path:', modelPath);
 
             // Initialize Live2D with Mao model
