@@ -5275,7 +5275,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -100;
+  z-index: -2;
   background-image: url("/img/background.jpg");
   background-size: cover;
   background-position: center;
@@ -5290,113 +5290,72 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -99;
+  z-index: -1;
   background: rgba(0,0,0,0.3);
-}
-#container {
-  position: relative;
-  z-index: 1;
-  background: transparent !important;
-}
-#waves {
-  overflow: visible !important;
-  width: 100vw !important;
-  margin-left: calc(-50vw + 50%) !important;
 }
 .inner {
   background: rgba(255,255,255,0.85) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 10px;
+}
+.darkmode .inner {
+  background: rgba(30,30,30,0.85) !important;
+}
+.darkmode body::after {
+  background: rgba(0,0,0,0.5);
 }
 #sidebar .inner {
   background: rgba(255,255,255,0.9) !important;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
 }
+.darkmode #sidebar .inner {
+  background: rgba(30,30,30,0.9) !important;
+}
 #footer {
   background: rgba(255,255,255,0.8) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+.darkmode #footer {
+  background: rgba(30,30,30,0.8) !important;
+}
 main {
   background: transparent !important;
 }
-#main {
+.darkmode main {
   background: transparent !important;
 }
-html {
-  background: transparent !important;
-}
-body {
-  background: transparent !important;
-}
-[data-theme="dark"] html {
-  background: transparent !important;
-}
-[data-theme="dark"] body {
-  background: transparent !important;
-}
-[data-theme="dark"] body::after {
-  background: rgba(0,0,0,0.4);
-}
-[data-theme="dark"] #container {
-  background: transparent !important;
-}
-[data-theme="dark"] main {
-  background: transparent !important;
-}
-[data-theme="dark"] #main {
-  background: transparent !important;
-}
-[data-theme="dark"] .inner {
+.darkmode .post-block {
   background: rgba(30,30,30,0.85) !important;
 }
-[data-theme="dark"] #sidebar {
+.darkmode #main {
   background: transparent !important;
 }
-[data-theme="dark"] #sidebar .inner {
-  background: rgba(30,30,30,0.9) !important;
+.darkmode #container {
+  background: transparent !important;
 }
-[data-theme="dark"] #footer {
-  background: rgba(30,30,30,0.8) !important;
+.darkmode body {
+  background: transparent !important;
 }
-[data-theme="dark"] .post-block {
+.darkmode .post {
   background: rgba(30,30,30,0.85) !important;
 }
-[data-theme="dark"] .post {
+.darkmode article {
+  background: transparent !important;
+}
+.darkmode .post-card {
   background: rgba(30,30,30,0.85) !important;
 }
-[data-theme="dark"] .post-card {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] article {
+.darkmode section {
   background: transparent !important;
 }
-[data-theme="dark"] section {
+.darkmode div:not(.inner):not(#sidebar):not(#footer) {
+  background: transparent;
+}
+.darkmode .post-body {
   background: transparent !important;
 }
-[data-theme="dark"] .post-body {
+.darkmode .post-content {
   background: transparent !important;
-}
-[data-theme="dark"] .post-content {
-  background: transparent !important;
-}
-[data-theme="dark"] .content {
-  background: transparent !important;
-}
-[data-theme="dark"] .wrap {
-  background: transparent !important;
-}
-[data-theme="dark"] div {
-  background-color: transparent;
-}
-[data-theme="dark"] .inner {
-  background: rgba(30,30,30,0.85) !important;
-}
-[data-theme="dark"] #sidebar .inner {
-  background: rgba(30,30,30,0.9) !important;
-}
-[data-theme="dark"] #footer {
-  background: rgba(30,30,30,0.8) !important;
 }
