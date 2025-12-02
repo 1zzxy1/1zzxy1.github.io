@@ -5280,8 +5280,6 @@ body::before {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  filter: blur(5px);
-  transform: scale(1.1);
   pointer-events: none;
 }
 html {
