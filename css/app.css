@@ -5291,6 +5291,26 @@ body {
   background: transparent !important;
   background-image: none !important;
 }
+header {
+  background: transparent !important;
+  background-image: none !important;
+}
+#banner {
+  background: transparent !important;
+  background-image: none !important;
+}
+.banner {
+  background: transparent !important;
+  background-image: none !important;
+}
+#header {
+  background: transparent !important;
+  background-image: none !important;
+}
+.header {
+  background: transparent !important;
+  background-image: none !important;
+}
 #container {
   background: transparent !important;
   background-image: none !important;
@@ -5320,6 +5340,26 @@ main {
   -webkit-backdrop-filter: blur(10px);
 }
 [data-theme="dark"] body {
+  background: transparent !important;
+  background-image: none !important;
+}
+[data-theme="dark"] header {
+  background: transparent !important;
+  background-image: none !important;
+}
+[data-theme="dark"] #banner {
+  background: transparent !important;
+  background-image: none !important;
+}
+[data-theme="dark"] .banner {
+  background: transparent !important;
+  background-image: none !important;
+}
+[data-theme="dark"] #header {
+  background: transparent !important;
+  background-image: none !important;
+}
+[data-theme="dark"] .header {
   background: transparent !important;
   background-image: none !important;
 }
