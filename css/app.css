@@ -5295,6 +5295,10 @@ header {
   background: transparent !important;
   background-image: none !important;
 }
+#imgs {
+  background: transparent !important;
+  background-color: transparent !important;
+}
 #banner {
   background: transparent !important;
   background-image: none !important;
@@ -5346,6 +5350,10 @@ main {
 [data-theme="dark"] header {
   background: transparent !important;
   background-image: none !important;
+}
+[data-theme="dark"] #imgs {
+  background: transparent !important;
+  background-color: transparent !important;
 }
 [data-theme="dark"] #banner {
   background: transparent !important;
