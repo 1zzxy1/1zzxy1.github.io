@@ -2225,11 +2225,17 @@ main >.inner {
   top: -10%;
   left: -10%;
 }
-.social .item.::before {
-  background-color: ;
+.social .item.github::before {
+  background-color: #191717;
 }
-.social .item. i {
-  color: ;
+.social .item.github i {
+  color: #191717;
+}
+.social .item.qq::before {
+  background-color: #12b7f5;
+}
+.social .item.qq i {
+  color: #12b7f5;
 }
 .social .item:focus i,
 .social .item:hover i {
@@ -2474,7 +2480,7 @@ main >.inner {
   width: 100%;
 }
 .with-love {
-  color: #ffc0cb;
+  color: #9b59b6;
   display: inline-block;
   margin: 0 0.3125rem 0 0.125rem;
 }
