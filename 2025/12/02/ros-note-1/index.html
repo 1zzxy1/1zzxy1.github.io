@@ -32,7 +32,7 @@
 
 
   <title>
-ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘 - ROS - 技术 |
+ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘 - ROS - 技术 |
 Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always connected.</title>
 <meta name="generator" content="Hexo 8.1.1"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -60,7 +60,7 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘
+  <h1 itemprop="name headline">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘
   </h1>
   
 <div class="meta">
@@ -101,7 +101,7 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
 
       </div>
       <div id="imgs" class="pjax">
-          <img src="https://bakastream.icu/img/ros-cover.png">
+          <img src="//img/ros-cover.png">
       </div>
     </header>
     <div id="waves">
@@ -149,49 +149,45 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
   <div class="body md" itemprop="articleBody">
     
 
-    <h1 id="笨蛋也能看懂的ros2核心概念大揭秘"><a class="anchor" href="#笨蛋也能看懂的ros2核心概念大揭秘">#</a> 笨蛋也能看懂的 ROS2 核心概念大揭秘</h1>
+    <h1 id="笨蛋也能看懂的-ros-2-核心概念大揭秘节点-话题-服务与动作"><a class="anchor" href="#笨蛋也能看懂的-ros-2-核心概念大揭秘节点-话题-服务与动作">#</a> 笨蛋也能看懂的 ROS 2 核心概念大揭秘：节点、话题、服务与动作</h1>
 <h2 id="前言"><a class="anchor" href="#前言">#</a> 前言</h2>
-<p>哎呀，你是不是被 ROS2 那些晦涩的官方文档搞得头都大了？(¬_¬)</p>
-<p>别担心，本小姐（咳咳，你的 AI 助手）这就用最通俗易懂的方式，带你搞定 ROS2 的四大金刚：Node、Topic、Service、Action。</p>
-<p>坐稳了，我们要发车了！DAZE</p>
-<hr />
-<h2 id="一-宏观比喻ros就是一家大公司"><a class="anchor" href="#一-宏观比喻ros就是一家大公司">#</a> 一、宏观比喻：ROS 就是一家大公司</h2>
-<p>要把 ROS（机器人操作系统）搞清楚，别去想什么复杂的架构图，把它想象成一家繁忙的物流公司就好了！</p>
+<p>哎呀，你是不是被 ROS 2 那些晦涩的官方文档搞得头都大了？(¬_¬)</p>
+<p>别担心，本小姐（咳咳，你的 AI 助手）这就用最通俗易懂的方式，带你搞定 ROS 2 的四大金刚：Node、Topic、Service、Action。</p>
+<p>坐稳了，我们要发车了！DAZE⭐</p>
+<h2 id="一-宏观比喻ros-就是一家大公司"><a class="anchor" href="#一-宏观比喻ros-就是一家大公司">#</a> 一、 宏观比喻：ROS 就是一家 &quot;大公司&quot;</h2>
+<p>要把 ROS (机器人操作系统) 搞清楚，别去想什么复杂的架构图，把它想象成一家繁忙的物流公司就好了！</p>
 <p>在这家公司里，没有任何一个 &quot;全能老板&quot; 指挥一切，而是靠几十个不同的员工各司其职，通过不同的方式互相吼叫来传递信息。</p>
 <ul>
-<li><strong>整个系统</strong> = 这家公司</li>
-<li><strong>节点 (Node)</strong> = 公司里的员工（比如司机、调度员、会计）</li>
-<li><strong>通信机制</strong> = 员工之间说话的方式（Topic, Service, Action）</li>
+<li><strong>整个系统</strong> = 这家公司。</li>
+<li><strong>节点 (Node)</strong> = 公司里的员工（比如司机、调度员、会计）。</li>
+<li><strong>通信机制</strong> = 员工之间说话的方式（Topic, Service, Action）。</li>
 </ul>
-<hr />
-<h2 id="二-节点-node不知疲倦的打工人"><a class="anchor" href="#二-节点-node不知疲倦的打工人">#</a> 二、节点 (Node)：不知疲倦的打工人</h2>
+<h2 id="二-节点-node不知疲倦的打工人"><a class="anchor" href="#二-节点-node不知疲倦的打工人">#</a> 二、 节点 (Node)：不知疲倦的打工人</h2>
 <p>节点是干活的基本单位。就像公司里的员工，每个人都有自己的名字，也有自己负责的工位。</p>
-<p><strong>特点：每个节点只负责一件事（解耦合）</strong></p>
+<p><strong>特点：每个节点只负责一件事（解耦合）。</strong></p>
 <ul>
-<li><code>camera_node</code> ：只负责盯着摄像头看</li>
-<li><code>driver_node</code> ：只负责踩油门和刹车</li>
-<li><code>brain_node</code> ：只负责思考怎么走</li>
+<li><code>camera_node</code> ：只负责盯着摄像头看。</li>
+<li><code>driver_node</code> ：只负责踩油门和刹车。</li>
+<li><code>brain_node</code> ：只负责思考怎么走。</li>
 </ul>
-<h3 id="python代码示例"><a class="anchor" href="#python代码示例">#</a> Python 代码示例</h3>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> rclpy</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> rclpy<span class="token punctuation">.</span>node <span class="token keyword">import</span> Node</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">MyWorker</span><span class="token punctuation">(</span>Node<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token comment"># 给这个员工起个名字叫 "worker_wang"</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token string">'worker_wang'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        self<span class="token punctuation">.</span>get_logger<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'大家好，我是老王，我来上班了！'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>args<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    rclpy<span class="token punctuation">.</span>init<span class="token punctuation">(</span>args<span class="token operator">=</span>args<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    node <span class="token operator">=</span> MyWorker<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    rclpy<span class="token punctuation">.</span>spin<span class="token punctuation">(</span>node<span class="token punctuation">)</span>  <span class="token comment"># 开始干活，直到下班</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    rclpy<span class="token punctuation">.</span>shutdown<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><hr />
-<h2 id="三-话题-topic永不停止的广播电台"><a class="anchor" href="#三-话题-topic永不停止的广播电台">#</a> 三、话题 (Topic)：永不停止的广播电台</h2>
+<h3 id="python-代码长这样"><a class="anchor" href="#python-代码长这样">#</a> Python 代码长这样：</h3>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> rclpy</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> rclpy<span class="token punctuation">.</span>node <span class="token keyword">import</span> Node</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">MyWorker</span><span class="token punctuation">(</span>Node<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token comment"># 给这个员工起个名字叫 "worker_wang"</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token builtin">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>__init__<span class="token punctuation">(</span><span class="token string">'worker_wang'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        self<span class="token punctuation">.</span>get_logger<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>info<span class="token punctuation">(</span><span class="token string">'大家好，我是老王，我来上班了！'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>args<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    rclpy<span class="token punctuation">.</span>init<span class="token punctuation">(</span>args<span class="token operator">=</span>args<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    node <span class="token operator">=</span> MyWorker<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    rclpy<span class="token punctuation">.</span>spin<span class="token punctuation">(</span>node<span class="token punctuation">)</span> <span class="token comment"># 开始干活，直到下班</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    rclpy<span class="token punctuation">.</span>shutdown<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="三-话题-topic永不停止的广播电台"><a class="anchor" href="#三-话题-topic永不停止的广播电台">#</a> 三、 话题 (Topic)：永不停止的广播电台</h2>
 <p><strong>场景</strong>：雷达监测员老李发现前方有障碍物。</p>
 <p>他不会一个一个地打电话通知所有人，而是拿起大喇叭（Publisher）开始广播。谁想听（Subscriber）就戴上耳机听，不想听拉倒。老李不管有没有人听，他只管喊。</p>
 <ul>
-<li><strong>比喻</strong>：广播 / 报纸</li>
-<li><strong>性质</strong>：单向、高频、发后不理</li>
-<li><strong>适用</strong>：传感器数据（雷达、图像）、持续的速度指令</li>
+<li><strong>比喻</strong>：广播 / 报纸。</li>
+<li><strong>性质</strong>：单向、高频、发后不理。</li>
+<li><strong>适用</strong>：传感器数据（雷达、图像）、持续的速度指令。</li>
 </ul>
 <h3 id="代码举例"><a class="anchor" href="#代码举例">#</a> 代码举例</h3>
 <p><strong>发布者 (Publisher) - 拿着喇叭的老李：</strong></p>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 每 0.5 秒喊一次</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>timer <span class="token operator">=</span> self<span class="token punctuation">.</span>create_timer<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>timer_callback<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>self<span class="token punctuation">.</span>publisher_ <span class="token operator">=</span> self<span class="token punctuation">.</span>create_publisher<span class="token punctuation">(</span>String<span class="token punctuation">,</span> <span class="token string">'topic_news'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">def</span> <span class="token function">timer_callback</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    msg <span class="token operator">=</span> String<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    msg<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token string">'前方有障碍！前方有障碍！'</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    self<span class="token punctuation">.</span>publisher_<span class="token punctuation">.</span>publish<span class="token punctuation">(</span>msg<span class="token punctuation">)</span>  <span class="token comment"># 喊出去！</span></pre></td></tr></table></figure><p><strong>订阅者 (Subscriber) - 戴耳机的小张：</strong></p>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 听到 'topic_news' 就会有反应</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>subscription <span class="token operator">=</span> self<span class="token punctuation">.</span>create_subscription<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    String<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token string">'topic_news'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    self<span class="token punctuation">.</span>listener_callback<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">def</span> <span class="token function">listener_callback</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'听到广播了："</span><span class="token interpolation"><span class="token punctuation">&#123;</span>msg<span class="token punctuation">.</span>data<span class="token punctuation">&#125;</span></span><span class="token string">"，我得赶紧刹车！'</span></span><span class="token punctuation">)</span></pre></td></tr></table></figure><hr />
-<h2 id="四-服务-service一手交钱一手交货"><a class="anchor" href="#四-服务-service一手交钱一手交货">#</a> 四、服务 (Service)：一手交钱，一手交货</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 每 0.5 秒喊一次</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>timer <span class="token operator">=</span> self<span class="token punctuation">.</span>create_timer<span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>timer_callback<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>self<span class="token punctuation">.</span>publisher_ <span class="token operator">=</span> self<span class="token punctuation">.</span>create_publisher<span class="token punctuation">(</span>String<span class="token punctuation">,</span> <span class="token string">'topic_news'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">def</span> <span class="token function">timer_callback</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    msg <span class="token operator">=</span> String<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    msg<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token string">'前方有障碍！前方有障碍！'</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    self<span class="token punctuation">.</span>publisher_<span class="token punctuation">.</span>publish<span class="token punctuation">(</span>msg<span class="token punctuation">)</span> <span class="token comment"># 喊出去！</span></pre></td></tr></table></figure><p><strong>订阅者 (Subscriber) - 戴耳机的小张：</strong></p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 听到 'topic_news' 就会有反应</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>subscription <span class="token operator">=</span> self<span class="token punctuation">.</span>create_subscription<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    String<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token string">'topic_news'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    self<span class="token punctuation">.</span>listener_callback<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token number">10</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">def</span> <span class="token function">listener_callback</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'听到广播了："</span><span class="token interpolation"><span class="token punctuation">&#123;</span>msg<span class="token punctuation">.</span>data<span class="token punctuation">&#125;</span></span><span class="token string">"，我得赶紧刹车！'</span></span><span class="token punctuation">)</span></pre></td></tr></table></figure><h2 id="四-服务-service一手交钱一手交货"><a class="anchor" href="#四-服务-service一手交钱一手交货">#</a> 四、 服务 (Service)：一手交钱，一手交货</h2>
 <p><strong>场景</strong>：你想查一下现在的电量，或者你想让相机拍一张照片。</p>
 <p>这不能用广播，因为你需要立马得到一个回复。于是你走到柜台前，敲了敲桌子。</p>
 <ul>
-<li><strong>比喻</strong>：快餐店点餐 / 银行柜台</li>
-<li><strong>性质</strong>：双向、同步、一问一答</li>
+<li><strong>比喻</strong>：快餐店点餐 / 银行柜台。</li>
+<li><strong>性质</strong>：双向、同步、一问一答。</li>
 <li><strong>客户端 (Client)</strong>：发起请求（Request）。\ 我要一杯可乐。u</li>
 <li><strong>服务端 (Server)</strong>：处理并回复（Response）。\ 好的，给你可乐。u</li>
 </ul>
@@ -200,66 +196,76 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
 </blockquote>
 <h3 id="代码举例-2"><a class="anchor" href="#代码举例-2">#</a> 代码举例</h3>
 <p><strong>服务端 (Server) - 柜员：</strong></p>
-<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 提供一个叫 'add_two_ints' 的服务</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>srv <span class="token operator">=</span> self<span class="token punctuation">.</span>create_service<span class="token punctuation">(</span>AddTwoInts<span class="token punctuation">,</span> <span class="token string">'add_two_ints'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>add_two_ints_callback<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">def</span> <span class="token function">add_two_ints_callback</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    response<span class="token punctuation">.</span><span class="token builtin">sum</span> <span class="token operator">=</span> request<span class="token punctuation">.</span>a <span class="token operator">+</span> request<span class="token punctuation">.</span>b</pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'收到请求：计算 </span><span class="token interpolation"><span class="token punctuation">&#123;</span>request<span class="token punctuation">.</span>a<span class="token punctuation">&#125;</span></span><span class="token string"> + </span><span class="token interpolation"><span class="token punctuation">&#123;</span>request<span class="token punctuation">.</span>b<span class="token punctuation">&#125;</span></span><span class="token string">'</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">return</span> response  <span class="token comment"># 马上把结果给回去</span></pre></td></tr></table></figure><hr />
-<h2 id="五-动作-action漫长的外卖配送"><a class="anchor" href="#五-动作-action漫长的外卖配送">#</a> 五、动作 (Action)：漫长的外卖配送</h2>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 提供一个叫 'add_two_ints' 的服务</span></pre></td></tr><tr><td data-num="2"></td><td><pre>self<span class="token punctuation">.</span>srv <span class="token operator">=</span> self<span class="token punctuation">.</span>create_service<span class="token punctuation">(</span>AddTwoInts<span class="token punctuation">,</span> <span class="token string">'add_two_ints'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>add_two_ints_callback<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">def</span> <span class="token function">add_two_ints_callback</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    response<span class="token punctuation">.</span><span class="token builtin">sum</span> <span class="token operator">=</span> request<span class="token punctuation">.</span>a <span class="token operator">+</span> request<span class="token punctuation">.</span>b</pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'收到请求：计算 </span><span class="token interpolation"><span class="token punctuation">&#123;</span>request<span class="token punctuation">.</span>a<span class="token punctuation">&#125;</span></span><span class="token string"> + </span><span class="token interpolation"><span class="token punctuation">&#123;</span>request<span class="token punctuation">.</span>b<span class="token punctuation">&#125;</span></span><span class="token string">'</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">return</span> response <span class="token comment"># 马上把结果给回去</span></pre></td></tr></table></figure><h2 id="五-动作-action漫长的外卖配送"><a class="anchor" href="#五-动作-action漫长的外卖配送">#</a> 五、 动作 (Action)：漫长的外卖配送</h2>
 <p><strong>场景</strong>：你要让机器人从客厅走到厨房。</p>
 <p>这件事太复杂了，可能要走好几分钟。</p>
 <ul>
-<li>如果你用 <strong>Topic</strong>：你发了指令就不管了，万一机器人掉坑里了你都不知道</li>
-<li>如果你用 <strong>Service</strong>：你发了指令就在那死等，这几分钟你啥也干不了，像个傻子</li>
+<li>如果你用 <strong>Topic</strong>：你发了指令就不管了，万一机器人掉坑里了你都不知道。</li>
+<li>如果你用 <strong>Service</strong>：你发了指令就在那死等，这几分钟你啥也干不了，像个傻子。</li>
 </ul>
 <p>这时候就需要 <strong>Action</strong>！就像点外卖！</p>
 <ul>
-<li><strong>比喻</strong>：外卖订单</li>
-<li><strong>性质</strong>：双向、异步、有进度反馈</li>
+<li><strong>比喻</strong>：外卖订单。</li>
+<li><strong>性质</strong>：双向、异步、有进度反馈。</li>
 <li><strong>目标 (Goal)</strong>：你下单。\ 送一份披萨到厨房。u</li>
 <li><strong>反馈 (Feedback)</strong>：外卖员路上不断给你发消息。\ 取到餐了… 还有 500 米… 还有 10 米…u</li>
 <li><strong>结果 (Result)</strong>：最后告诉你。\ 餐送到了，祝您用餐愉快。u</li>
 <li><strong>取消 (Cancel)</strong>：你中途可以退单。\ 我不吃了！u</li>
 </ul>
 <h3 id="核心逻辑图"><a class="anchor" href="#核心逻辑图">#</a> 核心逻辑图</h3>
-<figure class="highlight text"><figcaption data-lang="text"></figcaption><table><tr><td data-num="1"></td><td><pre>Client (你)                          Server (导航节点)</pre></td></tr><tr><td data-num="2"></td><td><pre>    |                                      |</pre></td></tr><tr><td data-num="3"></td><td><pre>    | --- 1. 发送目标 (去厨房) ----------> |</pre></td></tr><tr><td data-num="4"></td><td><pre>    |                                      |</pre></td></tr><tr><td data-num="5"></td><td><pre>    | &lt;--- 2. 确认接单 ------------------- |</pre></td></tr><tr><td data-num="6"></td><td><pre>    |                                      |</pre></td></tr><tr><td data-num="7"></td><td><pre>    | &lt;--- 3. 周期性反馈 (走了50%...) ---- |</pre></td></tr><tr><td data-num="8"></td><td><pre>    | &lt;--- 3. 周期性反馈 (走了80%...) ---- |</pre></td></tr><tr><td data-num="9"></td><td><pre>    |                                      |</pre></td></tr><tr><td data-num="10"></td><td><pre>    | --- 4. (可选) 取消任务！ ----------> |</pre></td></tr><tr><td data-num="11"></td><td><pre>    |                                      |</pre></td></tr><tr><td data-num="12"></td><td><pre>    | &lt;--- 5. 最终结果 (到达/被取消) ----- |</pre></td></tr></table></figure><hr />
+<pre><code>Client (你)                          Server (导航节点)
+    |                                      |
+    | --- 1. 发送目标 (去厨房) ----------&gt; |
+    |                                      |
+    | &lt;--- 2. 确认接单 ------------------- |
+    |                                      |
+    | &lt;--- 3. 周期性反馈 (走了50%...) ---- |
+    | &lt;--- 3. 周期性反馈 (走了80%...) ---- |
+    |                                      |
+    | --- 4. (可选) 取消任务！ ----------&gt; |
+    |                                      |
+    | &lt;--- 5. 最终结果 (到达/被取消) ----- |
+</code></pre>
 <h2 id="总结我该用哪个"><a class="anchor" href="#总结我该用哪个">#</a> 总结：我该用哪个？</h2>
-<p>别纠结了，本小姐给你整理了一张「防笨蛋速查表」，背下来！</p>
+<p>别纠结了，本小姐给你整理了一张 **\ 防笨蛋速查表 u**，背下来！(｀へ ´)</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">通信方式</th>
-<th style="text-align:center">感觉像</th>
-<th style="text-align:center">什么时候用</th>
-<th style="text-align:center">堵塞吗</th>
-<th style="text-align:center">能退单吗</th>
+<th>通信方式</th>
+<th>这种感觉就像…</th>
+<th>什么时候用？</th>
+<th>堵塞吗？</th>
+<th>能退单吗？</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">Topic</td>
-<td style="text-align:center">大喇叭广播</td>
-<td style="text-align:center">传数据流 (雷达、图像、速度)</td>
-<td style="text-align:center">不卡</td>
-<td style="text-align:center">不行</td>
+<td><strong>Topic</strong></td>
+<td>大喇叭广播</td>
+<td>传数据流 (雷达、图像、速度)</td>
+<td>不卡</td>
+<td>不行，发了就不管了</td>
 </tr>
 <tr>
-<td style="text-align:center">Service</td>
-<td style="text-align:center">柜台办事</td>
-<td style="text-align:center">开关控制、查参数、拍照</td>
-<td style="text-align:center">堵死</td>
-<td style="text-align:center">不行</td>
+<td><strong>Service</strong></td>
+<td>柜台办事</td>
+<td>开关控制、查参数、拍照</td>
+<td>堵死 (必须等结果)</td>
+<td>不行，一旦开始必须做完</td>
 </tr>
 <tr>
-<td style="text-align:center">Action</td>
-<td style="text-align:center">点外卖</td>
-<td style="text-align:center">导航、机械臂抓取、耗时任务</td>
-<td style="text-align:center">不堵</td>
-<td style="text-align:center">可以</td>
+<td><strong>Action</strong></td>
+<td>点外卖</td>
+<td>导航、机械臂抓取、耗时任务</td>
+<td>不堵 (可以干别的)</td>
+<td>可以 (随时取消)</td>
 </tr>
 </tbody>
 </table>
-<hr />
 <h2 id="结语"><a class="anchor" href="#结语">#</a> 结语</h2>
-<p>怎么样？是不是突然觉得 ROS2 也没那么难了？</p>
+<p>怎么样？是不是突然觉得 ROS 2 也没那么难了？</p>
 <p>只要你心里有这张 &quot;公司架构图&quot;，代码写起来就是顺手拈来的事！</p>
-<p>如果这篇文档帮到了你，记得在心里感谢我一下就好！才、才不需要你的赞赏呢！哼！</p>
+<p>如果这篇文档帮到了你，记得…… 记得在心里感谢我一下就好！才、才不需要你的赞赏呢！哼！(⁄ ⁄・⁄ω⁄・⁄ ⁄)</p>
 <hr />
 <p><em>本文由 Gemini 协助生成，并由 Claude 整理发布。</em></p>
 
@@ -278,7 +284,7 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2025-12-02 23:55:32" itemprop="dateModified" datetime="2025-12-02T23:55:32+08:00">2025-12-02</time>
+    <time title="修改时间：2025-12-02 23:57:23" itemprop="dateModified" datetime="2025-12-02T23:57:23+08:00">2025-12-02</time>
   </span>
 </div>
 
@@ -314,7 +320,7 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
   </li>
   <li class="link">
     <strong>本文链接：</strong>
-    <a href="https://bakastream.icu/2025/12/02/ros-note-1/" title="ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘">https://bakastream.icu/2025/12/02/ros-note-1/</a>
+    <a href="https://bakastream.icu/2025/12/02/ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">https://bakastream.icu/2025/12/02/ros-note-1/</a>
   </li>
   <li class="license">
     <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -357,11 +363,11 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%A8%E8%9B%8B%E4%B9%9F%E8%83%BD%E7%9C%8B%E6%87%82%E7%9A%84ros2%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%A4%A7%E6%8F%AD%E7%A7%98"><span class="toc-number">1.</span> <span class="toc-text"> 笨蛋也能看懂的 ROS2 核心概念大揭秘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%AE%8F%E8%A7%82%E6%AF%94%E5%96%BBros%E5%B0%B1%E6%98%AF%E4%B8%80%E5%AE%B6%E5%A4%A7%E5%85%AC%E5%8F%B8"><span class="toc-number">1.2.</span> <span class="toc-text"> 一、宏观比喻：ROS 就是一家大公司</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E8%8A%82%E7%82%B9-node%E4%B8%8D%E7%9F%A5%E7%96%B2%E5%80%A6%E7%9A%84%E6%89%93%E5%B7%A5%E4%BA%BA"><span class="toc-number">1.3.</span> <span class="toc-text"> 二、节点 (Node)：不知疲倦的打工人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#python%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text"> Python 代码示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E8%AF%9D%E9%A2%98-topic%E6%B0%B8%E4%B8%8D%E5%81%9C%E6%AD%A2%E7%9A%84%E5%B9%BF%E6%92%AD%E7%94%B5%E5%8F%B0"><span class="toc-number">1.4.</span> <span class="toc-text"> 三、话题 (Topic)：永不停止的广播电台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 代码举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E6%9C%8D%E5%8A%A1-service%E4%B8%80%E6%89%8B%E4%BA%A4%E9%92%B1%E4%B8%80%E6%89%8B%E4%BA%A4%E8%B4%A7"><span class="toc-number">1.5.</span> <span class="toc-text"> 四、服务 (Service)：一手交钱，一手交货</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%BE%E4%BE%8B-2"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 代码举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%8A%A8%E4%BD%9C-action%E6%BC%AB%E9%95%BF%E7%9A%84%E5%A4%96%E5%8D%96%E9%85%8D%E9%80%81"><span class="toc-number">1.6.</span> <span class="toc-text"> 五、动作 (Action)：漫长的外卖配送</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E5%9B%BE"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 核心逻辑图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%88%91%E8%AF%A5%E7%94%A8%E5%93%AA%E4%B8%AA"><span class="toc-number">1.7.</span> <span class="toc-text"> 总结：我该用哪个？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.8.</span> <span class="toc-text"> 结语</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%A8%E8%9B%8B%E4%B9%9F%E8%83%BD%E7%9C%8B%E6%87%82%E7%9A%84-ros-2-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%A4%A7%E6%8F%AD%E7%A7%98%E8%8A%82%E7%82%B9-%E8%AF%9D%E9%A2%98-%E6%9C%8D%E5%8A%A1%E4%B8%8E%E5%8A%A8%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text"> 笨蛋也能看懂的 ROS 2 核心概念大揭秘：节点、话题、服务与动作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%AE%8F%E8%A7%82%E6%AF%94%E5%96%BBros-%E5%B0%B1%E6%98%AF%E4%B8%80%E5%AE%B6%E5%A4%A7%E5%85%AC%E5%8F%B8"><span class="toc-number">1.2.</span> <span class="toc-text"> 一、 宏观比喻：ROS 就是一家 &quot;大公司&quot;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E8%8A%82%E7%82%B9-node%E4%B8%8D%E7%9F%A5%E7%96%B2%E5%80%A6%E7%9A%84%E6%89%93%E5%B7%A5%E4%BA%BA"><span class="toc-number">1.3.</span> <span class="toc-text"> 二、 节点 (Node)：不知疲倦的打工人</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#python-%E4%BB%A3%E7%A0%81%E9%95%BF%E8%BF%99%E6%A0%B7"><span class="toc-number">1.3.1.</span> <span class="toc-text"> Python 代码长这样：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-%E8%AF%9D%E9%A2%98-topic%E6%B0%B8%E4%B8%8D%E5%81%9C%E6%AD%A2%E7%9A%84%E5%B9%BF%E6%92%AD%E7%94%B5%E5%8F%B0"><span class="toc-number">1.4.</span> <span class="toc-text"> 三、 话题 (Topic)：永不停止的广播电台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 代码举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E6%9C%8D%E5%8A%A1-service%E4%B8%80%E6%89%8B%E4%BA%A4%E9%92%B1%E4%B8%80%E6%89%8B%E4%BA%A4%E8%B4%A7"><span class="toc-number">1.5.</span> <span class="toc-text"> 四、 服务 (Service)：一手交钱，一手交货</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%BE%E4%BE%8B-2"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 代码举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%8A%A8%E4%BD%9C-action%E6%BC%AB%E9%95%BF%E7%9A%84%E5%A4%96%E5%8D%96%E9%85%8D%E9%80%81"><span class="toc-number">1.6.</span> <span class="toc-text"> 五、 动作 (Action)：漫长的外卖配送</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91%E5%9B%BE"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 核心逻辑图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%88%91%E8%AF%A5%E7%94%A8%E5%93%AA%E4%B8%AA"><span class="toc-number">1.7.</span> <span class="toc-text"> 总结：我该用哪个？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.8.</span> <span class="toc-text"> 结语</span></a></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
-          <li class="active"><a href="/2025/12/02/ros-note-1/" rel="bookmark" title="ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘">ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘</a></li>
+          <li class="active"><a href="/2025/12/02/ros-note-1/" rel="bookmark" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></li>
         </ul>
       </div>
       <div class="overview panel" data-title="站点概览">
@@ -442,7 +448,7 @@ Cyberia = Navi Terminal: CONNECTED = No matter where you are, everyone is always
 <a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
 </div>
 
-    <span><a href="/2025/12/02/ros-note-1/" title="ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘">ROS记录_1：笨蛋也能看懂的ROS2核心概念大揭秘</a></span>
+    <span><a href="/2025/12/02/ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></span>
   </li>
 
       
