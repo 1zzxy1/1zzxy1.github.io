@@ -2264,6 +2264,10 @@ const siteRefresh = function (reload) {
 
   if(!reload) {
     $.each('script[data-pjax]', pjaxScript);
+    // [自定义修改] 延迟执行加密脚本，确保 DOM 已加载
+    setTimeout(function() {
+      $.each('script[data-pjax]', pjaxScript);
+    }, 100);
   }
 
   originTitle = document.title
