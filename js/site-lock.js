@@ -3,12 +3,17 @@
   'use strict';
 
   // ==================== 配置区 ====================
-  // 密码的 SHA-256 哈希值（gemini 的哈希）
   const PASSWORD_HASH = '5d72436256ada53828b51895a94bb8489e9f1ac4fe937a8024ef1594e7045ff6';
   const STORAGE_KEY = 'site_access_token_v2';
-  const MAX_ATTEMPTS = 5; // 最大尝试次数
-  const LOCKOUT_TIME = 30 * 60 * 1000; // 锁定时间 30 分钟
-  const TOKEN_VALIDITY = 24 * 60 * 60 * 1000; // Token 有效期 24 小时
+  const MAX_ATTEMPTS = 5;
+  const LOCKOUT_TIME = 30 * 60 * 1000;
+  const TOKEN_VALIDITY = 24 * 60 * 60 * 1000;
+
+  // ==================== 立即用 CSS 隐藏页面 ====================
+  const hideStyle = document.createElement('style');
+  hideStyle.id = 'site-lock-hide';
+  hideStyle.textContent = 'body { visibility: hidden !important; }';
+  document.head.appendChild(hideStyle);
 
   // ==================== 密码哈希函数 ====================
   async function sha256(message) {
@@ -17,26 +22,6 @@
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   }
-
-  // ==================== 立即隐藏页面内容 ====================
-  document.body.style.visibility = 'hidden';
-
-  // ==================== 防护措施 ====================
-  // 禁用右键菜单
-  document.addEventListener('contextmenu', e => e.preventDefault());
-
-  // 禁用 F12、Ctrl+Shift+I 等开发者工具快捷键
-  document.addEventListener('keydown', e => {
-    if (e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
-        (e.ctrlKey && e.key === 'U')) {
-      e.preventDefault();
-      return false;
-    }
-  });
-
-  // 禁用文本选择
-  document.addEventListener('selectstart', e => e.preventDefault());
 
   // ==================== 检查锁定状态 ====================
   function checkLockout() {
@@ -157,7 +142,10 @@
 
     document.body.insertAdjacentHTML('beforeend', lockHTML);
     document.body.style.overflow = 'hidden';
-    document.body.style.visibility = 'visible';
+
+    // 移除隐藏样式，显示锁屏
+    const hideStyleElement = document.getElementById('site-lock-hide');
+    if (hideStyleElement) hideStyleElement.remove();
 
     if (lockoutStatus.locked) return;
 
@@ -166,7 +154,6 @@
     const error = document.getElementById('site-password-error');
     const attemptsCounter = document.getElementById('attempts-counter');
 
-    // 获取当前尝试次数
     let attempts = parseInt(localStorage.getItem('site_attempts') || '0');
     updateAttemptsCounter();
 
@@ -178,7 +165,6 @@
       }
     }
 
-    // 按钮悬停效果
     submit.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-2px)';
       this.style.boxShadow = '0 10px 20px rgba(102, 126, 234, 0.4)';
@@ -189,7 +175,6 @@
       this.style.boxShadow = 'none';
     });
 
-    // 输入框焦点效果
     input.addEventListener('focus', function() {
       this.style.borderColor = '#667eea';
     });
@@ -207,11 +192,9 @@
         return;
       }
 
-      // 计算输入密码的哈希值
       const inputHash = await sha256(password);
 
       if (inputHash === PASSWORD_HASH) {
-        // 密码正确，保存验证信息
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
           hash: PASSWORD_HASH,
           time: Date.now()
@@ -219,22 +202,18 @@
         localStorage.removeItem('site_attempts');
         localStorage.removeItem('site_lockout');
 
-        // 移除锁屏
         const lockScreen = document.getElementById('site-lock');
         lockScreen.style.opacity = '0';
         lockScreen.style.transition = 'opacity 0.5s';
         setTimeout(() => {
           lockScreen.remove();
           document.body.style.overflow = '';
-          document.body.style.visibility = '';
         }, 500);
       } else {
-        // 密码错误
         attempts++;
         localStorage.setItem('site_attempts', attempts.toString());
 
         if (attempts >= MAX_ATTEMPTS) {
-          // 达到最大尝试次数，锁定
           localStorage.setItem('site_lockout', JSON.stringify({
             time: Date.now()
           }));
@@ -253,7 +232,6 @@
           input.focus();
           updateAttemptsCounter();
 
-          // 抖动效果
           const lockContainer = document.getElementById('lock-container');
           lockContainer.style.animation = 'shake 0.5s';
           setTimeout(() => {
@@ -268,7 +246,6 @@
       if (e.key === 'Enter') verify();
     });
 
-    // 自动聚焦
     setTimeout(() => input.focus(), 100);
   }
 
@@ -280,23 +257,23 @@
       10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
       20%, 40%, 60%, 80% { transform: translateX(10px); }
     }
-
-    body.locked {
-      overflow: hidden !important;
-      user-select: none !important;
-      -webkit-user-select: none !important;
-      -moz-user-select: none !important;
-      -ms-user-select: none !important;
-    }
   `;
   document.head.appendChild(style);
 
-  // ==================== 初始化 ====================
-  if (!checkAuth()) {
-    document.body.classList.add('locked');
-    showLockScreen();
+  // ==================== 等待 DOM 加载完成 ====================
+  function init() {
+    if (!checkAuth()) {
+      showLockScreen();
+    } else {
+      // 验证通过，移除隐藏样式
+      const hideStyleElement = document.getElementById('site-lock-hide');
+      if (hideStyleElement) hideStyleElement.remove();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    // 验证通过，恢复页面显示
-    document.body.style.visibility = 'visible';
+    init();
   }
 })();
