@@ -3,7 +3,7 @@
   'use strict';
 
   // ==================== 配置区 ====================
-  const PASSWORD_HASH = '5d72436256ada53828b51895a94bb8489e9f1ac4fe937a8024ef1594e7045ff6';
+  const PASSWORD_HASH = '8c65e0195ce1c2c7919470551f2e161aff4a4203ff416aaf36cd159a4f44ff30';
   const STORAGE_KEY = 'site_access_token_v2';
   const MAX_ATTEMPTS = 5;
   const LOCKOUT_TIME = 30 * 60 * 1000;
