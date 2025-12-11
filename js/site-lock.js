@@ -19,19 +19,7 @@
   }
 
   // ==================== 立即隐藏页面内容 ====================
-  const contentHider = document.createElement('div');
-  contentHider.id = 'content-hider';
-  contentHider.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: #000;
-    z-index: 999999;
-    display: block;
-  `;
-  document.documentElement.appendChild(contentHider);
+  document.body.style.visibility = 'hidden';
 
   // ==================== 防护措施 ====================
   // 禁用右键菜单
@@ -167,8 +155,9 @@
       </div>
     `;
 
-    contentHider.insertAdjacentHTML('beforeend', lockHTML);
+    document.body.insertAdjacentHTML('beforeend', lockHTML);
     document.body.style.overflow = 'hidden';
+    document.body.style.visibility = 'visible';
 
     if (lockoutStatus.locked) return;
 
@@ -235,8 +224,9 @@
         lockScreen.style.opacity = '0';
         lockScreen.style.transition = 'opacity 0.5s';
         setTimeout(() => {
-          contentHider.remove();
+          lockScreen.remove();
           document.body.style.overflow = '';
+          document.body.style.visibility = '';
         }, 500);
       } else {
         // 密码错误
@@ -306,7 +296,7 @@
     document.body.classList.add('locked');
     showLockScreen();
   } else {
-    // 验证通过，移除内容隐藏层
-    contentHider.remove();
+    // 验证通过，恢复页面显示
+    document.body.style.visibility = 'visible';
   }
 })();
