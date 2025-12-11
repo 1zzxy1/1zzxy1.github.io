@@ -7,7 +7,7 @@
   const STORAGE_KEY = 'site_access_token_v2';
   const MAX_ATTEMPTS = 5;
   const LOCKOUT_TIME = 30 * 60 * 1000;
-  const TOKEN_VALIDITY = 24 * 60 * 60 * 1000;
+  const TOKEN_VALIDITY = 10 * 60 * 1000; // Token 有效期 10 分钟
 
   // ==================== 立即用 CSS 隐藏页面 ====================
   const hideStyle = document.createElement('style');
