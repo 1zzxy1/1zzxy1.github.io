@@ -3,55 +3,6 @@
 (function() {
   'use strict';
 
-  // ==================== 自定义鼠标指针 ====================
-  function initCustomCursor() {
-    const cursor = document.createElement('div');
-    cursor.id = 'custom-cursor';
-    const follower = document.createElement('div');
-    follower.id = 'cursor-follower';
-    document.body.appendChild(cursor);
-    document.body.appendChild(follower);
-
-    let mouseX = 0, mouseY = 0;
-    let followerX = 0, followerY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
-
-    function animateFollower() {
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
-      follower.style.left = followerX + 'px';
-      follower.style.top = followerY + 'px';
-      requestAnimationFrame(animateFollower);
-    }
-    animateFollower();
-
-    document.querySelectorAll('a, button, .post-block, input, textarea').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
-        follower.classList.add('follower-hover');
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
-        follower.classList.remove('follower-hover');
-      });
-    });
-
-    document.addEventListener('mousedown', () => {
-      cursor.classList.add('cursor-click');
-      follower.classList.add('follower-click');
-    });
-    document.addEventListener('mouseup', () => {
-      cursor.classList.remove('cursor-click');
-      follower.classList.remove('follower-click');
-    });
-  }
-
   // ==================== 鼠标彩带拖尾 ====================
   function initRibbonTrail() {
     const canvas = document.createElement('canvas');
@@ -325,48 +276,6 @@
   function addStyles() {
     const style = document.createElement('style');
     style.textContent = `
-      /* 自定义鼠标 - 仅PC端 */
-      @media (min-width: 769px) {
-        * { cursor: none !important; }
-        #custom-cursor {
-          position: fixed;
-          width: 8px;
-          height: 8px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 99999;
-          transform: translate(-50%, -50%);
-          transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-        }
-        #cursor-follower {
-          position: fixed;
-          width: 30px;
-          height: 30px;
-          border: 2px solid rgba(102, 126, 234, 0.5);
-          border-radius: 50%;
-          pointer-events: none;
-          z-index: 99998;
-          transform: translate(-50%, -50%);
-          transition: width 0.3s, height 0.3s, border-color 0.3s;
-        }
-        #custom-cursor.cursor-hover {
-          transform: translate(-50%, -50%) scale(2);
-          background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-        #cursor-follower.follower-hover {
-          width: 50px;
-          height: 50px;
-          border-color: rgba(240, 147, 251, 0.8);
-        }
-        #custom-cursor.cursor-click { transform: translate(-50%, -50%) scale(0.8); }
-        #cursor-follower.follower-click { width: 20px; height: 20px; }
-      }
-      @media (max-width: 768px) {
-        * { cursor: auto !important; }
-        #custom-cursor, #cursor-follower, #ribbon-canvas { display: none !important; }
-      }
-
       /* 动画 */
       @keyframes star-fade {
         0% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
@@ -438,7 +347,6 @@
     const checkAuth = setInterval(() => {
       if (!document.getElementById('site-lock')) {
         clearInterval(checkAuth);
-        initCustomCursor();
         initRibbonTrail();
         initParticleBackground();
         initReadingProgress();
@@ -455,7 +363,6 @@
     setTimeout(() => {
       clearInterval(checkAuth);
       if (!document.getElementById('reading-progress')) {
-        initCustomCursor();
         initRibbonTrail();
         initParticleBackground();
         initReadingProgress();
