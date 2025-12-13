@@ -73,68 +73,114 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #667eea, #764ba2);
+        background-size: 400% 400%;
+        animation: gradient-bg 15s ease infinite;
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 9999999;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
       ">
+        <div id="lock-particles"></div>
         <div id="lock-container" style="
-          background: rgba(255, 255, 255, 0.95);
-          padding: 40px 50px;
-          border-radius: 20px;
-          box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+          background: rgba(255, 255, 255, 0.15);
+          padding: 50px 60px;
+          border-radius: 30px;
+          box-shadow: 0 25px 80px rgba(0,0,0,0.3), inset 0 0 30px rgba(255,255,255,0.1);
           text-align: center;
-          max-width: 400px;
-          backdrop-filter: blur(10px);
+          max-width: 420px;
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255,255,255,0.2);
+          animation: float 6s ease-in-out infinite;
+          position: relative;
+          z-index: 2;
         ">
-          <div style="font-size: 48px; margin-bottom: 10px;">🔒</div>
-          <h2 style="margin: 0 0 10px 0; color: #333; font-size: 24px;">私密空间</h2>
-          <p style="margin: 0 0 20px 0; color: #666; font-size: 14px;">
+          <div style="
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+          ">🌸</div>
+          <h2 style="
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 28px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+          ">Rainor's Secret Garden</h2>
+          <p id="lock-subtitle" style="
+            margin: 0 0 25px 0;
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+          ">
             ${lockoutStatus.locked ?
               `⚠️ 尝试次数过多，请 ${lockoutStatus.remainingTime} 分钟后再试` :
-              '这是 Rainor 的私密树洞，请输入密码'}
+              '✨ 欢迎来到私密树洞，请输入密码 ✨'}
           </p>
           <input type="password" id="site-password-input" placeholder="输入密码..."
             ${lockoutStatus.locked ? 'disabled' : ''}
             style="
             width: 100%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
+            padding: 18px 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
             font-size: 16px;
             box-sizing: border-box;
-            transition: border 0.3s;
+            transition: all 0.3s ease;
             outline: none;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            text-align: center;
+            letter-spacing: 3px;
             ${lockoutStatus.locked ? 'opacity: 0.5; cursor: not-allowed;' : ''}
           " />
           <button id="site-password-submit"
             ${lockoutStatus.locked ? 'disabled' : ''}
             style="
             width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 18px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
             color: white;
-            border: none;
-            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
             font-size: 16px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
             font-weight: 600;
+            letter-spacing: 3px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
             ${lockoutStatus.locked ? 'opacity: 0.5; cursor: not-allowed;' : ''}
-          ">${lockoutStatus.locked ? '已锁定' : '解锁'}</button>
+          ">${lockoutStatus.locked ? '已锁定' : '✦ 解锁 ✦'}</button>
           <div id="site-password-error" style="
             margin-top: 15px;
-            color: #e74c3c;
+            color: #ffcccc;
             font-size: 14px;
             display: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
           "></div>
           <div id="attempts-counter" style="
-            margin-top: 10px;
-            color: #999;
+            margin-top: 12px;
+            color: rgba(255,255,255,0.7);
             font-size: 12px;
+          "></div>
+          <div id="hitokoto-container" style="
+            margin-top: 25px;
+            color: rgba(255,255,255,0.7);
+            font-size: 12px;
+            min-height: 40px;
+            line-height: 1.6;
+          ">
+            <span id="hitokoto-text">🌙 深夜的树洞，等待着你的到来</span>
+            <span id="typing-cursor" style="animation: blink 1s infinite;">|</span>
+          </div>
+          <div id="hitokoto-from" style="
+            color: rgba(255,255,255,0.4);
+            font-size: 10px;
+            margin-top: 5px;
           "></div>
         </div>
       </div>
@@ -142,6 +188,63 @@
 
     document.body.insertAdjacentHTML('beforeend', lockHTML);
     document.body.style.overflow = 'hidden';
+
+    // 创建背景粒子效果
+    const particlesContainer = document.getElementById('lock-particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'lock-particle';
+      particle.style.width = Math.random() * 6 + 2 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 3 + 's';
+      particle.style.animationDuration = Math.random() * 2 + 2 + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // 获取一言并显示打字机效果
+    fetchHitokoto();
+
+    async function fetchHitokoto() {
+      try {
+        const response = await fetch('https://v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=i&c=k');
+        const data = await response.json();
+        typeWriter(data.hitokoto, data.from);
+      } catch (e) {
+        // 备用句子
+        const fallbacks = [
+          { text: '每个人都是一座孤岛，但我们可以隔海相望', from: '未知' },
+          { text: '星星在哪里都是很亮的，就看你有没有抬头去看它们', from: '追风筝的人' },
+          { text: '我们都在阴沟里，但仍有人仰望星空', from: '王尔德' },
+          { text: '愿你出走半生，归来仍是少年', from: '苏轼' },
+          { text: '人生如逆旅，我亦是行人', from: '苏轼' }
+        ];
+        const random = fallbacks[Math.floor(Math.random() * fallbacks.length)];
+        typeWriter(random.text, random.from);
+      }
+    }
+
+    function typeWriter(text, from) {
+      const textEl = document.getElementById('hitokoto-text');
+      const fromEl = document.getElementById('hitokoto-from');
+      textEl.textContent = '';
+      let i = 0;
+
+      function type() {
+        if (i < text.length) {
+          textEl.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, 50 + Math.random() * 50);
+        } else {
+          if (from) {
+            fromEl.textContent = '—— ' + from;
+          }
+        }
+      }
+
+      setTimeout(type, 500);
+    }
 
     // 移除隐藏样式，显示锁屏
     const hideStyleElement = document.getElementById('site-lock-hide');
@@ -176,11 +279,13 @@
     });
 
     input.addEventListener('focus', function() {
-      this.style.borderColor = '#667eea';
+      this.style.borderColor = 'rgba(255,255,255,0.6)';
+      this.style.background = 'rgba(255,255,255,0.3)';
     });
 
     input.addEventListener('blur', function() {
-      this.style.borderColor = '#ddd';
+      this.style.borderColor = 'rgba(255,255,255,0.3)';
+      this.style.background = 'rgba(255,255,255,0.2)';
     });
 
     async function verify() {
@@ -256,6 +361,47 @@
       0%, 100% { transform: translateX(0); }
       10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
       20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+    @keyframes gradient-bg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    #site-password-input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+    #site-password-input:focus {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    #site-password-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.2) 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .lock-particle {
+      position: absolute;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
     }
   `;
   document.head.appendChild(style);
