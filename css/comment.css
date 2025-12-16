@@ -500,6 +500,10 @@
   border-radius: 50%;
   flex-shrink: 0;
 }
+.rcomments .giscus-recent-comment .comment-item .comment-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
 .rcomments .giscus-recent-comment .comment-item .comment-user {
   font-weight: 500;
   color: var(--color-pink);
@@ -507,8 +511,8 @@
   font-size: 0.85rem;
 }
 .rcomments .giscus-recent-comment .comment-item .comment-body {
-  font-size: 0.8rem;
-  color: var(--grey-5);
+  font-size: 0.85rem;
+  color: var(--grey-6);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
