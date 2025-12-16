@@ -451,3 +451,23 @@
 .hljs-strong {
   font-weight: bold;
 }
+#comments {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--grey-1);
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px var(--box-bg-shadow);
+  transition: all 0.2s ease-in-out 0s;
+}
+#comments .giscus {
+  width: 100%;
+}
+#comments .giscus-frame {
+  width: 100%;
+  border: none;
+  color-scheme: auto;
+}
+[data-theme="dark"] #comments {
+  background: var(--grey-2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}

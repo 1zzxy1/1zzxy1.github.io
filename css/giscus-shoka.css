@@ -1,0 +1,126 @@
+/*
+ * Giscus Custom Theme for Shoka
+ * Light Mode
+ */
+
+main {
+  --color-prettylights-syntax-comment: #6a737d;
+  --color-prettylights-syntax-constant: #005cc5;
+  --color-prettylights-syntax-entity: #6f42c1;
+  --color-prettylights-syntax-storage-modifier-import: #24292e;
+  --color-prettylights-syntax-entity-tag: #22863a;
+  --color-prettylights-syntax-keyword: #d73a49;
+  --color-prettylights-syntax-string: #032f62;
+  --color-prettylights-syntax-variable: #e36209;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #cb2431;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #cb2431;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #d73a49;
+  --color-prettylights-syntax-string-regexp: #22863a;
+  --color-prettylights-syntax-markup-list: #735c0f;
+  --color-prettylights-syntax-markup-heading: #005cc5;
+  --color-prettylights-syntax-markup-italic: #24292e;
+  --color-prettylights-syntax-markup-bold: #24292e;
+  --color-prettylights-syntax-markup-deleted-text: #b31d28;
+  --color-prettylights-syntax-markup-deleted-bg: #ffeef0;
+  --color-prettylights-syntax-markup-inserted-text: #22863a;
+  --color-prettylights-syntax-markup-inserted-bg: #f0fff4;
+  --color-prettylights-syntax-markup-changed-text: #e36209;
+  --color-prettylights-syntax-markup-changed-bg: #ffebda;
+  --color-prettylights-syntax-markup-ignored-text: #f6f8fa;
+  --color-prettylights-syntax-markup-ignored-bg: #005cc5;
+  --color-prettylights-syntax-meta-diff-range: #6f42c1;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #959da5;
+
+  /* Shoka Light Theme Colors */
+  --color-canvas-default: #fdfdfd;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #f7f7f7;
+  --color-canvas-subtle: #eff2f3;
+
+  --color-border-default: #ccc;
+  --color-border-muted: rgba(0, 0, 0, 0.1);
+  --color-border-subtle: rgba(0, 0, 0, 0.05);
+
+  --color-neutral-muted: rgba(0, 0, 0, 0.05);
+  --color-neutral-subtle: rgba(0, 0, 0, 0.02);
+  --color-neutral-emphasis-plus: #333;
+  --color-neutral-emphasis: #666;
+
+  --color-accent-fg: #e9546b;
+  --color-accent-emphasis: #e9546b;
+  --color-accent-muted: rgba(233, 84, 107, 0.3);
+  --color-accent-subtle: rgba(233, 84, 107, 0.1);
+
+  --color-success-fg: #0a7426;
+  --color-success-emphasis: #0a7426;
+  --color-success-muted: rgba(10, 116, 38, 0.3);
+  --color-success-subtle: rgba(10, 116, 38, 0.1);
+
+  --color-attention-fg: #eab700;
+  --color-attention-emphasis: #eab700;
+  --color-attention-muted: rgba(234, 183, 0, 0.3);
+  --color-attention-subtle: rgba(234, 183, 0, 0.1);
+
+  --color-danger-fg: #e9546b;
+  --color-danger-emphasis: #e9546b;
+  --color-danger-muted: rgba(233, 84, 107, 0.3);
+  --color-danger-subtle: rgba(233, 84, 107, 0.1);
+
+  --color-fg-default: #333;
+  --color-fg-muted: #666;
+  --color-fg-subtle: #999;
+  --color-fg-on-emphasis: #fff;
+
+  --color-btn-text: #333;
+  --color-btn-bg: #f7f7f7;
+  --color-btn-border: #ccc;
+  --color-btn-hover-bg: #eff2f3;
+  --color-btn-hover-border: #ccc;
+  --color-btn-active-bg: #eff2f3;
+  --color-btn-active-border: #ccc;
+  --color-btn-selected-bg: #eff2f3;
+
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #e9546b;
+  --color-btn-primary-border: #e9546b;
+  --color-btn-primary-hover-bg: #ed6ea0;
+  --color-btn-primary-hover-border: #ed6ea0;
+  --color-btn-primary-selected-bg: #e9546b;
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.5);
+  --color-btn-primary-disabled-bg: rgba(233, 84, 107, 0.5);
+  --color-btn-primary-disabled-border: transparent;
+
+  --color-social-reaction-bg-hover: #eff2f3;
+  --color-social-reaction-bg-reacted-hover: rgba(233, 84, 107, 0.2);
+}
+
+/* Custom styling */
+.gsc-comment-box {
+  border-radius: 12px;
+}
+
+.gsc-comment-box-textarea {
+  border-radius: 8px;
+}
+
+.gsc-comment {
+  border-radius: 12px;
+}
+
+.gsc-main {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.gsc-reactions-button {
+  border-radius: 20px;
+}
+
+.gsc-social-reaction-summary-item {
+  border-radius: 16px;
+}
+
+.gsc-reply-box {
+  border-radius: 8px;
+}

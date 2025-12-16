@@ -1,0 +1,126 @@
+/*
+ * Giscus Custom Theme for Shoka
+ * Dark Mode
+ */
+
+main {
+  --color-prettylights-syntax-comment: #8b949e;
+  --color-prettylights-syntax-constant: #79c0ff;
+  --color-prettylights-syntax-entity: #d2a8ff;
+  --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+  --color-prettylights-syntax-entity-tag: #7ee787;
+  --color-prettylights-syntax-keyword: #ff7b72;
+  --color-prettylights-syntax-string: #a5d6ff;
+  --color-prettylights-syntax-variable: #ffa657;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+  --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
+  --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+  --color-prettylights-syntax-carriage-return-text: #f0f6fc;
+  --color-prettylights-syntax-carriage-return-bg: #b62324;
+  --color-prettylights-syntax-string-regexp: #7ee787;
+  --color-prettylights-syntax-markup-list: #f2cc60;
+  --color-prettylights-syntax-markup-heading: #1f6feb;
+  --color-prettylights-syntax-markup-italic: #c9d1d9;
+  --color-prettylights-syntax-markup-bold: #c9d1d9;
+  --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+  --color-prettylights-syntax-markup-deleted-bg: #67060c;
+  --color-prettylights-syntax-markup-inserted-text: #aff5b4;
+  --color-prettylights-syntax-markup-inserted-bg: #033a16;
+  --color-prettylights-syntax-markup-changed-text: #ffdfb6;
+  --color-prettylights-syntax-markup-changed-bg: #5a1e02;
+  --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
+  --color-prettylights-syntax-markup-ignored-bg: #1158c7;
+  --color-prettylights-syntax-meta-diff-range: #d2a8ff;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
+
+  /* Shoka Dark Theme Colors */
+  --color-canvas-default: #21252b;
+  --color-canvas-overlay: #363636;
+  --color-canvas-inset: #1a1d21;
+  --color-canvas-subtle: #363636;
+
+  --color-border-default: #444;
+  --color-border-muted: rgba(255, 255, 255, 0.1);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+
+  --color-neutral-muted: rgba(255, 255, 255, 0.1);
+  --color-neutral-subtle: rgba(255, 255, 255, 0.05);
+  --color-neutral-emphasis-plus: #ddd;
+  --color-neutral-emphasis: #aaa;
+
+  --color-accent-fg: rgba(255, 130, 150, 0.9);
+  --color-accent-emphasis: rgba(255, 130, 150, 0.9);
+  --color-accent-muted: rgba(255, 130, 150, 0.3);
+  --color-accent-subtle: rgba(255, 130, 150, 0.15);
+
+  --color-success-fg: #7ee787;
+  --color-success-emphasis: #238636;
+  --color-success-muted: rgba(46, 160, 67, 0.4);
+  --color-success-subtle: rgba(46, 160, 67, 0.15);
+
+  --color-attention-fg: #f0e68c;
+  --color-attention-emphasis: #9e6a03;
+  --color-attention-muted: rgba(187, 128, 9, 0.4);
+  --color-attention-subtle: rgba(187, 128, 9, 0.15);
+
+  --color-danger-fg: rgba(255, 130, 150, 0.9);
+  --color-danger-emphasis: rgba(255, 100, 120, 0.9);
+  --color-danger-muted: rgba(255, 130, 150, 0.3);
+  --color-danger-subtle: rgba(255, 130, 150, 0.15);
+
+  --color-fg-default: #aaa;
+  --color-fg-muted: #888;
+  --color-fg-subtle: #666;
+  --color-fg-on-emphasis: #fff;
+
+  --color-btn-text: #ccc;
+  --color-btn-bg: #363636;
+  --color-btn-border: #444;
+  --color-btn-hover-bg: #444;
+  --color-btn-hover-border: #555;
+  --color-btn-active-bg: #444;
+  --color-btn-active-border: #555;
+  --color-btn-selected-bg: #444;
+
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: rgba(255, 100, 120, 0.8);
+  --color-btn-primary-border: rgba(255, 100, 120, 0.8);
+  --color-btn-primary-hover-bg: rgba(255, 130, 150, 0.9);
+  --color-btn-primary-hover-border: rgba(255, 130, 150, 0.9);
+  --color-btn-primary-selected-bg: rgba(255, 100, 120, 0.8);
+  --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.5);
+  --color-btn-primary-disabled-bg: rgba(255, 100, 120, 0.4);
+  --color-btn-primary-disabled-border: transparent;
+
+  --color-social-reaction-bg-hover: #444;
+  --color-social-reaction-bg-reacted-hover: rgba(255, 130, 150, 0.25);
+}
+
+/* Custom styling */
+.gsc-comment-box {
+  border-radius: 12px;
+}
+
+.gsc-comment-box-textarea {
+  border-radius: 8px;
+}
+
+.gsc-comment {
+  border-radius: 12px;
+}
+
+.gsc-main {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.gsc-reactions-button {
+  border-radius: 20px;
+}
+
+.gsc-social-reaction-summary-item {
+  border-radius: 16px;
+}
+
+.gsc-reply-box {
+  border-radius: 8px;
+}

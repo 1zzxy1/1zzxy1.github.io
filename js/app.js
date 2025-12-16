@@ -1169,6 +1169,10 @@ const changeTheme = function(type) {
     btn.removeClass('i-moon');
     btn.addClass('i-sun');
   }
+  // Sync Giscus theme
+  if(typeof updateGiscusTheme === 'function') {
+    updateGiscusTheme();
+  }
 }
 
 const changeMetaTheme = function(color) {
@@ -2238,6 +2242,26 @@ const pjaxReload = function () {
   pageScroll(0);
 }
 
+const getGiscusTheme = function() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  var baseUrl = window.location.origin + CONFIG.root + 'css/';
+  return isDark ? baseUrl + 'giscus-shoka-dark.css' : baseUrl + 'giscus-shoka.css';
+}
+
+const updateGiscusTheme = function() {
+  var iframe = document.querySelector('iframe.giscus-frame');
+  if (!iframe) return;
+
+  var theme = getGiscusTheme();
+  iframe.contentWindow.postMessage({
+    giscus: {
+      setConfig: {
+        theme: theme
+      }
+    }
+  }, 'https://giscus.app');
+}
+
 const loadGiscus = function() {
   var container = $('#comments');
   if (!container || !container.dataset.repo) return;
@@ -2254,7 +2278,7 @@ const loadGiscus = function() {
   script.setAttribute('data-reactions-enabled', container.dataset.reactionsEnabled);
   script.setAttribute('data-emit-metadata', container.dataset.emitMetadata);
   script.setAttribute('data-input-position', container.dataset.inputPosition);
-  script.setAttribute('data-theme', container.dataset.theme);
+  script.setAttribute('data-theme', getGiscusTheme());
   script.setAttribute('data-lang', container.dataset.lang);
   script.setAttribute('crossorigin', 'anonymous');
   script.async = true;
