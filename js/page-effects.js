@@ -249,12 +249,17 @@
   function initRuntime() {
     const footer = document.querySelector('footer .inner, footer, .copyright');
     if (!footer) return;
+    if (document.getElementById('site-stats')) return; // 防止重复初始化
     const startDate = new Date('2025-12-01');
 
     const statsDiv = document.createElement('div');
     statsDiv.id = 'site-stats';
     statsDiv.style.cssText = 'text-align:center;font-size:12px;color:rgba(102,126,234,0.8);margin-top:15px;line-height:2;';
     footer.appendChild(statsDiv);
+
+    // 保存 busuanzi 的值（如果已经加载）
+    let pvValue = '--';
+    let uvValue = '--';
 
     function updateRuntime() {
       const now = new Date();
@@ -263,13 +268,28 @@
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      // 检查 busuanzi 是否已更新值
+      const pvEl = document.getElementById('busuanzi_value_site_pv');
+      const uvEl = document.getElementById('busuanzi_value_site_uv');
+      if (pvEl && pvEl.textContent && pvEl.textContent !== '--') pvValue = pvEl.textContent;
+      if (uvEl && uvEl.textContent && uvEl.textContent !== '--') uvValue = uvEl.textContent;
+
       statsDiv.innerHTML = `
         <div>🌸 小站已运行 <span style="color:#667eea;font-weight:bold;">${days}</span> 天 <span style="color:#764ba2;font-weight:bold;">${hours}</span> 小时 <span style="color:#f093fb;font-weight:bold;">${minutes}</span> 分 <span style="color:#f5576c;font-weight:bold;">${seconds}</span> 秒 🌸</div>
-        <div style="margin-top:5px;">👀 本站总访问 <span id="busuanzi_value_site_pv" style="color:#667eea;font-weight:bold;">--</span> 次 | 访客 <span id="busuanzi_value_site_uv" style="color:#764ba2;font-weight:bold;">--</span> 人</div>
+        <div style="margin-top:5px;">👀 本站总访问 <span id="busuanzi_value_site_pv" style="color:#667eea;font-weight:bold;">${pvValue}</span> 次 | 访客 <span id="busuanzi_value_site_uv" style="color:#764ba2;font-weight:bold;">${uvValue}</span> 人</div>
       `;
     }
     updateRuntime();
     setInterval(updateRuntime, 1000);
+
+    // 重新加载 busuanzi 脚本以填充统计数据
+    setTimeout(function() {
+      const script = document.createElement('script');
+      script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }, 100);
   }
 
   // ==================== 添加样式 ====================

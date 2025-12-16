@@ -97,12 +97,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevgoki5j20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -258,10 +258,12 @@
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
 </div>
 
-    <span><a href="/2025/12/05/midnight-talk-with-gemi/" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></span>
+    <span><a href="/2025/12/01/gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></span>
   </li>
 
       
@@ -283,19 +285,7 @@
 <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
 </div>
 
-    <span><a href="/2025/12/12/college-observation/" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
-</div>
-
-    <span><a href="/2025/12/01/gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></span>
+    <span><a href="/2025/12/05/midnight-talk-with-gemi/" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></span>
   </li>
 
       
@@ -310,12 +300,86 @@
     <span><a href="/2025/12/17/ai-dev-frameworks-guide/" title="AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南">AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南</a></span>
   </li>
 
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/12/college-observation/" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></span>
+  </li>
+
   </ul>
 </div>
-<div>
+<div class="rcomments">
   <h2>最新评论</h2>
-  <ul class="leancloud-recent-comment"></ul>
+  <ul id="giscus-recent-comments" class="giscus-recent-comment">
+    <li class="loading-comments">加载中...</li>
+  </ul>
 </div>
+<script>
+(function() {
+  // Giscus Recent Comments Loader
+  const loadRecentComments = async () => {
+    const container = document.getElementById('giscus-recent-comments');
+    if (!container) return;
+
+    // GitHub Discussions API (使用 GraphQL)
+    const owner = '1zzxy1';
+    const repo = '1zzxy1.github.io';
+
+    try {
+      // 使用 GitHub REST API 获取 Discussions
+      const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/discussions?per_page=5`, {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      });
+
+      if (!response.ok) throw new Error('API error');
+
+      const discussions = await response.json();
+      let html = '';
+
+      for (const disc of discussions.slice(0, 5)) {
+        // 获取该 discussion 的评论
+        const commentsRes = await fetch(disc.comments_url + '?per_page=3', {
+          headers: { 'Accept': 'application/vnd.github+json' }
+        });
+        const comments = await commentsRes.json();
+
+        for (const comment of comments.slice(0, 2)) {
+          const avatar = comment.user?.avatar_url || '';
+          const user = comment.user?.login || '匿名';
+          const body = (comment.body || '').substring(0, 50) + (comment.body?.length > 50 ? '...' : '');
+          const url = comment.html_url || disc.html_url;
+          const title = disc.title || '';
+
+          html += `
+            <li class="comment-item">
+              <a href="${url}" target="_blank" rel="noopener" title="${title}">
+                <img class="comment-avatar" src="${avatar}" alt="${user}" loading="lazy" onerror="this.style.display='none'">
+                <span class="comment-user">${user}</span>
+                <span class="comment-body">${body}</span>
+              </a>
+            </li>
+          `;
+        }
+      }
+
+      container.innerHTML = html || '<li class="no-comments">暂无评论</li>';
+    } catch (e) {
+      container.innerHTML = '<li class="no-comments">评论加载失败，请<a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions" target="_blank">访问 GitHub</a></li>';
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadRecentComments);
+  } else {
+    loadRecentComments();
+  }
+  document.addEventListener('pjax:complete', loadRecentComments);
+})();
+</script>
 
         </div>
         <div class="status">
