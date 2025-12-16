@@ -2238,6 +2238,29 @@ const pjaxReload = function () {
   pageScroll(0);
 }
 
+const loadGiscus = function() {
+  var container = $('#comments');
+  if (!container || !container.dataset.repo) return;
+
+  container.innerHTML = '';
+  var script = document.createElement('script');
+  script.src = 'https://giscus.app/client.js';
+  script.setAttribute('data-repo', container.dataset.repo);
+  script.setAttribute('data-repo-id', container.dataset.repoId);
+  script.setAttribute('data-category', container.dataset.category);
+  script.setAttribute('data-category-id', container.dataset.categoryId);
+  script.setAttribute('data-mapping', container.dataset.mapping);
+  script.setAttribute('data-strict', container.dataset.strict);
+  script.setAttribute('data-reactions-enabled', container.dataset.reactionsEnabled);
+  script.setAttribute('data-emit-metadata', container.dataset.emitMetadata);
+  script.setAttribute('data-input-position', container.dataset.inputPosition);
+  script.setAttribute('data-theme', container.dataset.theme);
+  script.setAttribute('data-lang', container.dataset.lang);
+  script.setAttribute('crossorigin', 'anonymous');
+  script.async = true;
+  container.appendChild(script);
+}
+
 const siteRefresh = function (reload) {
   LOCAL_HASH = 0
   LOCAL_URL = window.location.href
@@ -2246,6 +2269,9 @@ const siteRefresh = function (reload) {
   vendorJs('copy_tex');
   vendorCss('mermaid');
   vendorJs('chart');
+
+  loadGiscus();
+
   vendorJs('valine', function() {
     var options = Object.assign({}, CONFIG.valine);
     options = Object.assign(options, LOCAL.valine||{});
