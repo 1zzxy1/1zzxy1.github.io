@@ -1,0 +1,710 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/atom.xml" />
+<link rel="alternate" type="application/json" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+
+<script src="/js/site-lock.js"></script>
+
+
+<script src="/js/page-effects.js" defer></script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+  <meta name="keywords" content="AI,开发工具,Claude,敏捷开发,教程" />
+
+
+<link rel="canonical" href="https://bakastream.icu/2025/12/17/ai-dev-frameworks-guide/">
+
+
+
+  <title>
+AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南 - AI工具 - 技术 |
+Cyberia = Navi Terminal - CONNECTED = No matter where you are, everyone is always connected.</title>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-12-17 12:00:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-12-17T12:00:00+08:00">2025-12-17</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Cyberia</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://bakastream.icu/img/ai-dev-cover.png">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="item" rel="index" title="分类于 技术"><span itemprop="name">技术</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" itemprop="item" rel="index" title="分类于 AI工具"><span itemprop="name">AI工具</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://bakastream.icu/2025/12/17/ai-dev-frameworks-guide/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="自在逍遥">
+    <meta itemprop="description" content="No matter where you are, everyone is always connected., Rainor DA!">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Navi Terminal - CONNECTED">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="ai-驱动开发实战bmad-method-与-claude-flow-使用指南"><a class="anchor" href="#ai-驱动开发实战bmad-method-与-claude-flow-使用指南">#</a> AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南</h1>
+<p>在 AI 辅助编程日益普及的今天，单纯的 &quot;问答式&quot; 代码生成已经无法满足复杂项目的需求。本文将介绍两款强大的 AI 开发框架 ——<strong>BMAD Method</strong> 和 <strong>Claude-Flow</strong>，它们代表了 AI 驱动开发的两种不同思路。</p>
+<h2 id="一-框架概览"><a class="anchor" href="#一-框架概览">#</a> 一、框架概览</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>BMAD Method</th>
+<th>Claude-Flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>核心理念</strong></td>
+<td>AI 敏捷开发流程</td>
+<td>智能蜂群协作</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>完整项目生命周期</td>
+<td>复杂任务并行处理</td>
+</tr>
+<tr>
+<td><strong>Agent 数量</strong></td>
+<td>21 个专业角色</td>
+<td>64 个专业 Agent</td>
+</tr>
+<tr>
+<td><strong>工作流</strong></td>
+<td>50+ 引导式工作流</td>
+<td>100+ MCP 工具</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二-bmad-methodai-敏捷开发框架"><a class="anchor" href="#二-bmad-methodai-敏捷开发框架">#</a> 二、BMAD Method：AI 敏捷开发框架</h2>
+<h3 id="21-什么是-bmad"><a class="anchor" href="#21-什么是-bmad">#</a> 2.1 什么是 BMAD？</h3>
+<p><strong>BMAD</strong>（Build More, Architect Dreams）是一套完整的 AI 驱动敏捷开发方法论。它将传统软件开发的各个角色（产品经理、架构师、开发者、测试等）抽象为 <strong>21 个专业 AI Agent</strong>，通过结构化的工作流引导你完成从需求分析到代码实现的全过程。</p>
+<h3 id="22-核心特性"><a class="anchor" href="#22-核心特性">#</a> 2.2 核心特性</h3>
+<ul>
+<li><strong>规模自适应智能</strong>：自动根据项目复杂度调整规划深度</li>
+<li><strong>四阶段方法论</strong>：分析 → 规划 → 方案设计 → 实现</li>
+<li><strong>专业角色分工</strong>：PM、Architect、Developer、UX Designer 等</li>
+<li><strong>IDE 集成</strong>：支持 Claude Code、Cursor、Windsurf、VS Code</li>
+</ul>
+<h3 id="23-快速开始"><a class="anchor" href="#23-快速开始">#</a> 2.3 快速开始</h3>
+<h4 id="步骤-1安装-bmad"><a class="anchor" href="#步骤-1安装-bmad">#</a> 步骤 1：安装 BMAD</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 安装 v6 Alpha 版本（推荐）</span></pre></td></tr><tr><td data-num="2"></td><td><pre>npx bmad-method@alpha <span class="token function">install</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 或安装稳定版</span></pre></td></tr><tr><td data-num="5"></td><td><pre>npx bmad-method <span class="token function">install</span></pre></td></tr></table></figure><h4 id="步骤-2初始化工作流"><a class="anchor" href="#步骤-2初始化工作流">#</a> 步骤 2：初始化工作流</h4>
+<p>在 IDE 中加载 Analyst Agent，然后运行：</p>
+<pre><code>*workflow-init
+</code></pre>
+<p>系统会分析你的项目并推荐合适的开发轨道。</p>
+<h4 id="步骤-3选择开发轨道"><a class="anchor" href="#步骤-3选择开发轨道">#</a> 步骤 3：选择开发轨道</h4>
+<table>
+<thead>
+<tr>
+<th>轨道</th>
+<th>适用场景</th>
+<th>规划内容</th>
+<th>启动时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quick Flow</strong></td>
+<td>Bug 修复、小功能</td>
+<td>仅技术规格</td>
+<td>&lt; 5 分钟</td>
+</tr>
+<tr>
+<td><strong>BMad Method</strong></td>
+<td>产品、平台开发</td>
+<td>PRD + 架构 + UX</td>
+<td>&lt; 15 分钟</td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td>企业级、合规要求</td>
+<td>完整治理套件</td>
+<td>&lt; 30 分钟</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-四阶段开发流程"><a class="anchor" href="#24-四阶段开发流程">#</a> 2.4 四阶段开发流程</h3>
+<pre><code>┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  Phase 1    │    │  Phase 2    │    │  Phase 3    │    │  Phase 4    │
+│  分析(可选) │ -&gt; │  规划(必需) │ -&gt; │  方案设计   │ -&gt; │  实现(必需) │
+│             │    │             │    │             │    │             │
+│ - 头脑风暴  │    │ - PRD       │    │ - 架构设计  │    │ - Sprint    │
+│ - 调研      │    │ - 技术规格  │    │ - UX 设计   │    │ - Story     │
+│ - 产品简报  │    │             │    │ - 门禁检查  │    │ - 代码审查  │
+└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
+     Analyst            PM            Architect/UX         SM/DEV
+</code></pre>
+<h3 id="25-核心-agent-角色"><a class="anchor" href="#25-核心-agent-角色">#</a> 2.5 核心 Agent 角色</h3>
+<table>
+<thead>
+<tr>
+<th>开发类</th>
+<th>架构类</th>
+<th>产品类</th>
+<th>管理类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Developer</td>
+<td>Architect</td>
+<td>PM</td>
+<td>Scrum Master</td>
+</tr>
+<tr>
+<td>UX Designer</td>
+<td>Test Architect</td>
+<td>Analyst</td>
+<td>BMad Master</td>
+</tr>
+<tr>
+<td>Tech Writer</td>
+<td>Game Architect</td>
+<td>Game Designer</td>
+<td>Game Developer</td>
+</tr>
+</tbody>
+</table>
+<h3 id="26-实战示例创建一个新项目"><a class="anchor" href="#26-实战示例创建一个新项目">#</a> 2.6 实战示例：创建一个新项目</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 1. 初始化项目</span></pre></td></tr><tr><td data-num="2"></td><td><pre>npx bmad-method@alpha <span class="token function">install</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 2. 加载 Analyst Agent，运行初始化</span></pre></td></tr><tr><td data-num="5"></td><td><pre>*workflow-init</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># 描述你的项目，选择 BMad Method 轨道</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment"># 3. 加载 PM Agent，创建 PRD</span></pre></td></tr><tr><td data-num="9"></td><td><pre>*prd</pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token comment"># 回答问题，生成产品需求文档</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment"># 4. 加载 Architect Agent，设计架构</span></pre></td></tr><tr><td data-num="13"></td><td><pre>*create-architecture</pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token comment"># 基于 PRD 生成技术架构文档</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token comment"># 5. 加载 PM Agent，创建 Epic 和 Story</span></pre></td></tr><tr><td data-num="17"></td><td><pre>*create-epics-and-stories</pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token comment"># 6. 加载 SM Agent，开始 Sprint</span></pre></td></tr><tr><td data-num="20"></td><td><pre>*sprint-planning</pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token comment"># 7. 加载 DEV Agent，实现 Story</span></pre></td></tr><tr><td data-num="23"></td><td><pre>*dev-story</pre></td></tr></table></figure><p><strong>重要提示</strong>：每个工作流都应在<strong>新的对话</strong>中执行，避免上下文污染导致幻觉。</p>
+<hr />
+<h2 id="三-claude-flow智能蜂群编排系统"><a class="anchor" href="#三-claude-flow智能蜂群编排系统">#</a> 三、Claude-Flow：智能蜂群编排系统</h2>
+<h3 id="31-什么是-claude-flow"><a class="anchor" href="#31-什么是-claude-flow">#</a> 3.1 什么是 Claude-Flow？</h3>
+<p><strong>Claude-Flow</strong> 是一个企业级 AI 编排平台，采用 ** 蜂群智能（Hive-Mind）** 架构，由一个 Queen Agent 协调多个专业 Worker Agent 并行工作。它特别适合需要多 Agent 协作的复杂任务。</p>
+<h3 id="32-核心特性"><a class="anchor" href="#32-核心特性">#</a> 3.2 核心特性</h3>
+<ul>
+<li><strong>蜂群智能</strong>：Queen-led AI 协调架构</li>
+<li><strong>持久化记忆</strong>：AgentDB + ReasoningBank 双系统</li>
+<li><strong>25 种 Claude Skills</strong>：自然语言激活的专业技能</li>
+<li><strong>100+ MCP 工具</strong>：完整的自动化工具集</li>
+<li><strong>性能优异</strong>：96x-164x 向量搜索加速</li>
+</ul>
+<h3 id="33-快速开始"><a class="anchor" href="#33-快速开始">#</a> 3.3 快速开始</h3>
+<h4 id="前置要求"><a class="anchor" href="#前置要求">#</a> 前置要求</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 1. 安装 Claude Code（必需）</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> @anthropic-ai/claude-code</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 2. 跳过权限检查（可选，加速设置）</span></pre></td></tr><tr><td data-num="5"></td><td><pre>claude --dangerously-skip-permissions</pre></td></tr></table></figure><h4 id="安装-claude-flow"><a class="anchor" href="#安装-claude-flow">#</a> 安装 Claude-Flow</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 使用 npx（推荐，始终最新）</span></pre></td></tr><tr><td data-num="2"></td><td><pre>npx claude-flow@alpha init <span class="token parameter variable">--force</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 或全局安装</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> claude-flow@alpha</pre></td></tr><tr><td data-num="6"></td><td><pre>claude-flow <span class="token parameter variable">--version</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># v2.7.0-alpha.10</span></pre></td></tr></table></figure><h3 id="34-三种使用方式"><a class="anchor" href="#34-三种使用方式">#</a> 3.4 三种使用方式</h3>
+<h4 id="方式-1快速-swarm-命令"><a class="anchor" href="#方式-1快速-swarm-命令">#</a> 方式 1：快速 Swarm 命令</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 单任务执行（推荐）</span></pre></td></tr><tr><td data-num="2"></td><td><pre>npx claude-flow@alpha swarm <span class="token string">"构建带认证的 REST API"</span> <span class="token parameter variable">--claude</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 带选项的 Swarm</span></pre></td></tr><tr><td data-num="5"></td><td><pre>npx claude-flow@alpha swarm <span class="token string">"分析代码库"</span> <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  --max-agents <span class="token number">6</span> <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="7"></td><td><pre>  <span class="token parameter variable">--strategy</span> research <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="8"></td><td><pre>  <span class="token parameter variable">--mode</span> mesh <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="9"></td><td><pre>  --read-only</pre></td></tr></table></figure><p><strong>策略选项</strong>：</p>
+<ul>
+<li><code>--strategy</code> ：research | development | analysis | testing | optimization</li>
+<li><code>--mode</code> ：centralized | distributed | hierarchical | mesh | hybrid</li>
+<li><code>--max-agents</code> ：最大 Agent 数量（默认 5）</li>
+<li><code>--parallel</code> ：启用并行执行（2.8-4.4x 加速）</li>
+</ul>
+<h4 id="方式-2hive-mind-系统复杂项目推荐"><a class="anchor" href="#方式-2hive-mind-系统复杂项目推荐">#</a> 方式 2：Hive-Mind 系统（复杂项目推荐）</h4>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 交互式向导</span></pre></td></tr><tr><td data-num="2"></td><td><pre>npx claude-flow@alpha hive-mind wizard</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 直接启动</span></pre></td></tr><tr><td data-num="5"></td><td><pre>npx claude-flow@alpha hive-mind spawn <span class="token string">"构建电商平台"</span> <span class="token parameter variable">--claude</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 查看状态</span></pre></td></tr><tr><td data-num="8"></td><td><pre>npx claude-flow@alpha hive-mind status</pre></td></tr></table></figure><h4 id="方式-3mcp-工具集成"><a class="anchor" href="#方式-3mcp-工具集成">#</a> 方式 3：MCP 工具集成</h4>
+<figure class="highlight javascript"><figcaption data-lang="javascript"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 在 Claude Code 中调用</span></pre></td></tr><tr><td data-num="2"></td><td><pre>mcp__claude<span class="token operator">-</span><span class="token function">flow__swarm_init</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  <span class="token literal-property property">topology</span><span class="token operator">:</span> <span class="token string">"mesh"</span><span class="token punctuation">,</span>        <span class="token comment">// mesh, hierarchical, ring, star</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token literal-property property">maxAgents</span><span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  <span class="token literal-property property">strategy</span><span class="token operator">:</span> <span class="token string">"adaptive"</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>mcp__claude<span class="token operator">-</span><span class="token function">flow__agent_spawn</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"coder"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"backend-dev"</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>mcp__claude<span class="token operator">-</span><span class="token function">flow__task_orchestrate</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>  <span class="token literal-property property">task</span><span class="token operator">:</span> <span class="token string">"实现用户认证"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>  <span class="token literal-property property">strategy</span><span class="token operator">:</span> <span class="token string">"sequential"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>  <span class="token literal-property property">priority</span><span class="token operator">:</span> <span class="token string">"high"</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="35-记忆系统"><a class="anchor" href="#35-记忆系统">#</a> 3.5 记忆系统</h3>
+<p>Claude-Flow 提供强大的持久化记忆能力：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 存储记忆</span></pre></td></tr><tr><td data-num="2"></td><td><pre>npx claude-flow@alpha memory store api_config <span class="token string">"REST API 配置信息"</span> <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="3"></td><td><pre>  <span class="token parameter variable">--namespace</span> backend</pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 语义搜索</span></pre></td></tr><tr><td data-num="6"></td><td><pre>npx claude-flow@alpha memory vector-search <span class="token string">"用户认证流程"</span> <span class="token punctuation">\</span></pre></td></tr><tr><td data-num="7"></td><td><pre>  <span class="token parameter variable">--k</span> <span class="token number">10</span> <span class="token parameter variable">--threshold</span> <span class="token number">0.7</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 查看状态</span></pre></td></tr><tr><td data-num="10"></td><td><pre>npx claude-flow@alpha memory status <span class="token parameter variable">--reasoningbank</span></pre></td></tr></table></figure><h3 id="36-skills-系统"><a class="anchor" href="#36-skills-系统">#</a> 3.6 Skills 系统</h3>
+<p>25 种专业技能，通过自然语言自动激活：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 只需描述你想做的事情，技能自动匹配</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token string">"让我们一起结对编程这个功能"</span>     → pair-programming skill</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token string">"审查这个 PR 的安全问题"</span>        → github-code-review skill</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token string">"用向量搜索找到类似代码"</span>        → agentdb-vector-search skill</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token string">"创建一个 Swarm 来构建这个 API"</span> → swarm-orchestration skill</pre></td></tr></table></figure><hr />
+<h2 id="四-选择建议"><a class="anchor" href="#四-选择建议">#</a> 四、选择建议</h2>
+<h3 id="何时使用-bmad-method"><a class="anchor" href="#何时使用-bmad-method">#</a> 何时使用 BMAD Method？</h3>
+<ul>
+<li>从零开始构建新项目</li>
+<li>需要完整的需求分析和架构设计</li>
+<li>团队协作，需要文档沉淀</li>
+<li>遵循敏捷开发流程</li>
+</ul>
+<h3 id="何时使用-claude-flow"><a class="anchor" href="#何时使用-claude-flow">#</a> 何时使用 Claude-Flow？</h3>
+<ul>
+<li>复杂任务需要多 Agent 并行处理</li>
+<li>需要持久化的项目记忆</li>
+<li>高频、低延迟的任务执行</li>
+<li>已有明确需求，直接实现</li>
+</ul>
+<h3 id="组合使用"><a class="anchor" href="#组合使用">#</a> 组合使用</h3>
+<p>两个框架并不冲突，可以组合使用：</p>
+<ol>
+<li>用 <strong>BMAD Method</strong> 完成项目规划（PRD、架构设计）</li>
+<li>用 <strong>Claude-Flow</strong> 的 Swarm 加速具体实现</li>
+<li>利用 Claude-Flow 的记忆系统保存项目知识</li>
+</ol>
+<hr />
+<h2 id="五-常见问题"><a class="anchor" href="#五-常见问题">#</a> 五、常见问题</h2>
+<h3 id="q1-bmad-的-agent-如何加载"><a class="anchor" href="#q1-bmad-的-agent-如何加载">#</a> Q1: BMAD 的 Agent 如何加载？</h3>
+<p>在 Claude Code 中，将 Agent 文件路径添加到对话上下文，或使用 IDE 的 Agent 加载功能。详见 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JtYWQtY29kZS1vcmcvQk1BRC1NRVRIT0QvdHJlZS9tYWluL2RvY3MvaWRlLWluZm8=">IDE 配置指南</span>。</p>
+<h3 id="q2-claude-flow-的-swarm-和-hive-mind-有什么区别"><a class="anchor" href="#q2-claude-flow-的-swarm-和-hive-mind-有什么区别">#</a> Q2: Claude-Flow 的 Swarm 和 Hive-Mind 有什么区别？</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Swarm</th>
+<th>Hive-Mind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>适用场景</td>
+<td>快速任务</td>
+<td>复杂项目</td>
+</tr>
+<tr>
+<td>设置方式</td>
+<td>即时启动</td>
+<td>交互向导</td>
+</tr>
+<tr>
+<td>记忆范围</td>
+<td>任务级</td>
+<td>项目级 SQLite</td>
+</tr>
+<tr>
+<td>会话管理</td>
+<td>临时</td>
+<td>持久化 + 恢复</td>
+</tr>
+</tbody>
+</table>
+<h3 id="q3-两个框架都需要-claude-code-吗"><a class="anchor" href="#q3-两个框架都需要-claude-code-吗">#</a> Q3: 两个框架都需要 Claude Code 吗？</h3>
+<ul>
+<li>BMAD Method：支持多种 IDE（Claude Code、Cursor、Windsurf、VS Code）</li>
+<li>Claude-Flow：需要 Claude Code CLI 作为基础</li>
+</ul>
+<hr />
+<h2 id="六-资源链接"><a class="anchor" href="#六-资源链接">#</a> 六、资源链接</h2>
+<h3 id="bmad-method"><a class="anchor" href="#bmad-method">#</a> BMAD Method</h3>
+<ul>
+<li>GitHub: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2JtYWQtY29kZS1vcmcvQk1BRC1NRVRIT0Q=">bmad-code-org/BMAD-METHOD</span></li>
+<li>Discord: <span class="exturl" data-url="aHR0cHM6Ly9kaXNjb3JkLmdnL2drOGpBZFhXbWo=">BMad Community</span></li>
+<li>YouTube: <span class="exturl" data-url="aHR0cHM6Ly93d3cueW91dHViZS5jb20vQEJNYWRDb2Rl">BMadCode</span></li>
+</ul>
+<h3 id="claude-flow"><a class="anchor" href="#claude-flow">#</a> Claude-Flow</h3>
+<ul>
+<li>GitHub: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3J1dm5ldC9jbGF1ZGUtZmxvdw==">ruvnet/claude-flow</span></li>
+<li>Discord: <span class="exturl" data-url="aHR0cHM6Ly9kaXNjb3JkLmNvbS9pbnZpdGUvZGZ4bXB3a0cyRA==">Agentics Foundation</span></li>
+<li>NPM: <span class="exturl" data-url="aHR0cHM6Ly93d3cubnBtanMuY29tL3BhY2thZ2UvY2xhdWRlLWZsb3c=">claude-flow</span></li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Note:</strong> AI 开发工具迭代迅速，本文基于 BMAD v6 Alpha 和 Claude-Flow v2.7.0 编写，建议关注官方文档获取最新信息。</p>
+</blockquote>
+<p><em>愿 AI 成为你开发路上的得力助手，而非替代品。掌握工具，驾驭未来。</em></p>
+
+      <div class="tags">
+          <a href="/tags/AI/" rel="tag"><i class="ic i-tag"></i> AI</a>
+          <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"><i class="ic i-tag"></i> 开发工具</a>
+          <a href="/tags/Claude/" rel="tag"><i class="ic i-tag"></i> Claude</a>
+          <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/" rel="tag"><i class="ic i-tag"></i> 敏捷开发</a>
+          <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"><i class="ic i-tag"></i> 教程</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-12-17 01:06:53" itemprop="dateModified" datetime="2025-12-17T01:06:53+08:00">2025-12-17</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="自在逍遥 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="自在逍遥 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="自在逍遥 PayPal(暂时无了!)">
+        <p>PayPal(暂时无了!)</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>自在逍遥 <i class="ic i-at"><em>@</em></i>Navi Terminal - CONNECTED
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://bakastream.icu/2025/12/17/ai-dev-frameworks-guide/" title="AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南">https://bakastream.icu/2025/12/17/ai-dev-frameworks-guide/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/12/12/college-observation/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;bakastream.icu&#x2F;img&#x2F;college-cover.jpg" title="深夜的树洞：苔藓仍在仰望星空">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> 碎碎念</span>
+  <h3>深夜的树洞：苔藓仍在仰望星空</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"
+    data-repo="1zzxy1/1zzxy1.github.io"
+    data-repo-id="R_kgDOQgaRxA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQgaRxM4Czvq8"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN">
+  </div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ai-%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98bmad-method-%E4%B8%8E-claude-flow-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="toc-number">1.</span> <span class="toc-text"> AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E6%A1%86%E6%9E%B6%E6%A6%82%E8%A7%88"><span class="toc-number">1.1.</span> <span class="toc-text"> 一、框架概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-bmad-methodai-%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6"><span class="toc-number">1.2.</span> <span class="toc-text"> 二、BMAD Method：AI 敏捷开发框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-%E4%BB%80%E4%B9%88%E6%98%AF-bmad"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 2.1 什么是 BMAD？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 2.2 核心特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 2.3 快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%E5%AE%89%E8%A3%85-bmad"><span class="toc-number">1.2.3.1.</span> <span class="toc-text"> 步骤 1：安装 BMAD</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">1.2.3.2.</span> <span class="toc-text"> 步骤 2：初始化工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%E9%80%89%E6%8B%A9%E5%BC%80%E5%8F%91%E8%BD%A8%E9%81%93"><span class="toc-number">1.2.3.3.</span> <span class="toc-text"> 步骤 3：选择开发轨道</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#24-%E5%9B%9B%E9%98%B6%E6%AE%B5%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 2.4 四阶段开发流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#25-%E6%A0%B8%E5%BF%83-agent-%E8%A7%92%E8%89%B2"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 2.5 核心 Agent 角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#26-%E5%AE%9E%E6%88%98%E7%A4%BA%E4%BE%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.6.</span> <span class="toc-text"> 2.6 实战示例：创建一个新项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-claude-flow%E6%99%BA%E8%83%BD%E8%9C%82%E7%BE%A4%E7%BC%96%E6%8E%92%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text"> 三、Claude-Flow：智能蜂群编排系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-%E4%BB%80%E4%B9%88%E6%98%AF-claude-flow"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 3.1 什么是 Claude-Flow？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 3.2 核心特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#33-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 3.3 快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.3.1.</span> <span class="toc-text"> 前置要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-claude-flow"><span class="toc-number">1.3.3.2.</span> <span class="toc-text"> 安装 Claude-Flow</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#34-%E4%B8%89%E7%A7%8D%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 3.4 三种使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F-1%E5%BF%AB%E9%80%9F-swarm-%E5%91%BD%E4%BB%A4"><span class="toc-number">1.3.4.1.</span> <span class="toc-text"> 方式 1：快速 Swarm 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F-2hive-mind-%E7%B3%BB%E7%BB%9F%E5%A4%8D%E6%9D%82%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90"><span class="toc-number">1.3.4.2.</span> <span class="toc-text"> 方式 2：Hive-Mind 系统（复杂项目推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E5%BC%8F-3mcp-%E5%B7%A5%E5%85%B7%E9%9B%86%E6%88%90"><span class="toc-number">1.3.4.3.</span> <span class="toc-text"> 方式 3：MCP 工具集成</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#35-%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.5.</span> <span class="toc-text"> 3.5 记忆系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#36-skills-%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.6.</span> <span class="toc-text"> 3.6 Skills 系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B-%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.4.</span> <span class="toc-text"> 四、选择建议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8-bmad-method"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 何时使用 BMAD Method？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8-claude-flow"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 何时使用 Claude-Flow？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 组合使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text"> 五、常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#q1-bmad-%E7%9A%84-agent-%E5%A6%82%E4%BD%95%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.5.1.</span> <span class="toc-text"> Q1: BMAD 的 Agent 如何加载？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#q2-claude-flow-%E7%9A%84-swarm-%E5%92%8C-hive-mind-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="toc-number">1.5.2.</span> <span class="toc-text"> Q2: Claude-Flow 的 Swarm 和 Hive-Mind 有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#q3-%E4%B8%A4%E4%B8%AA%E6%A1%86%E6%9E%B6%E9%83%BD%E9%9C%80%E8%A6%81-claude-code-%E5%90%97"><span class="toc-number">1.5.3.</span> <span class="toc-text"> Q3: 两个框架都需要 Claude Code 吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD-%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5"><span class="toc-number">1.6.</span> <span class="toc-text"> 六、资源链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bmad-method"><span class="toc-number">1.6.1.</span> <span class="toc-text"> BMAD Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#claude-flow"><span class="toc-number">1.6.2.</span> <span class="toc-text"> Claude-Flow</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2025/12/01/gemini-guide/" rel="bookmark" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></li><li class="active"><a href="/2025/12/17/ai-dev-frameworks-guide/" rel="bookmark" title="AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南">AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="自在逍遥"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">自在逍遥</p>
+  <div class="description" itemprop="description">Rainor DA!</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">5</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzF6enh5MQ==" title="https:&#x2F;&#x2F;github.com&#x2F;1zzxy1"><i class="ic i-github"></i></span>
+      <span class="exturl item qq" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNTM1OTYwMTA0" title="tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1535960104"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/17/ai-dev-frameworks-guide/" title="AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南">AI 驱动开发实战：BMAD Method 与 Claude-Flow 使用指南</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/01/gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/05/midnight-talk-with-gemi/" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
+</div>
+
+    <span><a href="/2025/12/02/ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/12/college-observation/" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">自在逍遥 @ Cyberia</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/12/17/ai-dev-frameworks-guide/',
+    favicon: {
+      show: "多喝热水~",
+      hide: "不进来看看嘛(´Д｀)"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"log":false});</script></body>
+</html>
