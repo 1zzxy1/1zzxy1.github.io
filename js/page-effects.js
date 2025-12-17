@@ -37,9 +37,9 @@
           ctx.quadraticCurveTo(pp.x, pp.y, (p.x + pp.x) / 2, (p.y + pp.y) / 2);
         }
         const gradient = ctx.createLinearGradient(trail[0].x, trail[0].y, trail[trail.length-1].x, trail[trail.length-1].y);
-        gradient.addColorStop(0, 'rgba(9, 177, 185, 0)');
-        gradient.addColorStop(0.5, 'rgba(132, 99, 169, 0.4)');
-        gradient.addColorStop(1, 'rgba(9, 177, 185, 0.6)');
+        gradient.addColorStop(0, 'rgba(102, 126, 234, 0)');
+        gradient.addColorStop(0.5, 'rgba(118, 75, 162, 0.4)');
+        gradient.addColorStop(1, 'rgba(240, 147, 251, 0.6)');
         ctx.strokeStyle = gradient;
         ctx.lineWidth = 2;
         ctx.lineCap = 'round';
@@ -91,7 +91,7 @@
         if (p.y < 0 || p.y > height) p.speedY *= -1;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(9, 177, 185, ${p.opacity})`;
+        ctx.fillStyle = `rgba(102, 126, 234, ${p.opacity})`;
         ctx.fill();
       });
       // 连线
@@ -102,7 +102,7 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(9, 177, 185, ${0.15 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `rgba(102, 126, 234, ${0.15 * (1 - dist / 120)})`;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             ctx.stroke();
@@ -149,7 +149,7 @@
   function initClickRipple() {
     document.addEventListener('click', (e) => {
       const ripple = document.createElement('div');
-      ripple.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(9,177,185,0.4) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none;z-index:9998;animation:ripple-expand 0.6s ease-out forwards;`;
+      ripple.style.cssText = `position:fixed;left:${e.clientX}px;top:${e.clientY}px;width:0;height:0;border-radius:50%;background:radial-gradient(circle,rgba(102,126,234,0.4) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none;z-index:9998;animation:ripple-expand 0.6s ease-out forwards;`;
       document.body.appendChild(ripple);
       setTimeout(() => ripple.remove(), 600);
     });
@@ -231,7 +231,7 @@
     title.dataset.typed = 'true';
     const text = title.textContent;
     title.textContent = '';
-    title.style.borderRight = '2px solid #09B1B9';
+    title.style.borderRight = '2px solid #667eea';
     let i = 0;
     function type() {
       if (i < text.length) {
@@ -254,7 +254,7 @@
 
     const statsDiv = document.createElement('div');
     statsDiv.id = 'site-stats';
-    statsDiv.style.cssText = 'text-align:center;font-size:12px;color:rgba(9,177,185,0.8);margin-top:15px;line-height:2;';
+    statsDiv.style.cssText = 'text-align:center;font-size:12px;color:rgba(102,126,234,0.8);margin-top:15px;line-height:2;';
     footer.appendChild(statsDiv);
 
     // 保存 busuanzi 的值（如果已经加载）
@@ -276,8 +276,8 @@
       if (uvEl && uvEl.textContent && uvEl.textContent !== '--') uvValue = uvEl.textContent;
 
       statsDiv.innerHTML = `
-        <div>🌸 小站已运行 <span style="color:#09B1B9;font-weight:bold;">${days}</span> 天 <span style="color:#8463A9;font-weight:bold;">${hours}</span> 小时 <span style="color:#09B1B9;font-weight:bold;">${minutes}</span> 分 <span style="color:#8463A9;font-weight:bold;">${seconds}</span> 秒 🌸</div>
-        <div style="margin-top:5px;">👀 本站总访问 <span id="busuanzi_value_site_pv" style="color:#09B1B9;font-weight:bold;">${pvValue}</span> 次 | 访客 <span id="busuanzi_value_site_uv" style="color:#8463A9;font-weight:bold;">${uvValue}</span> 人</div>
+        <div>🌸 小站已运行 <span style="color:#667eea;font-weight:bold;">${days}</span> 天 <span style="color:#764ba2;font-weight:bold;">${hours}</span> 小时 <span style="color:#f093fb;font-weight:bold;">${minutes}</span> 分 <span style="color:#f5576c;font-weight:bold;">${seconds}</span> 秒 🌸</div>
+        <div style="margin-top:5px;">👀 本站总访问 <span id="busuanzi_value_site_pv" style="color:#667eea;font-weight:bold;">${pvValue}</span> 次 | 访客 <span id="busuanzi_value_site_uv" style="color:#764ba2;font-weight:bold;">${uvValue}</span> 人</div>
       `;
     }
     updateRuntime();
@@ -316,7 +316,7 @@
       padding: 8px 16px;
       font-size: 18px;
       cursor: pointer;
-      background: linear-gradient(135deg, #09B1B9 0%, #8463A9 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       border-radius: 20px;
       transition: all 0.3s ease;
       user-select: none;
@@ -341,7 +341,7 @@
     // 悬停效果
     unlockBtn.addEventListener('mouseenter', function() {
       this.style.transform = 'scale(1.1)';
-      this.style.boxShadow = '0 5px 20px rgba(9,177,185,0.5)';
+      this.style.boxShadow = '0 5px 20px rgba(102,126,234,0.5)';
     });
     unlockBtn.addEventListener('mouseleave', function() {
       this.style.transform = 'scale(1)';
@@ -371,7 +371,7 @@
     const dialog = document.createElement('div');
     dialog.style.cssText = `
       background: linear-gradient(145deg, #1a1a2e, #16213e);
-      border: 1px solid rgba(9,177,185,0.3);
+      border: 1px solid rgba(102,126,234,0.3);
       border-radius: 20px;
       padding: 30px 40px;
       text-align: center;
@@ -385,7 +385,7 @@
       <input type="password" id="secret-password-input" placeholder="请输入密码..." style="
         width: 200px;
         padding: 12px 20px;
-        border: 1px solid rgba(9,177,185,0.3);
+        border: 1px solid rgba(102,126,234,0.3);
         border-radius: 25px;
         background: rgba(255,255,255,0.05);
         color: #fff;
@@ -397,7 +397,7 @@
       <div style="margin-top: 20px;">
         <button id="secret-submit-btn" style="
           padding: 10px 30px;
-          background: linear-gradient(135deg, #09B1B9 0%, #8463A9 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border: none;
           border-radius: 20px;
           color: #fff;
@@ -455,7 +455,7 @@
         input.style.borderColor = '#f5576c';
         input.value = '';
         setTimeout(() => {
-          input.style.borderColor = 'rgba(9,177,185,0.3)';
+          input.style.borderColor = 'rgba(102,126,234,0.3)';
         }, 1000);
       }
     }
@@ -475,13 +475,13 @@
       left: 50%;
       transform: translateX(-50%);
       padding: 12px 25px;
-      background: linear-gradient(135deg, #09B1B9 0%, #8463A9 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #fff;
       border-radius: 25px;
       font-size: 14px;
       z-index: 999999;
       animation: toastIn 0.3s ease;
-      box-shadow: 0 5px 20px rgba(9,177,185,0.4);
+      box-shadow: 0 5px 20px rgba(102,126,234,0.4);
     `;
     toast.textContent = message;
     document.body.appendChild(toast);
@@ -538,7 +538,7 @@
         top: 8px;
         right: 8px;
         padding: 5px 10px;
-        background: linear-gradient(135deg, #09B1B9 0%, #8463A9 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
         border-radius: 12px;
@@ -548,7 +548,7 @@
         transition: all 0.3s ease;
         z-index: 10;
       }
-      .code-copy-btn:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(9,177,185,0.4); }
+      .code-copy-btn:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(102,126,234,0.4); }
 
       /* 页面淡入 */
       .container { animation: pageIn 0.5s ease-out; }
@@ -589,16 +589,16 @@
   // ==================== 初始化 ====================
   function init() {
     addStyles();
-    initRibbonTrail();
-    initParticleBackground();
+    // initRibbonTrail();  // 禁用：光标拖影
+    // initParticleBackground();  // 禁用：粒子背景
     initReadingProgress();
-    initMouseStars();
-    initClickRipple();
+    // initMouseStars();  // 禁用：鼠标星星
+    // initClickRipple();  // 禁用：点击涟漪
     initCodeCopy();
     initDarkModeTransition();
-    initTextReveal();
-    initImageAnimation();
-    initTypewriter();
+    // initTextReveal();  // 禁用：文字渐现
+    // initImageAnimation();  // 禁用：图片动画
+    // initTypewriter();  // 禁用：打字机效果
     initRuntime();
     initSecretUnlock();
   }
