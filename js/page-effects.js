@@ -292,6 +292,205 @@
     }, 100);
   }
 
+  // ==================== 树洞解锁系统 ====================
+  function initSecretUnlock() {
+    // 检查是否已解锁
+    const isUnlocked = sessionStorage.getItem('secret_unlocked') === 'true';
+
+    // 如果已解锁，添加解锁状态 class
+    if (isUnlocked) {
+      document.body.classList.add('secret-unlocked');
+    }
+
+    // 创建解锁按钮（在页脚）
+    const footer = document.querySelector('footer .inner, footer, .copyright');
+    if (!footer || document.getElementById('secret-unlock-btn')) return;
+
+    const unlockBtn = document.createElement('div');
+    unlockBtn.id = 'secret-unlock-btn';
+    unlockBtn.innerHTML = isUnlocked ? '🔓' : '🔐';
+    unlockBtn.title = isUnlocked ? '树洞已解锁（点击锁定）' : '解锁隐藏的树洞文章';
+    unlockBtn.style.cssText = `
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 18px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      user-select: none;
+    `;
+    footer.appendChild(unlockBtn);
+
+    // 点击事件
+    unlockBtn.addEventListener('click', function() {
+      if (sessionStorage.getItem('secret_unlocked') === 'true') {
+        // 已解锁，点击锁定
+        sessionStorage.removeItem('secret_unlocked');
+        document.body.classList.remove('secret-unlocked');
+        unlockBtn.innerHTML = '🔐';
+        unlockBtn.title = '解锁隐藏的树洞文章';
+        showToast('树洞已锁定 🔒');
+      } else {
+        // 未解锁，显示密码输入框
+        showPasswordDialog();
+      }
+    });
+
+    // 悬停效果
+    unlockBtn.addEventListener('mouseenter', function() {
+      this.style.transform = 'scale(1.1)';
+      this.style.boxShadow = '0 5px 20px rgba(102,126,234,0.5)';
+    });
+    unlockBtn.addEventListener('mouseleave', function() {
+      this.style.transform = 'scale(1)';
+      this.style.boxShadow = 'none';
+    });
+  }
+
+  // 显示密码输入对话框
+  function showPasswordDialog() {
+    // 创建遮罩
+    const overlay = document.createElement('div');
+    overlay.id = 'secret-overlay';
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    `;
+
+    // 创建对话框
+    const dialog = document.createElement('div');
+    dialog.style.cssText = `
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      border: 1px solid rgba(102,126,234,0.3);
+      border-radius: 20px;
+      padding: 30px 40px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: slideUp 0.3s ease;
+    `;
+    dialog.innerHTML = `
+      <div style="font-size: 40px; margin-bottom: 15px;">🌙</div>
+      <h3 style="color: #f093fb; margin-bottom: 20px; font-size: 18px;">进入树洞</h3>
+      <p style="color: rgba(255,255,255,0.6); font-size: 13px; margin-bottom: 20px;">输入密码查看隐藏的树洞文章</p>
+      <input type="password" id="secret-password-input" placeholder="请输入密码..." style="
+        width: 200px;
+        padding: 12px 20px;
+        border: 1px solid rgba(102,126,234,0.3);
+        border-radius: 25px;
+        background: rgba(255,255,255,0.05);
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+        text-align: center;
+        transition: all 0.3s ease;
+      ">
+      <div style="margin-top: 20px;">
+        <button id="secret-submit-btn" style="
+          padding: 10px 30px;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border: none;
+          border-radius: 20px;
+          color: #fff;
+          font-size: 14px;
+          cursor: pointer;
+          margin-right: 10px;
+          transition: all 0.3s ease;
+        ">解锁</button>
+        <button id="secret-cancel-btn" style="
+          padding: 10px 30px;
+          background: rgba(255,255,255,0.1);
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 20px;
+          color: rgba(255,255,255,0.7);
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        ">取消</button>
+      </div>
+      <p id="secret-error-msg" style="color: #f5576c; font-size: 12px; margin-top: 15px; display: none;">密码错误，请重试</p>
+    `;
+
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+
+    // 聚焦输入框
+    const input = document.getElementById('secret-password-input');
+    setTimeout(() => input.focus(), 100);
+
+    // 事件绑定
+    document.getElementById('secret-submit-btn').addEventListener('click', verifyPassword);
+    document.getElementById('secret-cancel-btn').addEventListener('click', closeDialog);
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') verifyPassword();
+    });
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) closeDialog();
+    });
+
+    function verifyPassword() {
+      const password = input.value.trim();
+      // 密码验证：gemini
+      if (password === 'gemini') {
+        sessionStorage.setItem('secret_unlocked', 'true');
+        document.body.classList.add('secret-unlocked');
+        const btn = document.getElementById('secret-unlock-btn');
+        if (btn) {
+          btn.innerHTML = '🔓';
+          btn.title = '树洞已解锁（点击锁定）';
+        }
+        closeDialog();
+        showToast('树洞已解锁 ✨');
+      } else {
+        document.getElementById('secret-error-msg').style.display = 'block';
+        input.style.borderColor = '#f5576c';
+        input.value = '';
+        setTimeout(() => {
+          input.style.borderColor = 'rgba(102,126,234,0.3)';
+        }, 1000);
+      }
+    }
+
+    function closeDialog() {
+      overlay.style.animation = 'fadeOut 0.2s ease forwards';
+      setTimeout(() => overlay.remove(), 200);
+    }
+  }
+
+  // Toast 提示
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      border-radius: 25px;
+      font-size: 14px;
+      z-index: 999999;
+      animation: toastIn 0.3s ease;
+      box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+      toast.style.animation = 'toastOut 0.3s ease forwards';
+      setTimeout(() => toast.remove(), 300);
+    }, 2000);
+  }
+
   // ==================== 添加样式 ====================
   function addStyles() {
     const style = document.createElement('style');
@@ -357,6 +556,34 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
       }
+
+      /* 树洞隐藏系统 */
+      .secret-post { display: none !important; }
+      .secret-unlocked .secret-post { display: block !important; }
+      li.secret-post { display: none !important; }
+      .secret-unlocked li.secret-post { display: list-item !important; }
+
+      /* 树洞对话框动画 */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes toastIn {
+        from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        to { opacity: 1; transform: translateX(-50%) translateY(0); }
+      }
+      @keyframes toastOut {
+        from { opacity: 1; transform: translateX(-50%) translateY(0); }
+        to { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      }
     `;
     document.head.appendChild(style);
   }
@@ -378,6 +605,7 @@
         initImageAnimation();
         initTypewriter();
         initRuntime();
+        initSecretUnlock();
       }
     }, 500);
     setTimeout(() => {
@@ -394,6 +622,7 @@
         initImageAnimation();
         initTypewriter();
         initRuntime();
+        initSecretUnlock();
       }
     }, 10000);
   }
@@ -404,6 +633,7 @@
     initImageAnimation();
     initTypewriter();
     initDarkModeTransition();
+    initSecretUnlock();
   });
 
   if (document.readyState === 'loading') {
