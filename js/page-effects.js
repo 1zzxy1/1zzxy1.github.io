@@ -3,6 +3,48 @@
 (function() {
   'use strict';
 
+  // ==================== 树洞隐藏系统（立即执行） ====================
+  // 必须在 DOM 加载前就添加样式，防止秘密文章闪现
+  (function initSecretStylesImmediately() {
+    const style = document.createElement('style');
+    style.id = 'secret-post-styles';
+    style.textContent = `
+      /* 树洞隐藏系统 - 立即生效 */
+      body:not(.secret-unlocked) .secret-post {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      body:not(.secret-unlocked) li.secret-post {
+        display: none !important;
+      }
+      body:not(.secret-unlocked) article.secret-post {
+        display: none !important;
+      }
+    `;
+    // 插入到 head 的最前面以确保优先级
+    if (document.head) {
+      document.head.insertBefore(style, document.head.firstChild);
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        document.head.insertBefore(style, document.head.firstChild);
+      });
+    }
+
+    // 立即检查是否已解锁
+    if (sessionStorage.getItem('secret_unlocked') === 'true') {
+      document.body && document.body.classList.add('secret-unlocked');
+      // 如果 body 还不存在，等 DOM 加载后再添加
+      document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('secret-unlocked');
+      });
+    }
+  })();
+
   // ==================== 鼠标彩带拖尾 ====================
   function initRibbonTrail() {
     const canvas = document.createElement('canvas');
