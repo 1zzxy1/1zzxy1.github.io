@@ -1,0 +1,619 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/atom.xml" />
+<link rel="alternate" type="application/json" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+
+<script src="/js/site-lock.js"></script>
+
+
+<script src="/js/page-effects.js" defer></script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+  <meta name="keywords" content="AI,教程,嵌入式,NPU,Qwen" />
+
+
+<link rel="canonical" href="https://bakastream.icu/2025/12/18/orangepi-aipro-qwen/">
+
+
+
+  <title>
+香橙派 AIpro 部署 Qwen 实战笔记 - AI工具 - 技术 |
+Cyberia = Navi Terminal - CONNECTED = No matter where you are, everyone is always connected.</title>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">香橙派 AIpro 部署 Qwen 实战笔记
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-12-18 10:00:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-12-18T10:00:00+08:00">2025-12-18</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Cyberia</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://bakastream.icu/img/orangepi-cover.jpg">
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="item" rel="index" title="分类于 技术"><span itemprop="name">技术</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" itemprop="item" rel="index" title="分类于 AI工具"><span itemprop="name">AI工具</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://bakastream.icu/2025/12/18/orangepi-aipro-qwen/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="自在逍遥">
+    <meta itemprop="description" content="No matter where you are, everyone is always connected., Rainor DA!">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Navi Terminal - CONNECTED">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="香橙派-aipro-部署-qwen-实战笔记"><a class="anchor" href="#香橙派-aipro-部署-qwen-实战笔记">#</a> 香橙派 AIpro 部署 Qwen 实战笔记</h1>
+<blockquote>
+<p>白嫖了个 20T 算力的香橙派，结果被存储卡脖子了，好糟心…</p>
+</blockquote>
+<h2 id="我的环境"><a class="anchor" href="#我的环境">#</a> 我的环境</h2>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>详情</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发板</td>
+<td>香橙派 AIpro 20T (24G) 版本</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>TF 卡（因为最近固态硬盘太贵了，上不起）</td>
+</tr>
+<tr>
+<td>散热</td>
+<td>官方金属外壳 + 散热风扇手动满功率运转</td>
+</tr>
+<tr>
+<td>电源</td>
+<td>官方 65W PD 电源</td>
+</tr>
+<tr>
+<td>系统</td>
+<td>官方 Ubuntu 22.04 镜像</td>
+</tr>
+</tbody>
+</table>
+<h2 id="什么是香橙派-aipro-与昇腾-npu"><a class="anchor" href="#什么是香橙派-aipro-与昇腾-npu">#</a> 什么是香橙派 AIpro 与昇腾 NPU</h2>
+<p>前段时间参加了 <strong>AI 百校计划</strong>，从华为那薅了两块开发板：</p>
+<ul>
+<li><strong>OrangePi AIpro 20T (24G) 版本</strong> ← 本文主角</li>
+<li><strong>OrangePi Kunpeng Pro (16G) + FPGA (OPi MSOC)</strong></li>
+</ul>
+<p>另一块只有 openEuler 系统，这块有官方 Ubuntu 镜像，熟悉一点所以用的这块。</p>
+<p>它搭载了<strong>昇腾 NPU</strong>，以前没玩过，所以试了试。</p>
+<p><s>不过后面老师买了 Jetson Orin Nano Super 就把这两块卖了（</s></p>
+<h2 id="第一步系统环境与-npu-自检"><a class="anchor" href="#第一步系统环境与-npu-自检">#</a> 第一步：系统环境与 NPU 自检</h2>
+<p>首先确认 NPU 驱动是否正常工作，输入以下命令：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>npu-smi info</pre></td></tr></table></figure><p>如果输出类似下方的表格，显示 <strong>310B</strong> 且状态为 <strong>OK</strong>，说明底层的 NPU 驱动（固件）已就绪：</p>
+<pre><code>+------------------------------------------------------------------------------------------------+
+| npu-smi 23.0.x                                  Version: 23.0.x                                |
+| ...                                                                                            |
+| ... Name: 310B4                                                                                |
++------------------------------------------------------------------------------------------------+
+</code></pre>
+<p>接下来，配置 <strong>CANN 环境变量</strong>：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token builtin class-name">source</span> /usr/local/Ascend/ascend-toolkit/set_env.sh</pre></td></tr></table></figure><blockquote>
+<p>建议把这行加到  <code>~/.bashrc</code>  里，省得每次都要手动执行。</p>
+</blockquote>
+<h2 id="第二步编译-fastllm开启-npu-支持"><a class="anchor" href="#第二步编译-fastllm开启-npu-支持">#</a> 第二步：编译 FastLLM（开启 NPU 支持）</h2>
+<p>直接用 PyTorch 跑推理太慢了，所以选择了 <strong>FastLLM</strong> 这个轻量级推理框架。</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 克隆仓库</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">git</span> clone https://github.com/ztxz16/fastllm.git</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token builtin class-name">cd</span> fastllm</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">mkdir</span> build <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> build</pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment"># 关键步骤：使用 USE_ASCEND=1 开启昇腾 NPU 支持</span></pre></td></tr><tr><td data-num="7"></td><td><pre>cmake <span class="token punctuation">..</span> <span class="token parameter variable">-DUSE_ASCEND</span><span class="token operator">=</span><span class="token number">1</span> <span class="token parameter variable">-DCMAKE_INSTALL_PREFIX</span><span class="token operator">=</span>.</pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">make</span> <span class="token parameter variable">-j4</span></pre></td></tr></table></figure><p>编译完成后，会在  <code>build</code>  目录下生成可执行文件。</p>
+<h2 id="第三步模型获取与量化"><a class="anchor" href="#第三步模型获取与量化">#</a> 第三步：模型获取与量化</h2>
+<p><strong>Qwen-14B</strong> 原始模型大约需要 <strong>28GB+</strong> 显存，直接超出了板子 24G 的物理极限。因此，我们需要对其进行<strong>量化</strong>。</p>
+<p>利用 FastLLM 提供的 Python 脚本进行转换：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> sys</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> fastllm_pytools <span class="token keyword">import</span> llm</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 载入模型</span></pre></td></tr><tr><td data-num="5"></td><td><pre>model_path <span class="token operator">=</span> <span class="token string">"/path/to/Qwen-14B-Chat"</span>  <span class="token comment"># 替换为你的模型路径</span></pre></td></tr><tr><td data-num="6"></td><td><pre>model <span class="token operator">=</span> llm<span class="token punctuation">.</span>from_hf<span class="token punctuation">(</span>model_path<span class="token punctuation">,</span> dtype<span class="token operator">=</span><span class="token string">"float16"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment"># 核心步骤：量化为 int4 并导出为 flm 格式</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># flm 是 fastllm 的专用格式，加载速度极快</span></pre></td></tr><tr><td data-num="10"></td><td><pre>model<span class="token punctuation">.</span>quant<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>model<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">"qwen-14b-int4.flm"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>喝杯咖啡，等待转换完成。最终会得到一个  <code>qwen-14b-int4.flm</code>  文件。</p>
+<blockquote>
+<p><strong>INT4 量化</strong>能将模型体积压缩到原来的 1/4 左右，同时保持相当不错的推理质量。</p>
+</blockquote>
+<h2 id="第四步运行测试"><a class="anchor" href="#第四步运行测试">#</a> 第四步：运行测试</h2>
+<p>现在，激动人心的时刻到了！</p>
+<p>直接运行编译好的  <code>main</code>  程序：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>./main <span class="token parameter variable">-p</span> qwen-14b-int4.flm <span class="token parameter variable">-t</span> <span class="token number">8</span></pre></td></tr></table></figure><p>参数说明：</p>
+<ul>
+<li><code>-p</code> ：指定模型文件路径</li>
+<li><code>-t</code> ：线程数（根据你的 CPU 核心数调整）</li>
+</ul>
+<p>如果一切顺利，你就能看到 Qwen 开始输出了！</p>
+<h2 id="踩坑记录-补充"><a class="anchor" href="#踩坑记录-补充">#</a> 踩坑记录 &amp; 补充</h2>
+<h3 id="散热问题"><a class="anchor" href="#散热问题">#</a> 散热问题</h3>
+<p>默认状态（自动）下香橙派发热<strong>挺严重的</strong>，建议手动拉满风扇转速：</p>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 查看当前风扇状态</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">cat</span> /sys/class/thermal/cooling_device0/cur_state</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 设置为最大转速（具体数值根据你的设备调整）</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token builtin class-name">echo</span> <span class="token number">4</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /sys/class/thermal/cooling_device0/cur_state</pre></td></tr></table></figure><p>金属外壳 + 满速风扇的组合下，长时间推理也能稳定运行。</p>
+<h3 id="存储瓶颈"><a class="anchor" href="#存储瓶颈">#</a> 存储瓶颈</h3>
+<p>这是我最大的遗憾 ——<strong>20T 算力的板子被 TF 卡卡脖子了</strong>。</p>
+<p>模型加载速度受限于 TF 卡的读取速度，如果预算允许，强烈建议上 <strong>NVMe SSD</strong>。首次加载 14B 模型用 TF 卡的话，可能要等好几分钟…</p>
+<h2 id="总结"><a class="anchor" href="#总结">#</a> 总结</h2>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>npu-smi info</code>  确认 NPU 状态</td>
+</tr>
+<tr>
+<td>2</td>
+<td>配置 CANN 环境变量</td>
+</tr>
+<tr>
+<td>3</td>
+<td>编译 FastLLM（ <code>-DUSE_ASCEND=1</code> ）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>量化模型为 INT4 格式</td>
+</tr>
+<tr>
+<td>5</td>
+<td>运行推理，开始玩耍</td>
+</tr>
+</tbody>
+</table>
+<p>香橙派 AIpro 作为一块<strong>性价比极高</strong>的 NPU 开发板，确实给了我不少惊喜。虽然被存储卡了脖子，但整体体验下来，用来学习昇腾 NPU 生态、跑一些轻量级大模型还是很不错的。</p>
+<p><s>就是可惜被老师卖掉了（</s></p>
+<hr />
+<p><em>如果这篇文章对你有帮助，欢迎在下方评论区交流！</em></p>
+
+      <div class="tags">
+          <a href="/tags/AI/" rel="tag"><i class="ic i-tag"></i> AI</a>
+          <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"><i class="ic i-tag"></i> 教程</a>
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i> 嵌入式</a>
+          <a href="/tags/NPU/" rel="tag"><i class="ic i-tag"></i> NPU</a>
+          <a href="/tags/Qwen/" rel="tag"><i class="ic i-tag"></i> Qwen</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2025-12-18 00:49:25" itemprop="dateModified" datetime="2025-12-18T00:49:25+08:00">2025-12-18</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="自在逍遥 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="自在逍遥 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="自在逍遥 PayPal(暂时无了!)">
+        <p>PayPal(暂时无了!)</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>自在逍遥 <i class="ic i-at"><em>@</em></i>Navi Terminal - CONNECTED
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://bakastream.icu/2025/12/18/orangepi-aipro-qwen/" title="香橙派 AIpro 部署 Qwen 实战笔记">https://bakastream.icu/2025/12/18/orangepi-aipro-qwen/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/12/17/ai-dev-frameworks-guide/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;bakastream.icu&#x2F;img&#x2F;ai-dev-cover.jpg" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> AI工具</span>
+  <h3>Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"
+    data-repo="1zzxy1/1zzxy1.github.io"
+    data-repo-id="R_kgDOQgaRxA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQgaRxM4Czvq8"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN">
+  </div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A6%99%E6%A9%99%E6%B4%BE-aipro-%E9%83%A8%E7%BD%B2-qwen-%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text"> 香橙派 AIpro 部署 Qwen 实战笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text"> 我的环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%A6%99%E6%A9%99%E6%B4%BE-aipro-%E4%B8%8E%E6%98%87%E8%85%BE-npu"><span class="toc-number">1.2.</span> <span class="toc-text"> 什么是香橙派 AIpro 与昇腾 NPU</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E4%B8%8E-npu-%E8%87%AA%E6%A3%80"><span class="toc-number">1.3.</span> <span class="toc-text"> 第一步：系统环境与 NPU 自检</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E7%BC%96%E8%AF%91-fastllm%E5%BC%80%E5%90%AF-npu-%E6%94%AF%E6%8C%81"><span class="toc-number">1.4.</span> <span class="toc-text"> 第二步：编译 FastLLM（开启 NPU 支持）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%A8%A1%E5%9E%8B%E8%8E%B7%E5%8F%96%E4%B8%8E%E9%87%8F%E5%8C%96"><span class="toc-number">1.5.</span> <span class="toc-text"> 第三步：模型获取与量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%E8%BF%90%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">1.6.</span> <span class="toc-text"> 第四步：运行测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95-%E8%A1%A5%E5%85%85"><span class="toc-number">1.7.</span> <span class="toc-text"> 踩坑记录 &amp; 补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%A3%E7%83%AD%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 散热问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E7%93%B6%E9%A2%88"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 存储瓶颈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text"> 总结</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2025/12/01/gemini-guide/" rel="bookmark" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></li><li><a href="/2025/12/17/ai-dev-frameworks-guide/" rel="bookmark" title="Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法">Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法</a></li><li class="active"><a href="/2025/12/18/orangepi-aipro-qwen/" rel="bookmark" title="香橙派 AIpro 部署 Qwen 实战笔记">香橙派 AIpro 部署 Qwen 实战笔记</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="自在逍遥"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">自在逍遥</p>
+  <div class="description" itemprop="description">Rainor DA!</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">6</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzF6enh5MQ==" title="https:&#x2F;&#x2F;github.com&#x2F;1zzxy1"><i class="ic i-github"></i></span>
+      <span class="exturl item qq" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNTM1OTYwMTA0" title="tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1535960104"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
+</div>
+
+    <span><a href="/2025/12/02/ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/12/college-observation/" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/18/orangepi-aipro-qwen/" title="香橙派 AIpro 部署 Qwen 实战笔记">香橙派 AIpro 部署 Qwen 实战笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/05/midnight-talk-with-gemi/" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/01/gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/17/ai-dev-frameworks-guide/" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法">Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法</a></span>
+  </li>
+
+  </ul>
+</div>
+<div class="rcomments">
+  <h2>最新评论</h2>
+  <ul id="giscus-recent-comments" class="giscus-recent-comment">
+    <li class="comment-item">
+      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions" target="_blank" rel="noopener">
+        <span class="comment-icon">💬</span>
+        <span class="comment-body">查看 GitHub Discussions 中的所有评论</span>
+      </a>
+    </li>
+    <li class="comment-item">
+      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions/categories/announcements" target="_blank" rel="noopener">
+        <span class="comment-icon">📢</span>
+        <span class="comment-body">公告 & 更新</span>
+      </a>
+    </li>
+    <li class="comment-item">
+      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions/categories/general" target="_blank" rel="noopener">
+        <span class="comment-icon">💭</span>
+        <span class="comment-body">留言板</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">自在逍遥 @ Cyberia</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/12/18/orangepi-aipro-qwen/',
+    favicon: {
+      show: "多喝热水~",
+      hide: "不进来看看嘛(´Д｀)"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"log":false});</script></body>
+</html>
