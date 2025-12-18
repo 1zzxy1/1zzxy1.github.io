@@ -15,15 +15,25 @@
         visibility: hidden !important;
         opacity: 0 !important;
         height: 0 !important;
+        min-height: 0 !important;
+        max-height: 0 !important;
+        width: 0 !important;
+        min-width: 0 !important;
         overflow: hidden !important;
         margin: 0 !important;
         padding: 0 !important;
+        border: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+        pointer-events: none !important;
       }
-      body:not(.secret-unlocked) li.secret-post {
+      body:not(.secret-unlocked) li.secret-post,
+      body:not(.secret-unlocked) article.secret-post,
+      body:not(.secret-unlocked) .item.secret-post,
+      body:not(.secret-unlocked) .segments .secret-post {
         display: none !important;
-      }
-      body:not(.secret-unlocked) article.secret-post {
-        display: none !important;
+        position: absolute !important;
+        left: -9999px !important;
       }
     `;
     // 插入到 head 的最前面以确保优先级
@@ -600,8 +610,14 @@
       }
 
       /* 树洞隐藏系统 - 只在未解锁时隐藏 */
-      body:not(.secret-unlocked) .secret-post { display: none !important; }
-      body:not(.secret-unlocked) li.secret-post { display: none !important; }
+      body:not(.secret-unlocked) .secret-post,
+      body:not(.secret-unlocked) li.secret-post,
+      body:not(.secret-unlocked) article.secret-post,
+      body:not(.secret-unlocked) .item.secret-post {
+        display: none !important;
+        position: absolute !important;
+        left: -9999px !important;
+      }
 
       /* 树洞对话框动画 */
       @keyframes fadeIn {
@@ -643,7 +659,6 @@
     // initTypewriter();  // 禁用：打字机效果
     initRuntime();
     initSecretUnlock();
-    initThemeToggle();
   }
 
   // ==================== 主题切换功能 ====================
