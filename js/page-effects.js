@@ -3,6 +3,12 @@
 (function() {
   'use strict';
 
+  // ==================== 强制锁定夜间模式（立即执行） ====================
+  (function forceDarkMode() {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark');
+  })();
+
   // ==================== 树洞隐藏系统（立即执行） ====================
   // 必须在 DOM 加载前就添加样式，防止秘密文章闪现
   (function initSecretStylesImmediately() {
