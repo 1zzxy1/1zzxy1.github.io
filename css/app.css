@@ -5666,9 +5666,12 @@ textarea:focus {
 }
 #live2d-widget {
   transition: all 0.3s ease;
+  position: fixed !important;
   bottom: 0 !important;
   left: 0 !important;
   right: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
   z-index: 9999 !important;
 }
 #live2d-widget canvas {
@@ -5978,7 +5981,6 @@ body:not(.secret-unlocked) .segments .secret-post {
   margin-right: 280px;
   min-width: 0;
   padding: 0 !important;
-  overflow-x: hidden !important;
 }
 .main-container > header {
   margin: 0 !important;
@@ -6004,10 +6006,6 @@ body:not(.secret-unlocked) .segments .secret-post {
 .main-container .index.wrap {
   padding: 10px !important;
   margin: 0 !important;
-}
-html,
-body {
-  overflow-x: hidden !important;
 }
 .right-panel {
   position: fixed;

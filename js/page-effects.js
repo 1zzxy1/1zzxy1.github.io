@@ -659,6 +659,17 @@
     // initTypewriter();  // 禁用：打字机效果
     initRuntime();
     initSecretUnlock();
+    initScrollToRight();
+  }
+
+  // ==================== 页面滚动到最右边 ====================
+  function initScrollToRight() {
+    // 页面加载完成后滚动到最右边
+    window.scrollTo({
+      left: document.documentElement.scrollWidth,
+      top: 0,
+      behavior: 'instant'
+    });
   }
 
   // ==================== 主题切换功能 ====================
