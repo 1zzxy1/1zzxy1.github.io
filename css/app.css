@@ -5666,6 +5666,13 @@ textarea:focus {
 }
 #live2d-widget {
   transition: all 0.3s ease;
+  bottom: 0 !important;
+  right: 20px !important;
+  z-index: 500 !important;
+}
+#live2d-widget canvas {
+  max-width: 200px !important;
+  max-height: 280px !important;
 }
 #live2d-widget:hover {
   transform: scale(1.05);
@@ -5945,20 +5952,31 @@ body:not(.secret-unlocked) article.secret-post {
   margin-left: 220px;
   margin-right: 280px;
   min-width: 0;
-  padding-left: 0 !important;
+  padding: 0 !important;
 }
 .main-container > header {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.main-container main {
+  padding: 0 !important;
 }
 .main-container main > .inner {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 0 10px !important;
 }
 .main-container #main {
   width: 100% !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+.main-container #main .wrap {
+  padding: 10px !important;
+}
+.main-container .index.wrap {
+  padding: 10px !important;
   margin: 0 !important;
 }
 .right-panel {

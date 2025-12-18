@@ -643,6 +643,47 @@
     // initTypewriter();  // 禁用：打字机效果
     initRuntime();
     initSecretUnlock();
+    initThemeToggle();
+  }
+
+  // ==================== 主题切换功能 ====================
+  function initThemeToggle() {
+    const toggleBtns = document.querySelectorAll('.theme-toggle');
+
+    toggleBtns.forEach(btn => {
+      btn.style.cursor = 'pointer';
+      btn.addEventListener('click', function() {
+        // 切换暗色模式
+        const html = document.documentElement;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+
+        if (isDark) {
+          html.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          // 更新图标
+          this.innerHTML = '<i class="ic i-sun"></i>';
+        } else {
+          html.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          // 更新图标
+          this.innerHTML = '<i class="ic i-moon"></i>';
+        }
+
+        // 触发Shoka主题的暗色模式切换
+        if (typeof window.changeTheme === 'function') {
+          window.changeTheme();
+        }
+      });
+    });
+
+    // 恢复之前的主题设置
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      toggleBtns.forEach(btn => {
+        btn.innerHTML = '<i class="ic i-moon"></i>';
+      });
+    }
   }
 
   document.addEventListener('pjax:complete', () => {
