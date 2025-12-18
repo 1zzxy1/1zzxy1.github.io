@@ -5696,11 +5696,6 @@ canvas#live2d {
   transform: scale(1.05);
   filter: drop-shadow(0 0 20px rgba(102,126,234,0.5));
 }
-#loading {
-  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c) !important;
-  background-size: 400% 400% !important;
-  animation: gradient-bg 5s ease infinite !important;
-}
 @keyframes gradient-shift {
   0% {
     background-position: 0% 50%;
@@ -5747,17 +5742,6 @@ canvas#live2d {
   }
   to {
     transform: rotate(360deg);
-  }
-}
-@keyframes gradient-bg {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }
 body::before {
@@ -5811,17 +5795,18 @@ html:not([data-theme]) {
   --header-text-color: var(--grey-0);
 }
 #header {
-  display: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  visibility: hidden !important;
-  overflow: hidden !important;
-}
-#waves {
-  display: none !important;
+  position: relative;
+  z-index: 100;
 }
 #nav {
+  background: rgba(25,25,40,0.95) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+}
+#loading {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
 }
 #live2d-widget,
 .waifu,
