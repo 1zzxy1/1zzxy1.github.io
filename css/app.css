@@ -6223,6 +6223,8 @@ body:not(.secret-unlocked) .segments .secret-post {
   min-width: 0;
   padding: 80px 0 0 0 !important;
   overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: 100vh !important;
   background: transparent !important;
 }
 .main-container > header {
@@ -6280,12 +6282,12 @@ body:not(.secret-unlocked) .segments .secret-post {
   max-width: 100% !important;
 }
 html {
-  overflow-x: hidden !important;
-  overflow-y: scroll !important;
+  overflow: hidden !important;
+  height: 100% !important;
 }
 body {
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
+  overflow: hidden !important;
+  height: 100% !important;
 }
 .right-panel {
   position: fixed;
