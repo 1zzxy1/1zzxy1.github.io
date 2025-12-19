@@ -5810,14 +5810,14 @@ html:not([data-theme]) {
 }
 #imgs {
   display: block !important;
-  position: fixed !important;
-  top: 60px !important;
-  left: 220px !important;
-  right: 280px !important;
-  width: auto !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
   height: 50vh !important;
   min-height: 300px !important;
-  z-index: -9 !important;
+  z-index: 1 !important;
   background-color: transparent !important;
   overflow: hidden !important;
 }
@@ -5849,18 +5849,18 @@ html:not([data-theme]) {
      object-fit: cover !important;
 }
 #brand {
-  position: fixed !important;
-  top: 60px !important;
-  left: 220px !important;
-  right: 280px !important;
-  width: auto !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
   height: 50vh !important;
   min-height: 300px !important;
   padding: 3rem 2rem 0 !important;
   margin: 0 !important;
   text-align: center !important;
   pointer-events: none !important;
-  z-index: 1 !important;
+  z-index: 10 !important;
   background: transparent !important;
   display: flex !important;
   flex-direction: column !important;
@@ -6317,12 +6317,12 @@ body:not(.secret-unlocked) .segments .secret-post {
   position: fixed !important;
   left: 220px !important;
   right: 280px !important;
-  top: 0 !important;
+  top: 60px !important;
   bottom: 0 !important;
   width: auto !important;
   max-width: none !important;
   min-width: 0 !important;
-  padding: calc(50vh + 100px) 0 0 0 !important;
+  padding: 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   background: transparent !important;
@@ -6332,14 +6332,13 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  height: 0 !important;
-  min-height: 0 !important;
+  height: 50vh !important;
+  min-height: 300px !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
   box-sizing: border-box !important;
-  overflow: visible !important;
-  pointer-events: none !important;
+  overflow: hidden !important;
 }
 .main-container > header#header > .inner {
   position: relative !important;
@@ -6348,7 +6347,6 @@ body:not(.secret-unlocked) .segments .secret-post {
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
-  pointer-events: none !important;
 }
 .main-container main {
   padding: 0 !important;
