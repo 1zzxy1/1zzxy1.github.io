@@ -6255,49 +6255,6 @@ body:not(.secret-unlocked) .segments .secret-post {
   padding: 10px !important;
   margin: 0 !important;
 }
-#container {
-  position: fixed !important;
-  left: 220px !important;
-  right: 280px !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  margin: 0 !important;
-  padding: 80px 0 0 0 !important;
-  max-width: none !important;
-  width: auto !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  background: transparent !important;
-}
-#container .inner {
-  margin: 0 !important;
-  padding: 0 !important;
-  max-width: 100% !important;
-  width: 100% !important;
-}
-.wrap {
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 10px !important;
-}
-#main {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-}
-#main > .inner {
-  margin: 0 !important;
-  padding: 0 10px !important;
-  max-width: 100% !important;
-}
-html {
-  overflow: hidden !important;
-  height: 100% !important;
-}
-body {
-  overflow: hidden !important;
-  height: 100% !important;
-}
 .right-panel {
   position: fixed;
   right: 0;
