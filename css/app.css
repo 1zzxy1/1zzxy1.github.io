@@ -6339,6 +6339,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   background: transparent !important;
   box-sizing: border-box !important;
   overflow: visible !important;
+  pointer-events: none !important;
 }
 .main-container > header#header > .inner {
   position: relative !important;
