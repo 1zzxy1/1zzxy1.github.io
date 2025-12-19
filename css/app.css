@@ -5808,18 +5808,52 @@ html:not([data-theme]) {
 #header .inner {
   background: transparent !important;
 }
-#imgs {
-  position: absolute !important;
-  display: block !important;
-  top: 0 !important;
-  left: 0 !important;
+#brand {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: 100% !important;
-  height: 100% !important;
-  overflow: hidden !important;
+  min-height: 280px !important;
+  padding: 40px 20px !important;
+  text-align: center !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+#brand .pjax {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+#brand .logo {
+  pointer-events: auto !important;
+}
+#brand .artboard {
+  font-size: 3rem !important;
+  color: #e0e0e0 !important;
+  margin-bottom: 10px !important;
+}
+#brand h1.title {
+  font-size: 1.8rem !important;
+  color: #fff !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
   margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  z-index: 1 !important;
+}
+#brand .meta {
+  font-size: 1rem !important;
+  color: rgba(255,255,255,0.8) !important;
+  margin-top: 10px !important;
+}
+#imgs {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: 200px !important;
+  overflow: hidden !important;
+  margin-bottom: 20px !important;
+  border-radius: 8px !important;
 }
 #imgs ul {
   display: flex !important;
@@ -5840,60 +5874,6 @@ html:not([data-theme]) {
   height: 100% !important;
   -o-object-fit: cover !important;
      object-fit: cover !important;
-}
-#brand {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  height: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  text-align: center !important;
-  pointer-events: none !important;
-  z-index: 10 !important;
-}
-#brand .pjax {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  text-align: center !important;
-}
-#brand .logo {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 100% !important;
-  pointer-events: auto !important;
-}
-#brand .artboard {
-  font-size: 3rem !important;
-  color: #e0e0e0 !important;
-  margin-bottom: 10px !important;
-  text-align: center !important;
-}
-#brand h1.title {
-  font-size: 1.8rem !important;
-  color: #fff !important;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
-  margin: 0 !important;
-  text-align: center !important;
-}
-#brand .meta {
-  font-size: 1rem !important;
-  color: rgba(255,255,255,0.8) !important;
-  margin-top: 10px !important;
-  text-align: center !important;
-  justify-content: center !important;
 }
 #nav {
   display: flex !important;
@@ -6312,17 +6292,13 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  height: 380px !important;
   margin: 0 !important;
-  padding: 0 !important;
+  padding: 20px !important;
   background: transparent !important;
-  overflow: hidden !important;
 }
 .main-container > header#header .inner {
   display: block !important;
-  position: relative !important;
   width: 100% !important;
-  height: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
