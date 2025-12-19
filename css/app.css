@@ -1783,9 +1783,12 @@ main >.inner {
   position: fixed;
   padding: 3rem 5rem 0;
   text-align: center;
-  width: 100%;
+  left: 220px;
+  right: 280px;
+  width: auto;
   height: 50vh;
   min-height: 10rem;
+  pointer-events: none;
 }
 #brand.affix {
   z-index: -1;
