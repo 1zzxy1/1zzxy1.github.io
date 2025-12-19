@@ -6322,7 +6322,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   width: auto !important;
   max-width: none !important;
   min-width: 0 !important;
-  padding: 60px 0 0 0 !important;
+  padding: calc(50vh + 100px) 0 0 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   background: transparent !important;
@@ -6332,8 +6332,8 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  height: calc(50vh + 180px) !important;
-  min-height: 480px !important;
+  height: 0 !important;
+  min-height: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
