@@ -6332,8 +6332,8 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  height: 50vh !important;
-  min-height: 300px !important;
+  height: calc(50vh + 40px) !important;
+  min-height: 340px !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
