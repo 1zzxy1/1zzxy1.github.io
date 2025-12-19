@@ -5804,15 +5804,33 @@ html:not([data-theme]) {
   position: relative !important;
   z-index: 100 !important;
   width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: 60px !important;
+  overflow: hidden !important;
 }
 #header .inner {
   background: transparent !important;
+  height: auto !important;
+  min-height: 0 !important;
 }
 #brand {
-  position: fixed !important;
-  left: 220px !important;
-  right: 280px !important;
-  width: auto !important;
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+#imgs {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
 }
 #nav {
   display: flex !important;
@@ -6222,7 +6240,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   right: 280px !important;
   top: 0 !important;
   bottom: 0 !important;
-  padding: 80px 0 0 0 !important;
+  padding: 60px 0 0 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   background: transparent !important;
@@ -6230,6 +6248,10 @@ body:not(.secret-unlocked) .segments .secret-post {
 .main-container > header {
   margin: 0 !important;
   padding: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
 }
 .main-container main {
   padding: 0 !important;
