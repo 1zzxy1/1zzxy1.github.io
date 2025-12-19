@@ -5805,7 +5805,7 @@ html:not([data-theme]) {
 #header .inner {
   background: transparent !important;
 }
-#header #brand {
+#brand {
   position: fixed !important;
   left: 220px !important;
   right: 280px !important;
