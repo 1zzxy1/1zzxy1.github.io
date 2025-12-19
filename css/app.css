@@ -6256,9 +6256,18 @@ body:not(.secret-unlocked) .segments .secret-post {
   margin: 0 !important;
 }
 #container {
+  position: fixed !important;
+  left: 220px !important;
+  right: 280px !important;
+  top: 0 !important;
+  bottom: 0 !important;
   margin: 0 !important;
-  padding: 0 !important;
-  max-width: 100% !important;
+  padding: 80px 0 0 0 !important;
+  max-width: none !important;
+  width: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: transparent !important;
 }
 #container .inner {
   margin: 0 !important;
