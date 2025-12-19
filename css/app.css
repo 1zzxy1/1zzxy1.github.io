@@ -5815,6 +5815,7 @@ html:not([data-theme]) {
   align-items: center !important;
   justify-content: center !important;
   width: 100% !important;
+  max-width: 100% !important;
   min-height: 200px !important;
   height: auto !important;
   padding: 30px 20px !important;
@@ -5825,6 +5826,7 @@ html:not([data-theme]) {
   right: auto !important;
   top: auto !important;
   bottom: auto !important;
+  box-sizing: border-box !important;
 }
 #brand .pjax {
   display: flex !important;
@@ -5855,12 +5857,14 @@ html:not([data-theme]) {
   position: relative !important;
   display: block !important;
   width: 100% !important;
+  max-width: 100% !important;
   height: 180px !important;
   min-height: auto !important;
   overflow: hidden !important;
   margin: 0 0 20px 0 !important;
   border-radius: 8px !important;
   z-index: 1 !important;
+  box-sizing: border-box !important;
 }
 #imgs ul {
   display: flex !important;
@@ -6290,18 +6294,25 @@ body:not(.secret-unlocked) .segments .secret-post {
   right: 280px !important;
   top: 0 !important;
   bottom: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
   padding: 60px 0 0 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   background: transparent !important;
+  box-sizing: border-box !important;
 }
 .main-container > header#header {
   display: block !important;
   position: relative !important;
   width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 20px !important;
   background: transparent !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 .main-container > header#header .inner {
   display: block !important;
@@ -6309,6 +6320,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+  box-sizing: border-box !important;
 }
 .main-container main {
   padding: 0 !important;
