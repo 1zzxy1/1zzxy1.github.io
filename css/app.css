@@ -5806,14 +5806,10 @@ html:not([data-theme]) {
   background: transparent !important;
 }
 #header #brand {
-  pointer-events: none !important;
-}
-#header #brand a,
-#header #brand .logo,
-#header #brand .title,
-#header #brand .meta,
-#header #brand .artboard {
-  pointer-events: auto !important;
+  position: fixed !important;
+  left: 220px !important;
+  right: 280px !important;
+  width: auto !important;
 }
 #nav {
   display: flex !important;
