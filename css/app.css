@@ -6333,7 +6333,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   box-sizing: border-box !important;
   overflow: visible !important;
 }
-.main-container > header#header .inner {
+.main-container > header#header > .inner {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
