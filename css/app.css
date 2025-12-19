@@ -6327,20 +6327,32 @@ body:not(.secret-unlocked) .segments .secret-post {
   margin: 0 !important;
 }
 .main-container main > .inner {
+  display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 10px !important;
+  box-sizing: border-box !important;
+}
+.main-container #sidebar {
+  display: none !important;
+}
+.main-container .dimmer {
+  display: none !important;
 }
 .main-container #main {
   width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
+  box-sizing: border-box !important;
 }
 .main-container #main .wrap {
   padding: 10px !important;
   margin: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 .main-container .index.wrap {
   padding: 10px !important;
