@@ -5799,13 +5799,21 @@ html:not([data-theme]) {
   visibility: visible !important;
   opacity: 1 !important;
   position: relative !important;
-  z-index: 1000 !important;
+  z-index: 100 !important;
   width: 100% !important;
-  left: 0 !important;
-  right: 0 !important;
 }
 #header .inner {
   background: transparent !important;
+}
+#header #brand {
+  pointer-events: none !important;
+}
+#header #brand a,
+#header #brand .logo,
+#header #brand .title,
+#header #brand .meta,
+#header #brand .artboard {
+  pointer-events: auto !important;
 }
 #nav {
   display: flex !important;
