@@ -5982,6 +5982,14 @@ body:not(.secret-unlocked) .segments .secret-post {
   overflow-x: hidden;
   border-right: 1px solid rgba(102,126,234,0.15);
   box-shadow: 2px 0 20px rgba(0,0,0,0.3);
+  pointer-events: auto !important;
+}
+.left-nav * {
+  pointer-events: auto !important;
+}
+.left-nav a {
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
 .left-nav::-webkit-scrollbar {
   width: 4px;
@@ -6264,9 +6272,13 @@ body:not(.secret-unlocked) .segments .secret-post {
   padding: 0 10px !important;
   max-width: 100% !important;
 }
-html,
+html {
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+}
 body {
   overflow-x: hidden !important;
+  overflow-y: auto !important;
 }
 .right-panel {
   position: fixed;
