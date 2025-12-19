@@ -6217,14 +6217,14 @@ body:not(.secret-unlocked) .segments .secret-post {
   box-shadow: 0 4px 15px rgba(102,126,234,0.4);
 }
 .main-container {
-  flex: 1;
-  margin-left: 220px !important;
-  margin-right: 280px !important;
-  min-width: 0;
+  position: fixed !important;
+  left: 220px !important;
+  right: 280px !important;
+  top: 0 !important;
+  bottom: 0 !important;
   padding: 80px 0 0 0 !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
-  height: 100vh !important;
   background: transparent !important;
 }
 .main-container > header {
