@@ -6332,8 +6332,8 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: block !important;
   position: relative !important;
   width: 100% !important;
-  height: calc(50vh + 40px) !important;
-  min-height: 340px !important;
+  height: calc(50vh + 20px) !important;
+  min-height: 320px !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
@@ -6353,6 +6353,7 @@ body:not(.secret-unlocked) .segments .secret-post {
 .main-container main {
   padding: 0 !important;
   margin: 0 !important;
+  margin-top: 20px !important;
 }
 .main-container main > .inner {
   display: block !important;
