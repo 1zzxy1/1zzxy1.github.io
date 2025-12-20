@@ -5809,44 +5809,7 @@ html:not([data-theme]) {
   background: transparent !important;
 }
 #imgs {
-  display: block !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  width: 100% !important;
-  height: 50vh !important;
-  min-height: 300px !important;
-  z-index: 1 !important;
-  background-color: transparent !important;
-  overflow: hidden !important;
-}
-#imgs ul {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-}
-#imgs .item {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  opacity: 1 !important;
-}
-#imgs img {
-  width: 100% !important;
-  height: 100% !important;
-  -o-object-fit: cover !important;
-     object-fit: cover !important;
+  display: none !important;
 }
 #brand {
   position: absolute !important;
