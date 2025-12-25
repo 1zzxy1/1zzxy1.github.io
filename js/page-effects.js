@@ -360,8 +360,8 @@
       document.body.classList.add('secret-unlocked');
     }
 
-    // 创建解锁按钮（在页脚）
-    const footer = document.querySelector('footer .inner, footer, .copyright');
+    // 创建解锁按钮（在页脚的status区域）
+    const footer = document.querySelector('.status, footer .inner, footer');
     if (!footer || document.getElementById('secret-unlock-btn')) return;
 
     const unlockBtn = document.createElement('div');
