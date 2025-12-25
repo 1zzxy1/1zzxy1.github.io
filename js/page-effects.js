@@ -361,50 +361,68 @@
     }
 
     // 创建解锁按钮（在页脚的status区域）
-    const footer = document.querySelector('.status, footer .inner, footer');
-    if (!footer || document.getElementById('secret-unlock-btn')) return;
+    // 使用延迟和重试机制确保DOM已加载
+    let retryCount = 0;
+    const maxRetries = 10;
 
-    const unlockBtn = document.createElement('div');
-    unlockBtn.id = 'secret-unlock-btn';
-    unlockBtn.innerHTML = isUnlocked ? '🔓' : '🔐';
-    unlockBtn.title = isUnlocked ? '树洞已解锁（点击锁定）' : '解锁隐藏的树洞文章';
-    unlockBtn.style.cssText = `
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 16px;
-      font-size: 18px;
-      cursor: pointer;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      border-radius: 20px;
-      transition: all 0.3s ease;
-      user-select: none;
-    `;
-    footer.appendChild(unlockBtn);
+    function tryCreateButton() {
+      const footer = document.querySelector('.status');
 
-    // 点击事件
-    unlockBtn.addEventListener('click', function() {
-      if (sessionStorage.getItem('secret_unlocked') === 'true') {
-        // 已解锁，点击锁定
-        sessionStorage.removeItem('secret_unlocked');
-        document.body.classList.remove('secret-unlocked');
-        unlockBtn.innerHTML = '🔐';
-        unlockBtn.title = '解锁隐藏的树洞文章';
-        showToast('树洞已锁定 🔒');
-      } else {
-        // 未解锁，显示密码输入框
-        showPasswordDialog();
+      if (!footer) {
+        if (retryCount < maxRetries) {
+          retryCount++;
+          setTimeout(tryCreateButton, 100);
+        }
+        return;
       }
-    });
 
-    // 悬停效果
-    unlockBtn.addEventListener('mouseenter', function() {
-      this.style.transform = 'scale(1.1)';
-      this.style.boxShadow = '0 5px 20px rgba(102,126,234,0.5)';
-    });
-    unlockBtn.addEventListener('mouseleave', function() {
-      this.style.transform = 'scale(1)';
-      this.style.boxShadow = 'none';
-    });
+      if (document.getElementById('secret-unlock-btn')) return;
+
+      const unlockBtn = document.createElement('div');
+      unlockBtn.id = 'secret-unlock-btn';
+      unlockBtn.innerHTML = isUnlocked ? '🔓' : '🔐';
+      unlockBtn.title = isUnlocked ? '树洞已解锁（点击锁定）' : '解锁隐藏的树洞文章';
+      unlockBtn.style.cssText = `
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        font-size: 18px;
+        cursor: pointer;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        user-select: none;
+      `;
+      footer.appendChild(unlockBtn);
+
+      // 点击事件
+      unlockBtn.addEventListener('click', function() {
+        if (sessionStorage.getItem('secret_unlocked') === 'true') {
+          // 已解锁，点击锁定
+          sessionStorage.removeItem('secret_unlocked');
+          document.body.classList.remove('secret-unlocked');
+          unlockBtn.innerHTML = '🔐';
+          unlockBtn.title = '解锁隐藏的树洞文章';
+          showToast('树洞已锁定 🔒');
+        } else {
+          // 未解锁，显示密码输入框
+          showPasswordDialog();
+        }
+      });
+
+      // 悬停效果
+      unlockBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.1)';
+        this.style.boxShadow = '0 5px 20px rgba(102,126,234,0.5)';
+      });
+      unlockBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.boxShadow = 'none';
+      });
+    }
+
+    // 开始尝试创建按钮
+    tryCreateButton();
   }
 
   // 显示密码输入对话框
