@@ -397,21 +397,19 @@
       unlockBtn.innerHTML = isUnlocked ? '🔓' : '🔐';
       unlockBtn.title = isUnlocked ? '树洞已解锁（点击锁定）' : '解锁隐藏的树洞文章';
       unlockBtn.style.cssText = `
-        position: fixed !important;
-        bottom: 80px !important;
-        right: 30px !important;
-        padding: 12px 16px !important;
-        font-size: 24px !important;
+        display: inline-block !important;
+        margin-left: 10px !important;
+        padding: 8px 14px !important;
+        font-size: 20px !important;
         cursor: pointer !important;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        border-radius: 50% !important;
+        border-radius: 20px !important;
         transition: all 0.3s ease !important;
         user-select: none !important;
-        text-align: center !important;
-        box-shadow: 0 4px 15px rgba(102,126,234,0.4) !important;
-        z-index: 9999 !important;
+        vertical-align: middle !important;
+        box-shadow: 0 2px 8px rgba(102,126,234,0.3) !important;
       `;
-      document.body.appendChild(unlockBtn);
+      footer.appendChild(unlockBtn);
       console.log('[Secret Button] Button created successfully');
 
 
