@@ -352,6 +352,8 @@
 
   // ==================== 树洞解锁系统 ====================
   function initSecretUnlock() {
+    console.log('[Secret Button] Init called');
+
     // 检查是否已解锁
     const isUnlocked = sessionStorage.getItem('secret_unlocked') === 'true';
 
@@ -363,37 +365,56 @@
     // 创建解锁按钮（在页脚的status区域）
     // 使用延迟和重试机制确保DOM已加载
     let retryCount = 0;
-    const maxRetries = 10;
+    const maxRetries = 20;
 
     function tryCreateButton() {
-      const footer = document.querySelector('.status');
+      // 尝试多个选择器
+      const footer = document.querySelector('.status') ||
+                     document.querySelector('footer .inner') ||
+                     document.querySelector('#footer .inner') ||
+                     document.querySelector('#footer');
 
       if (!footer) {
         if (retryCount < maxRetries) {
           retryCount++;
-          setTimeout(tryCreateButton, 100);
+          console.log(`[Secret Button] Retry ${retryCount}/${maxRetries}...`);
+          setTimeout(tryCreateButton, 200);
+        } else {
+          console.error('[Secret Button] Failed to find footer element');
         }
         return;
       }
 
-      if (document.getElementById('secret-unlock-btn')) return;
+      if (document.getElementById('secret-unlock-btn')) {
+        console.log('[Secret Button] Button already exists');
+        return;
+      }
+
+      console.log('[Secret Button] Creating button in:', footer);
 
       const unlockBtn = document.createElement('div');
       unlockBtn.id = 'secret-unlock-btn';
       unlockBtn.innerHTML = isUnlocked ? '🔓' : '🔐';
       unlockBtn.title = isUnlocked ? '树洞已解锁（点击锁定）' : '解锁隐藏的树洞文章';
       unlockBtn.style.cssText = `
-        display: inline-block;
-        margin-top: 10px;
-        padding: 8px 16px;
-        font-size: 18px;
-        cursor: pointer;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 20px;
-        transition: all 0.3s ease;
-        user-select: none;
+        display: block !important;
+        margin: 15px 0 !important;
+        padding: 10px 20px !important;
+        font-size: 24px !important;
+        cursor: pointer !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        border-radius: 25px !important;
+        transition: all 0.3s ease !important;
+        user-select: none !important;
+        width: fit-content !important;
+        text-align: center !important;
+        box-shadow: 0 2px 8px rgba(102,126,234,0.3) !important;
+        z-index: 9999 !important;
+        position: relative !important;
       `;
       footer.appendChild(unlockBtn);
+      console.log('[Secret Button] Button created successfully');
+
 
       // 点击事件
       unlockBtn.addEventListener('click', function() {
