@@ -176,6 +176,7 @@
   function initReadingProgress() {
     const bar = document.createElement('div');
     bar.id = 'reading-progress';
+    bar.style.cssText = 'position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#667eea,#764ba2,#f093fb);z-index:9999;pointer-events:none;transition:width 0.1s ease;';
     document.body.appendChild(bar);
     function update() {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
