@@ -398,7 +398,7 @@
       unlockBtn.title = isUnlocked ? '树洞已解锁（点击锁定）' : '解锁隐藏的树洞文章';
       unlockBtn.style.cssText = `
         display: block !important;
-        margin: 15px 0 !important;
+        margin: 20px auto 10px auto !important;
         padding: 10px 20px !important;
         font-size: 24px !important;
         cursor: pointer !important;
@@ -410,9 +410,10 @@
         text-align: center !important;
         box-shadow: 0 2px 8px rgba(102,126,234,0.3) !important;
         z-index: 9999 !important;
-        position: relative !important;
+        clear: both !important;
       `;
-      footer.appendChild(unlockBtn);
+      // 插入到footer的末尾，作为独立的一行
+      footer.parentNode.insertBefore(unlockBtn, footer.nextSibling);
       console.log('[Secret Button] Button created successfully');
 
 
