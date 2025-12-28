@@ -5412,7 +5412,7 @@ html:not([data-theme]) {
   backdrop-filter: blur(15px) !important;
   -webkit-backdrop-filter: blur(15px) !important;
   z-index: 1001 !important;
-  border-bottom: 1px solid rgba(102,126,234,0.2) !important;
+  border-bottom: 1px solid rgba(0,150,136,0.2) !important;
   box-shadow: 0 2px 15px rgba(0,0,0,0.3) !important;
 }
 #nav .inner {
@@ -5439,12 +5439,12 @@ html:not([data-theme]) {
   transition: color 0.3s ease !important;
 }
 #nav .menu .item a:hover {
-  color: #a78bfa !important;
+  color: #4db6ac !important;
 }
 #nav .menu .item.title a {
   font-size: 18px !important;
   font-weight: 600 !important;
-  background: linear-gradient(135deg, #667eea 0%, #a855f7 100%) !important;
+  background: linear-gradient(135deg, #009688 0%, #26a69a 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -5466,7 +5466,7 @@ html:not([data-theme]) {
   transition: all 0.3s ease !important;
 }
 #nav .right .item i:hover {
-  color: #a78bfa !important;
+  color: #4db6ac !important;
   transform: scale(1.1);
 }
 #nav .toggle {
@@ -5582,7 +5582,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   z-index: 1000;
   overflow-y: auto;
   overflow-x: hidden;
-  border-right: 1px solid rgba(102,126,234,0.15);
+  border-right: 1px solid rgba(0,150,136,0.15);
   box-shadow: 2px 0 20px rgba(0,0,0,0.3);
   pointer-events: auto !important;
 }
@@ -5597,7 +5597,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   width: 4px;
 }
 .left-nav::-webkit-scrollbar-thumb {
-  background: rgba(102,126,234,0.3);
+  background: rgba(0,150,136,0.3);
   border-radius: 2px;
 }
 .left-nav::-webkit-scrollbar-track {
@@ -5609,7 +5609,7 @@ body:not(.secret-unlocked) .segments .secret-post {
 .left-nav .nav-logo {
   text-align: center;
   padding: 15px 0 20px;
-  border-bottom: 1px solid rgba(102,126,234,0.2);
+  border-bottom: 1px solid rgba(0,150,136,0.2);
   margin-bottom: 15px;
   position: relative;
 }
@@ -5621,17 +5621,17 @@ body:not(.secret-unlocked) .segments .secret-post {
   transform: translateX(-50%);
   width: 50px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #667eea, transparent);
+  background: linear-gradient(90deg, transparent, #009688, transparent);
 }
 .left-nav .nav-logo .site-title {
   font-size: 1.3rem;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, #667eea 0%, #a855f7 50%, #f093fb 100%);
+  background: linear-gradient(135deg, #009688 0%, #26a69a 50%, #4db6ac 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(102,126,234,0.5);
+  text-shadow: 0 0 30px rgba(0,150,136,0.5);
 }
 .left-nav .nav-menu {
   margin-bottom: 20px;
@@ -5663,13 +5663,13 @@ body:not(.secret-unlocked) .segments .secret-post {
   top: 0;
   height: 100%;
   width: 3px;
-  background: linear-gradient(180deg, #667eea, #a855f7);
+  background: linear-gradient(180deg, #009688, #26a69a);
   transform: scaleY(0);
   transition: transform 0.25s ease;
 }
 .left-nav .nav-menu .menu-item .menu-link:hover {
-  background: rgba(102,126,234,0.15);
-  color: #a78bfa;
+  background: rgba(0,150,136,0.15);
+  color: #4db6ac;
   padding-left: 16px;
 }
 .left-nav .nav-menu .menu-item .menu-link:hover::before {
@@ -5680,7 +5680,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   font-size: 1rem;
   width: 20px;
   text-align: center;
-  color: rgba(167,139,250,0.7);
+  color: rgba(77,182,172,0.7);
 }
 .left-nav .nav-menu .menu-item .menu-link .arrow {
   margin-left: auto;
@@ -5691,7 +5691,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: none;
   padding-left: 20px;
   margin-top: 3px;
-  border-left: 1px solid rgba(102,126,234,0.2);
+  border-left: 1px solid rgba(0,150,136,0.2);
   margin-left: 22px;
 }
 .left-nav .nav-menu .menu-item.has-sub .sub-menu .sub-item a {
@@ -5703,8 +5703,8 @@ body:not(.secret-unlocked) .segments .secret-post {
   transition: all 0.2s ease;
 }
 .left-nav .nav-menu .menu-item.has-sub .sub-menu .sub-item a:hover {
-  color: #a78bfa;
-  background: rgba(102,126,234,0.1);
+  color: #4db6ac;
+  background: rgba(0,150,136,0.1);
   padding-left: 16px;
 }
 .left-nav .nav-menu .menu-item.has-sub:hover .sub-menu {
@@ -5717,7 +5717,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: flex;
   align-items: center;
   font-size: 0.75rem;
-  color: rgba(167,139,250,0.6);
+  color: rgba(77,182,172,0.6);
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 10px;
@@ -5747,13 +5747,13 @@ body:not(.secret-unlocked) .segments .secret-post {
   font-size: 0.85rem;
 }
 .left-nav .nav-categories .category-item a:hover {
-  background: rgba(102,126,234,0.15);
-  color: #a78bfa;
+  background: rgba(0,150,136,0.15);
+  color: #4db6ac;
   padding-left: 14px;
 }
 .left-nav .nav-categories .category-item a .cat-count {
-  background: linear-gradient(135deg, rgba(102,126,234,0.3), rgba(168,85,247,0.3));
-  color: #a78bfa;
+  background: linear-gradient(135deg, rgba(0,150,136,0.3), rgba(168,85,247,0.3));
+  color: #4db6ac;
   padding: 2px 8px;
   border-radius: 10px;
   font-size: 0.7rem;
@@ -5770,7 +5770,7 @@ body:not(.secret-unlocked) .segments .secret-post {
 .left-nav .nav-tags .tag-item {
   display: inline-block;
   padding: 4px 10px;
-  background: rgba(102,126,234,0.1);
+  background: rgba(0,150,136,0.1);
   color: rgba(255,255,255,0.65);
   border-radius: 12px;
   font-size: 0.75rem;
@@ -5778,9 +5778,9 @@ body:not(.secret-unlocked) .segments .secret-post {
   border: 1px solid transparent;
 }
 .left-nav .nav-tags .tag-item:hover {
-  background: linear-gradient(135deg, rgba(102,126,234,0.3), rgba(168,85,247,0.3));
+  background: linear-gradient(135deg, rgba(0,150,136,0.3), rgba(168,85,247,0.3));
   color: #e0e0e0;
-  border-color: rgba(167,139,250,0.3);
+  border-color: rgba(77,182,172,0.3);
   transform: translateY(-1px);
 }
 .left-nav .nav-actions {
@@ -5788,7 +5788,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   justify-content: center;
   gap: 12px;
   padding-top: 15px;
-  border-top: 1px solid rgba(102,126,234,0.15);
+  border-top: 1px solid rgba(0,150,136,0.15);
   margin-top: 10px;
 }
 .left-nav .nav-actions .action-btn {
@@ -5797,7 +5797,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(102,126,234,0.1);
+  background: rgba(0,150,136,0.1);
   border-radius: 50%;
   color: rgba(255,255,255,0.7);
   cursor: pointer;
@@ -5805,11 +5805,11 @@ body:not(.secret-unlocked) .segments .secret-post {
   border: 1px solid transparent;
 }
 .left-nav .nav-actions .action-btn:hover {
-  background: linear-gradient(135deg, #667eea 0%, #a855f7 100%);
+  background: linear-gradient(135deg, #009688 0%, #26a69a 100%);
   color: #fff;
-  border-color: rgba(167,139,250,0.5);
+  border-color: rgba(77,182,172,0.5);
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+  box-shadow: 0 4px 15px rgba(0,150,136,0.4);
 }
 .main-container {
   position: fixed !important;
@@ -5894,7 +5894,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
   overflow-y: auto;
-  border-left: 1px solid rgba(102,126,234,0.1);
+  border-left: 1px solid rgba(0,150,136,0.1);
 }
 .right-panel .panel-inner {
   padding: 20px 15px;
@@ -5904,17 +5904,17 @@ body:not(.secret-unlocked) .segments .secret-post {
   border-radius: 12px;
   padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 15px rgba(102,126,234,0.1);
+  box-shadow: 0 2px 15px rgba(0,150,136,0.1);
 }
 .right-panel .widget-box .widget-title {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(102,126,234,0.1);
+  border-bottom: 1px solid rgba(0,150,136,0.1);
 }
 .right-panel .widget-box .widget-title i {
-  color: #667eea;
+  color: #009688;
   margin-right: 8px;
   font-size: 1.1rem;
 }
@@ -5931,7 +5931,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   display: flex;
   align-items: flex-start;
   padding: 8px 0;
-  border-bottom: 1px dashed rgba(102,126,234,0.1);
+  border-bottom: 1px dashed rgba(0,150,136,0.1);
 }
 .right-panel .announcement-widget .announcement-item:last-child {
   border-bottom: none;
@@ -5957,11 +5957,11 @@ body:not(.secret-unlocked) .segments .secret-post {
   padding: 8px 0;
   color: #555;
   font-size: 0.85rem;
-  border-bottom: 1px dashed rgba(102,126,234,0.1);
+  border-bottom: 1px dashed rgba(0,150,136,0.1);
   transition: all 0.3s ease;
 }
 .right-panel .recent-posts-widget .recent-item a:hover {
-  color: #667eea;
+  color: #009688;
 }
 .right-panel .recent-posts-widget .recent-item a .post-date {
   color: #999;
@@ -5975,14 +5975,14 @@ body:not(.secret-unlocked) .segments .secret-post {
 }
 .right-panel .stats-widget .stat-item {
   padding: 10px 5px;
-  background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%);
+  background: linear-gradient(135deg, rgba(0,150,136,0.1) 0%, rgba(0,121,107,0.1) 100%);
   border-radius: 8px;
 }
 .right-panel .stats-widget .stat-item .stat-num {
   display: block;
   font-size: 1.2rem;
   font-weight: 700;
-  color: #667eea;
+  color: #009688;
 }
 .right-panel .stats-widget .stat-item .stat-label {
   font-size: 0.75rem;
@@ -5996,14 +5996,14 @@ body:not(.secret-unlocked) .segments .secret-post {
 .right-panel .links-widget .link-item {
   display: inline-block;
   padding: 5px 12px;
-  background: rgba(102,126,234,0.1);
-  color: #667eea;
+  background: rgba(0,150,136,0.1);
+  color: #009688;
   border-radius: 15px;
   font-size: 0.8rem;
   transition: all 0.3s ease;
 }
 .right-panel .links-widget .link-item:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #009688 0%, #00796b 100%);
   color: #fff;
 }
 .right-panel .links-widget .no-links {
@@ -6026,7 +6026,7 @@ body:not(.secret-unlocked) .segments .secret-post {
 .right-panel .visitor-widget .visitor-item .visitor-num {
   font-size: 1.1rem;
   font-weight: 700;
-  color: #667eea;
+  color: #009688;
 }
 .index.wrap .segments {
   display: block !important;
@@ -6067,7 +6067,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   -webkit-backdrop-filter: blur(10px) !important;
   padding: 0 !important;
   margin: 0 0 20px !important;
-  border: 1px solid rgba(102,126,234,0.2) !important;
+  border: 1px solid rgba(0,150,136,0.2) !important;
   height: auto !important;
   min-height: auto !important;
   max-height: none !important;
@@ -6078,8 +6078,8 @@ body:not(.secret-unlocked) .segments .secret-post {
   overflow: hidden !important;
 }
 .index.wrap .segments article.item.wpdx-card:hover {
-  border-color: rgba(102,126,234,0.5) !important;
-  box-shadow: 0 5px 20px rgba(102,126,234,0.2) !important;
+  border-color: rgba(0,150,136,0.5) !important;
+  box-shadow: 0 5px 20px rgba(0,150,136,0.2) !important;
   transform: translateY(-3px) !important;
 }
 .index.wrap .segments article.item.wpdx-card h2.post-title {
@@ -6091,7 +6091,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   padding: 15px 20px !important;
   line-height: 1.4 !important;
   background: rgba(40,40,55,0.95) !important;
-  border-bottom: 1px solid rgba(102,126,234,0.15) !important;
+  border-bottom: 1px solid rgba(0,150,136,0.15) !important;
 }
 .index.wrap .segments article.item.wpdx-card h2.post-title a {
   color: #e0e0e0 !important;
@@ -6099,7 +6099,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   transition: color 0.3s ease !important;
 }
 .index.wrap .segments article.item.wpdx-card h2.post-title a:hover {
-  color: #667eea !important;
+  color: #009688 !important;
 }
 .index.wrap .segments article.item.wpdx-card .post-content {
   display: flex !important;
@@ -6124,7 +6124,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   clip-path: none !important;
   position: relative !important;
   background: rgba(50,50,65,0.8) !important;
-  border: 1px solid rgba(102,126,234,0.1) !important;
+  border: 1px solid rgba(0,150,136,0.1) !important;
 }
 .index.wrap .segments article.item.wpdx-card .post-thumb a {
   display: block !important;
@@ -6185,22 +6185,22 @@ body:not(.secret-unlocked) .segments .secret-post {
 .index.wrap .segments article.item.wpdx-card p.read-more a.more-link {
   display: inline-block !important;
   padding: 8px 22px !important;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background: linear-gradient(135deg, #009688 0%, #00796b 100%) !important;
   color: #fff !important;
   border-radius: 20px !important;
   font-size: 13px !important;
   text-decoration: none !important;
   transition: all 0.3s ease !important;
   position: static !important;
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  box-shadow: 0 2px 8px rgba(102,126,234,0.3) !important;
+  background-image: linear-gradient(135deg, #009688 0%, #00796b 100%) !important;
+  box-shadow: 0 2px 8px rgba(0,150,136,0.3) !important;
 }
 .index.wrap .segments article.item.wpdx-card p.read-more a.more-link::before {
   display: none !important;
 }
 .index.wrap .segments article.item.wpdx-card p.read-more a.more-link:hover {
-  background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%) !important;
-  box-shadow: 0 4px 15px rgba(102,126,234,0.5) !important;
+  background: linear-gradient(135deg, #00796b 0%, #80cbc4 100%) !important;
+  box-shadow: 0 4px 15px rgba(0,150,136,0.5) !important;
   transform: translateY(-2px) !important;
 }
 .index.wrap .segments article.item.wpdx-card .post-meta {
@@ -6210,7 +6210,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   font-size: 13px !important;
   color: #888 !important;
   padding-top: 12px !important;
-  border-top: 1px dashed rgba(102,126,234,0.2) !important;
+  border-top: 1px dashed rgba(0,150,136,0.2) !important;
   position: static !important;
   max-width: none !important;
   white-space: normal !important;
@@ -6233,7 +6233,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   text-decoration: none !important;
 }
 .index.wrap .segments article.item.wpdx-card .post-meta .meta-item a:hover {
-  color: #d2322d !important;
+  color: #009688 !important;
 }
 .index.wrap .segments article.item.wpdx-card .post-meta .tags a {
   margin-right: 5px !important;
@@ -6253,7 +6253,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   color: #e0e0e0 !important;
 }
 [data-theme="dark"] .index.wrap .segments article.item.wpdx-card h2.post-title a:hover {
-  color: #ff6b6b !important;
+  color: #4db6ac !important;
 }
 [data-theme="dark"] .index.wrap .segments article.item.wpdx-card .post-excerpt {
   color: #aaa !important;
@@ -6269,7 +6269,7 @@ body:not(.secret-unlocked) .segments .secret-post {
   color: #aaa !important;
 }
 [data-theme="dark"] .index.wrap .segments article.item.wpdx-card .post-meta a:hover {
-  color: #ff6b6b !important;
+  color: #4db6ac !important;
 }
 @media screen and (max-width: 768px) {
   .index.wrap .segments article.item.wpdx-card .post-content {
@@ -6352,13 +6352,13 @@ body:not(.secret-unlocked) .segments .secret-post {
   border-bottom-color: rgba(255,255,255,0.05);
 }
 [data-theme="dark"] .right-panel .recent-item a:hover {
-  color: #667eea;
+  color: #009688;
 }
 [data-theme="dark"] .right-panel .stat-item {
-  background: rgba(102,126,234,0.15);
+  background: rgba(0,150,136,0.15);
 }
 [data-theme="dark"] .right-panel .link-item {
-  background: rgba(102,126,234,0.2);
+  background: rgba(0,150,136,0.2);
 }
 [data-theme="dark"] .right-panel .visitor-item .visitor-label {
   color: #aaa;

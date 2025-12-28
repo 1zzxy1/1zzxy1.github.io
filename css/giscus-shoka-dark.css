@@ -83,17 +83,17 @@ main {
   --color-btn-selected-bg: #444;
 
   --color-btn-primary-text: #fff;
-  --color-btn-primary-bg: rgba(255, 100, 120, 0.8);
-  --color-btn-primary-border: rgba(255, 100, 120, 0.8);
-  --color-btn-primary-hover-bg: rgba(255, 130, 150, 0.9);
-  --color-btn-primary-hover-border: rgba(255, 130, 150, 0.9);
-  --color-btn-primary-selected-bg: rgba(255, 100, 120, 0.8);
+  --color-btn-primary-bg: rgba(77, 182, 172, 0.8);
+  --color-btn-primary-border: rgba(77, 182, 172, 0.8);
+  --color-btn-primary-hover-bg: rgba(128, 203, 196, 0.9);
+  --color-btn-primary-hover-border: rgba(128, 203, 196, 0.9);
+  --color-btn-primary-selected-bg: rgba(77, 182, 172, 0.8);
   --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.5);
-  --color-btn-primary-disabled-bg: rgba(255, 100, 120, 0.4);
+  --color-btn-primary-disabled-bg: rgba(77, 182, 172, 0.4);
   --color-btn-primary-disabled-border: transparent;
 
   --color-social-reaction-bg-hover: #444;
-  --color-social-reaction-bg-reacted-hover: rgba(255, 130, 150, 0.25);
+  --color-social-reaction-bg-reacted-hover: rgba(77, 182, 172, 0.25);
 }
 
 /* Custom styling */
