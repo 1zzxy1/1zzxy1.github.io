@@ -1183,60 +1183,15 @@ const changeMetaTheme = function(color) {
 }
 
 const themeColorListener = function () {
-  window.matchMedia('(prefers-color-scheme: dark)').addListener(function(mediaQueryList) {
-    if(mediaQueryList.matches){
-      changeTheme('dark');
-    } else {
-      changeTheme();
-    }
-  });
+  // [强制暗色模式] 始终使用暗色主题，忽略系统偏好和用户设置
+  changeTheme('dark'); // 强制暗色
+  store.set('theme', 'dark');
 
-  var t = store.get('theme');
-  if(t) {
-    changeTheme(t);
-  } else {
-    if(CONFIG.darkmode) {
-      changeTheme('dark');
-    }
+  // 禁用主题切换按钮（保留猫咪动画但不切换主题）
+  var themeBtn = $('.theme');
+  if(themeBtn) {
+    themeBtn.style.display = 'none'; // 隐藏切换按钮
   }
-
-  $('.theme').addEventListener('click', function(event) {
-    var btn = event.currentTarget.child('.ic')
-
-    var neko = BODY.createChild('div', {
-      id: 'neko',
-      innerHTML: '<div class="planet"><div class="sun"></div><div class="moon"></div></div><div class="body"><div class="face"><section class="eyes left"><span class="pupil"></span></section><section class="eyes right"><span class="pupil"></span></section><span class="nose"></span></div></div>'
-    });
-
-    var hideNeko = function() {
-        transition(neko, {
-          delay: 2500,
-          opacity: 0
-        }, function() {
-          BODY.removeChild(neko)
-        });
-    }
-
-    if(btn.hasClass('i-sun')) {
-      var c = function() {
-          neko.addClass('dark');
-          changeTheme('dark');
-          store.set('theme', 'dark');
-          hideNeko();
-        }
-    } else {
-      neko.addClass('dark');
-      var c = function() {
-          neko.removeClass('dark');
-          changeTheme();
-          store.set('theme', 'light');
-          hideNeko();
-        }
-    }
-    transition(neko, 1, function() {
-      setTimeout(c, 210)
-    })
-  });
 }
 
 const visibilityListener = function () {
