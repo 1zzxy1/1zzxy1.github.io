@@ -1,0 +1,881 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/atom.xml" />
+<link rel="alternate" type="application/json" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.6">
+
+
+<script src="/js/page-effects.js"></script>
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link rel="preload" href="/live2dw/lib/L2Dwidget.min.js" as="script">
+<link rel="preload" href="/live2dw/assets/miku.model.json" as="fetch" crossorigin>
+<link rel="preload" href="/live2dw/assets/moc/miku.moc" as="fetch" crossorigin>
+<link rel="preload" href="/live2dw/assets/moc/miku.2048/texture_00.png" as="image">
+<script>
+  // 尽早加载Live2D
+  (function() {
+    var script = document.createElement('script');
+    script.src = '/live2dw/lib/L2Dwidget.min.js';
+    script.onload = function() {
+      L2Dwidget.init({
+        "pluginRootPath": "live2dw/",
+        "pluginJsPath": "lib/",
+        "pluginModelPath": "assets/",
+        "tagMode": false,
+        "debug": false,
+        "model": {"jsonPath": "/live2dw/assets/miku.model.json"},
+        "display": {"position": "left", "width": 180, "height": 260, "hOffset": 30, "vOffset": 80},
+        "mobile": {"show": false},
+        "log": false
+      });
+    };
+    document.head.appendChild(script);
+  })();
+</script>
+
+  
+  <meta name="keywords" content="ROS2,机器人,教程" />
+
+
+<link rel="canonical" href="https://bakastream.icu/2025/12/29/7_ROS_LEARN_note_1/">
+
+
+
+  <title>
+ROS 通信链路学习笔记 - ROS - 技术 |
+Cyberia = Navi Terminal - CONNECTED = No matter where you are, everyone is always connected.</title>
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body itemscope itemtype="http://schema.org/WebPage" class="three-column-layout">
+  
+
+  
+  <div id="app-wrapper" class="app-wrapper">
+    
+    
+<aside id="left-nav" class="left-nav">
+  <div class="nav-inner">
+    
+    <div class="nav-logo">
+      <a href="/" rel="start">
+        <span class="site-title">Navi Terminal - CONNECTED</span>
+      </a>
+    </div>
+
+    
+    <nav class="nav-menu">
+      <ul class="menu-list">
+          <li class="menu-item">
+            <a href="/" class="menu-link">
+              <i class="ic i-home"></i>
+              <span>首页</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="/about/" class="menu-link">
+              <i class="ic i-user"></i>
+              <span>关于</span>
+            </a>
+          </li>
+      </ul>
+    </nav>
+
+    
+    <div class="nav-categories">
+      <h3 class="nav-title"><i class="ic i-folder"></i> 分类</h3>
+      <ul class="category-list">
+          <li class="category-item">
+            <a href="/categories/%E6%8A%80%E6%9C%AF/">
+              <span class="cat-name">技术</span>
+              <span class="cat-count">5</span>
+            </a>
+          </li>
+          <li class="category-item">
+            <a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/">
+              <span class="cat-name">AI工具</span>
+              <span class="cat-count">3</span>
+            </a>
+          </li>
+          <li class="category-item">
+            <a href="/categories/%E6%8A%80%E6%9C%AF/ROS/">
+              <span class="cat-name">ROS</span>
+              <span class="cat-count">2</span>
+            </a>
+          </li>
+          <li class="category-item">
+            <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
+              <span class="cat-name">碎碎念</span>
+              <span class="cat-count">2</span>
+            </a>
+          </li>
+      </ul>
+    </div>
+
+    
+    <div class="nav-tags">
+      <h3 class="nav-title"><i class="ic i-tags"></i> 热门标签</h3>
+      <div class="tag-cloud">
+          <a href="/tags/ROS2/" class="tag-item">ROS2</a>
+          <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="tag-item">机器人</a>
+          <a href="/tags/%E6%95%99%E7%A8%8B/" class="tag-item">教程</a>
+          <a href="/tags/AI/" class="tag-item">AI</a>
+          <a href="/tags/Gemini/" class="tag-item">Gemini</a>
+          <a href="/tags/Google/" class="tag-item">Google</a>
+          <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="tag-item">开发工具</a>
+          <a href="/tags/Claude/" class="tag-item">Claude</a>
+          <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/" class="tag-item">敏捷开发</a>
+          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="tag-item">嵌入式</a>
+          <a href="/tags/NPU/" class="tag-item">NPU</a>
+          <a href="/tags/Qwen/" class="tag-item">Qwen</a>
+      </div>
+    </div>
+
+    
+    <div class="nav-actions">
+      <a href="/search/" class="action-btn" title="搜索">
+        <i class="ic i-search"></i>
+      </a>
+      <span class="action-btn theme-toggle" title="切换主题">
+        <i class="ic i-sun"></i>
+      </span>
+    </div>
+  </div>
+</aside>
+
+
+    
+    <div id="container" class="main-container">
+      <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="inner">
+          <div id="brand">
+            <div class="pjax">
+            
+  <h1 itemprop="name headline">ROS 通信链路学习笔记
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2025-12-29 12:51:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-12-29T12:51:00+08:00">2025-12-29</time>
+  </span>
+</div>
+
+
+            </div>
+          </div>
+          <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Cyberia</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+        </div>
+        <div id="imgs" class="pjax">
+            <img src="//img/7_ros-learn-cover.jpg">
+        </div>
+      </header>
+      
+      <main>
+        <div class="inner">
+          <div id="main" class="pjax">
+            
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="item" rel="index" title="分类于 技术"><span itemprop="name">技术</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" itemprop="item" rel="index" title="分类于 ROS"><span itemprop="name">ROS</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="https://bakastream.icu/2025/12/29/7_ROS_LEARN_note_1/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="自在逍遥">
+    <meta itemprop="description" content="No matter where you are, everyone is always connected., Rainor DA!">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Navi Terminal - CONNECTED">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="ros关于通信链路的学习"><a class="anchor" href="#ros关于通信链路的学习">#</a> ROS 关于通信链路的学习</h1>
+<p><strong>通信架构的目的</strong>：抹平硬件架构带来的差异，保证数据稳定传输。</p>
+<h2 id="1-两种主要通信架构"><a class="anchor" href="#1-两种主要通信架构">#</a> 1. 两种主要通信架构</h2>
+<h3 id="tcp协议"><a class="anchor" href="#tcp协议">#</a> TCP 协议</h3>
+<ul>
+<li><strong>特点</strong>：点对点，双方进行链接，三次握手确认，数据稳定可靠，双向通信。</li>
+<li><strong>三次握手流程</strong>:
+<ol>
+<li>客户端 → 服务器:  <code>SYN</code>  (seq=x)</li>
+<li>服务器 → 客户端:  <code>SYN+ACK</code>  (seq=y, ack=x+1)</li>
+<li>客户端 → 服务器:  <code>ACK</code>  (ack=y+1)</li>
+<li>连接建立完成。</li>
+</ol>
+</li>
+<li><strong>作用</strong>：三次握手是为了确保可以双向通信。</li>
+</ul>
+<p><strong>代码示例 (C - 创建 TCP Socket):</strong></p>
+<pre><code>// 创建TCP服务器socket
+int g_conn_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+struct sockaddr_in addr = {
+    .sin_family = AF_INET,
+    .sin_addr.s_addr = IPADDR_ANY, // 监听所有网络接口
+    .sin_port = htons(8080)        // 绑定端口
+};
+bind(g_conn_sock, (struct sockaddr *)&amp;addr, sizeof(addr));
+listen(g_conn_sock, 5); // 开始监听
+</code></pre>
+<h3 id="udp协议"><a class="anchor" href="#udp协议">#</a> UDP 协议</h3>
+<ul>
+<li><strong>特点</strong>：单向发送，没有双方连接，不确保数据可靠 (无连接，不可靠传输)。</li>
+<li><strong>应用</strong>：可一对一或一对多，类似 &quot;喇叭&quot;。</li>
+<li><strong>优势</strong>：高速，便于进行实时传输。</li>
+</ul>
+<p><strong>代码示例 (Python - UDP 客户端):</strong></p>
+<pre><code># 创建UDP socket 并绑定到随机端口
+with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
+    sock.bind(('0.0.0.0', 0)) # 0表示随机端口
+    # 发送数据
+    sock.sendto(data, (target_ip, target_port))
+    # 接收数据
+    data, addr = sock.recvfrom(1024)
+</code></pre>
+<h3 id="tcp与udp对比"><a class="anchor" href="#tcp与udp对比">#</a> TCP 与 UDP 对比</h3>
+<ul>
+<li><strong>TCP</strong>: 趋于稳定可靠，数据为阻塞控制，速度慢，不可广播多播，类似点对点传文件。</li>
+<li><strong>UDP</strong>: 趋于及时传达，但不稳定不可靠，无阻塞，高速，可广播多播，类似打网游但容易丢包。</li>
+</ul>
+<h2 id="2-字节序-字节存储顺序"><a class="anchor" href="#2-字节序-字节存储顺序">#</a> 2. 字节序：字节存储顺序</h2>
+<ul>
+<li><strong>大端序 (Big-Endian)</strong>: 由高位到低位，符合人类阅读习惯 (网络传输通常用大端)。</li>
+<li><strong>小端序 (Little-Endian)</strong>: 由低位到高位，利于计算机读取 (x86 等架构内部使用)。</li>
+</ul>
+<p>示例:</p>
+<p>(向右为内存地址增长方向，读取从左往右)</p>
+<ul>
+<li><strong>大端序</strong>:  <code>.... 0x0a, 0x0b, 0x0c, 0x0d ....</code>  (0x0A0B0C0D)</li>
+<li><strong>小端序</strong>:  <code>.... 0x0d, 0x0c, 0x0b, 0x0a ....</code></li>
+</ul>
+<p><strong>代码应用 (网络字节序转换)</strong>:</p>
+<pre><code>// htons: Host to Network Short (主机序转网络序)
+// ntohs: Network to Host Short (网络序转主机序)
+size_t len = snprintf(buffer, sizeof(buffer),
+                      &quot;{\&quot;port\&quot;: %&quot;PRIu16&quot;}&quot;,
+                      ntohs(addr.sin_port)); // 将网络序端口转回主机序读取
+</code></pre>
+<h2 id="3-mdns"><a class="anchor" href="#3-mdns">#</a> 3. mDNS</h2>
+<ul>
+<li><strong>概念</strong>：简单概括就是把局域网的某个设备的 IP 改为某个实例名 (如  <code>micu-ros-car.local</code> )。</li>
+<li><strong>作用</strong>：局域网内设备互联不再需要查 IP, 直接用域名即可。</li>
+</ul>
+<p><strong>代码示例 (ESP32 启动 mDNS):</strong></p>
+<pre><code>mdns_init();
+mdns_hostname_set(&quot;micu-ros-car&quot;); // 设置主机名
+mdns_instance_name_set(&quot;micu-ros-car-instance&quot;);
+</code></pre>
+<h2 id="4-socat-socket-cat"><a class="anchor" href="#4-socat-socket-cat">#</a> 4. socat (SOcket CAT)</h2>
+<ul>
+<li><strong>概念</strong>：网络工具，这里的用法主要是创建 <strong>虚拟串口</strong>，用于数据传输、端口转发。</li>
+<li><strong>作用</strong>：将网络数据流转换为虚拟串口流，让 ROS 像操作串口一样操作网络数据。</li>
+</ul>
+<p><strong>代码示例 (Python 调用 socat 创建虚拟串口对):</strong></p>
+<pre><code># 创建虚拟串口对: pts0 &lt;--&gt; pts1
+cmd = [
+    &quot;socat&quot;,
+    &quot;pty,raw,echo=0,link=./pts/pts0&quot;,
+    &quot;pty,raw,echo=0,link=./pts/pts1&quot;
+]
+subprocess.Popen(cmd) # 在后台运行
+</code></pre>
+<h2 id="5-json"><a class="anchor" href="#5-json">#</a> 5. JSON</h2>
+<ul>
+<li><strong>概念</strong>：用于数据交换的标准格式之一。</li>
+<li><strong>特点</strong>：高兼容性，高扩展性，高易读性，使用广泛。</li>
+<li><strong>应用场景</strong>: TCP 连接建立初期，交换配置信息 (如端口号、设备类型)。</li>
+</ul>
+<p><strong>代码示例:</strong></p>
+<ul>
+<li>
+<p><strong>Python (生成)</strong>:</p>
+<pre><code>import json
+msg = json.dumps({&quot;port&quot;: 12345, &quot;type&quot;: &quot;chassis&quot;})
+socket.send(msg.encode('ascii'))
+</code></pre>
+</li>
+<li>
+<p><strong>C (解析)</strong>:</p>
+<pre><code>cJSON *root = cJSON_Parse(raw_data);
+cJSON *item = cJSON_GetObjectItem(root, &quot;type&quot;);
+if (strcmp(item-&gt;valuestring, &quot;chassis&quot;) == 0) { ... }
+</code></pre>
+</li>
+</ul>
+<h2 id="6-socket"><a class="anchor" href="#6-socket">#</a> 6. Socket</h2>
+<ul>
+<li>
+<p><strong>概念</strong>：即 &quot;接口&quot; (插座), 封装好了 TCP 或其他底层协议，方便应用程序调用 API。</p>
+</li>
+<li>
+<p><strong>本质</strong>：抽象了底层细节，是 <strong>应用程序 —— 网络协议</strong> 之间的抽象层。</p>
+</li>
+<li>
+<p><strong>网络通信三要素</strong>:</p>
+<ol>
+<li><strong>IP 地址</strong>：用于寻找主机 (逻辑地址)。</li>
+<li><strong>端口号</strong>：用于定位主机内的具体进程 (0~65535, 建议使用 1024 以上)。</li>
+<li><strong>传输协议</strong>：定义交互规则 (如 TCP/UDP)。</li>
+</ol>
+</li>
+<li>
+<p>核心函数流程:</p>
+<p>socket ()(创建) → bind ()(绑定) → listen ()/connect ()(连接) → send ()/recv ()(收发) → close ()(关闭)。</p>
+</li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/ROS2/" rel="tag"><i class="ic i-tag"></i> ROS2</a>
+          <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag"><i class="ic i-tag"></i> 机器人</a>
+          <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag"><i class="ic i-tag"></i> 教程</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2026-02-01 15:01:47" itemprop="dateModified" datetime="2026-02-01T15:01:47+08:00">2026-02-01</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="自在逍遥 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="自在逍遥 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="自在逍遥 PayPal(暂时无了!)">
+        <p>PayPal(暂时无了!)</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>自在逍遥 <i class="ic i-at"><em>@</em></i>Navi Terminal - CONNECTED
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="https://bakastream.icu/2025/12/29/7_ROS_LEARN_note_1/" title="ROS 通信链路学习笔记">https://bakastream.icu/2025/12/29/7_ROS_LEARN_note_1/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/12/18/4_orangepi-aipro-qwen/" itemprop="url" rel="prev" data-background-image="&#x2F;&#x2F;img&#x2F;4_orangepi-cover.jpg" title="香橙派 AIpro 部署 Qwen 实战笔记">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> AI工具</span>
+  <h3>香橙派 AIpro 部署 Qwen 实战笔记</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"
+    data-repo="1zzxy1/1zzxy1.github.io"
+    data-repo-id="R_kgDOQgaRxA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOQgaRxM4Czvq8"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN">
+  </div>
+
+
+          </div>
+          <div id="sidebar">
+            
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ros%E5%85%B3%E4%BA%8E%E9%80%9A%E4%BF%A1%E9%93%BE%E8%B7%AF%E7%9A%84%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.</span> <span class="toc-text"> ROS 关于通信链路的学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%A4%E7%A7%8D%E4%B8%BB%E8%A6%81%E9%80%9A%E4%BF%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 1. 两种主要通信架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text"> TCP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#udp%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.2.</span> <span class="toc-text"> UDP 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tcp%E4%B8%8Eudp%E5%AF%B9%E6%AF%94"><span class="toc-number">1.1.3.</span> <span class="toc-text"> TCP 与 UDP 对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AD%97%E8%8A%82%E5%BA%8F-%E5%AD%97%E8%8A%82%E5%AD%98%E5%82%A8%E9%A1%BA%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 2. 字节序：字节存储顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-mdns"><span class="toc-number">1.3.</span> <span class="toc-text"> 3. mDNS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-socat-socket-cat"><span class="toc-number">1.4.</span> <span class="toc-text"> 4. socat (SOcket CAT)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-json"><span class="toc-number">1.5.</span> <span class="toc-text"> 5. JSON</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-socket"><span class="toc-number">1.6.</span> <span class="toc-text"> 6. Socket</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li><a href="/2025/12/02/2_ros-note-1/" rel="bookmark" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></li><li class="active"><a href="/2025/12/29/7_ROS_LEARN_note_1/" rel="bookmark" title="ROS 通信链路学习笔记">ROS 通信链路学习笔记</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="自在逍遥"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">自在逍遥</p>
+  <div class="description" itemprop="description">Rainor DA!</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">7</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">4</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">19</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzF6enh5MQ==" title="https:&#x2F;&#x2F;github.com&#x2F;1zzxy1"><i class="ic i-github"></i></span>
+      <span class="exturl item qq" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNTM1OTYwMTA0" title="tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1535960104"><i class="ic i-qq"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+          </div>
+          <div class="dimmer"></div>
+        </div>
+      </main>
+      <footer id="footer">
+        <div class="inner">
+          <div class="widgets">
+            
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+        
+  <li class="item ">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/18/4_orangepi-aipro-qwen/" title="香橙派 AIpro 部署 Qwen 实战笔记">香橙派 AIpro 部署 Qwen 实战笔记</a></span>
+  </li>
+
+        
+  <li class="item ">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
+</div>
+
+    <span><a href="/2025/12/29/7_ROS_LEARN_note_1/" title="ROS 通信链路学习笔记">ROS 通信链路学习笔记</a></span>
+  </li>
+
+        
+  <li class="item secret-post">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/12/6_college-observation/" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></span>
+  </li>
+
+        
+  <li class="item secret-post">
+    
+<div class="breadcrumb">
+<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
+</div>
+
+    <span><a href="/2025/12/05/5_midnight-talk-with-gemi/" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></span>
+  </li>
+
+        
+  <li class="item ">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/17/3_ai-dev-frameworks-guide/" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法">Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法</a></span>
+  </li>
+
+        
+  <li class="item ">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
+</div>
+
+    <span><a href="/2025/12/01/1_gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></span>
+  </li>
+
+        
+  <li class="item ">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
+</div>
+
+    <span><a href="/2025/12/02/2_ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></span>
+  </li>
+
+  </ul>
+</div>
+<div class="rcomments">
+  <h2>最新评论</h2>
+  <ul id="giscus-recent-comments" class="giscus-recent-comment">
+    <li class="comment-item">
+      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions" target="_blank" rel="noopener">
+        <span class="comment-icon">💬</span>
+        <span class="comment-body">查看 GitHub Discussions 中的所有评论</span>
+      </a>
+    </li>
+    <li class="comment-item">
+      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions/categories/announcements" target="_blank" rel="noopener">
+        <span class="comment-icon">📢</span>
+        <span class="comment-body">公告 & 更新</span>
+      </a>
+    </li>
+    <li class="comment-item">
+      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions/categories/general" target="_blank" rel="noopener">
+        <span class="comment-icon">💭</span>
+        <span class="comment-body">留言板</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+          </div>
+          <div class="status">
+  <div class="copyright">
+    
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">自在逍遥 @ Cyberia</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+        </div>
+      </footer>
+    </div>
+
+    
+    
+<aside id="right-panel" class="right-panel">
+  <div class="panel-inner">
+    
+    <div class="widget-box announcement-widget">
+      <div class="widget-title">
+        <i class="ic i-bullhorn"></i>
+        <h3>公告</h3>
+      </div>
+      <div class="widget-content">
+        <div class="announcement-list">
+          <div class="announcement-item">
+            <span class="ann-icon">🌸</span>
+            <span class="ann-text">欢迎来到 Rainor's Secret Garden!</span>
+          </div>
+          <div class="announcement-item">
+            <span class="ann-icon">✨</span>
+            <span class="ann-text">网站持续更新中...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="widget-box recent-posts-widget">
+      <div class="widget-title">
+        <i class="ic i-file-text"></i>
+        <h3>最新文章</h3>
+      </div>
+      <div class="widget-content">
+        <ul class="recent-list">
+            <li class="recent-item">
+              <a href="/2025/12/02/2_ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">
+                <span class="post-title">ROS记录_1：笨蛋也能看懂的 ROS...</span>
+                <span class="post-date">12-02</span>
+              </a>
+            </li>
+            <li class="recent-item">
+              <a href="/2025/12/01/1_gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">
+                <span class="post-title">探索 Google...</span>
+                <span class="post-date">12-01</span>
+              </a>
+            </li>
+            <li class="recent-item">
+              <a href="/2025/12/17/3_ai-dev-frameworks-guide/" title="Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法">
+                <span class="post-title">Claude的两个开源框架,"BMAD...</span>
+                <span class="post-date">12-17</span>
+              </a>
+            </li>
+            <li class="recent-item">
+              <a href="/2025/12/18/4_orangepi-aipro-qwen/" title="香橙派 AIpro 部署 Qwen 实战笔记">
+                <span class="post-title">香橙派 AIpro 部署 Qwen...</span>
+                <span class="post-date">12-18</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+
+    
+    <div class="widget-box stats-widget">
+      <div class="widget-title">
+        <i class="ic i-chart-area"></i>
+        <h3>站点统计</h3>
+      </div>
+      <div class="widget-content">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-num">7</span>
+            <span class="stat-label">文章</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">4</span>
+            <span class="stat-label">分类</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">19</span>
+            <span class="stat-label">标签</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="widget-box links-widget">
+      <div class="widget-title">
+        <i class="ic i-link"></i>
+        <h3>友情链接</h3>
+      </div>
+      <div class="widget-content">
+        <div class="links-list">
+            <span class="no-links">暂无链接</span>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="widget-box music-widget">
+      <div class="widget-title">
+        <i class="ic i-music"></i>
+        <h3>音乐</h3>
+      </div>
+      <div class="widget-content">
+        <iframe
+          frameborder="no"
+          border="0"
+          marginwidth="0"
+          marginheight="0"
+          width="100%"
+          height="86"
+          src="//music.163.com/outchain/player?type=0&id=17504219915&auto=0&height=66">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</aside>
+
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/12/29/7_ROS_LEARN_note_1/',
+    favicon: {
+      show: "多喝热水~",
+      hide: "不进来看看嘛(´Д｀)"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.6"></script>
+
+
+
+
+
+<script>
+(function() {
+  // 立即加载 #imgs 的背景图（不等待懒加载）
+  function loadImgsBackground() {
+    var items = document.querySelectorAll('#imgs .item[data-background-image]');
+    items.forEach(function(item) {
+      var bgUrl = item.getAttribute('data-background-image');
+      if (bgUrl && !item.style.backgroundImage) {
+        item.style.backgroundImage = 'url("' + bgUrl + '")';
+      }
+    });
+  }
+
+  // 页面加载时执行
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadImgsBackground);
+  } else {
+    loadImgsBackground();
+  }
+
+  // PJAX 导航后也执行
+  document.addEventListener('pjax:complete', loadImgsBackground);
+})();
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":180,"height":260,"hOffset":30,"vOffset":80},"mobile":{"show":false},"log":false});</script></body>
+</html>
