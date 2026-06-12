@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROS 2 核心概念 | 1zzxy1 的技术札记</title>
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header class="site-header"><div class="site-shell nav"><a class="brand" href="/"><span class="brand-mark">1zzxy1</span><span class="brand-sub">技术札记</span></a><nav class="nav-links"><a href="/">文章</a><a href="/archive/">归档</a><a href="/about/">关于</a><a href="https://github.com/1zzxy1">GitHub</a></nav></div></header>
+  <main class="article-shell">
+    <article>
+      <header class="article-head">
+        <div class="post-meta"><span>2025-12-02</span><span>ROS2</span><span>机器人</span></div>
+        <h1>ROS 记录 1：ROS 2 核心概念大揭秘</h1>
+        <p class="hero-copy">理解 ROS 2 的关键，是先把系统看成一组会通信的节点，而不是一堆神秘命令。</p>
+        <figure class="article-cover"><img src="/img/2_ros-cover.png" alt="ROS 2 核心概念"></figure>
+      </header>
+      <div class="article-body">
+        <h2>Node</h2>
+        <p>Node 是系统里的最小职责单元。一个节点可以负责传感器读取、路径规划、控制输出，也可以只做数据转换。</p>
+        <h2>Topic、Service 与 Action</h2>
+        <p>Topic 适合连续广播，Service 适合一次请求一次响应，Action 适合长任务和可反馈任务。区分它们，很多架构选择会变清楚。</p>
+        <h2>学习建议</h2>
+        <p class="note">先画通信图，再写代码。只要能把节点之间的消息流画出来，ROS 项目就已经清楚了一半。</p>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="site-shell"><span>© <span data-year></span> 1zzxy1</span><span><a href="/">返回首页</a></span></div></footer><script src="/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROS 通信链路学习笔记 | 1zzxy1 的技术札记</title>
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header class="site-header"><div class="site-shell nav"><a class="brand" href="/"><span class="brand-mark">1zzxy1</span><span class="brand-sub">技术札记</span></a><nav class="nav-links"><a href="/">文章</a><a href="/archive/">归档</a><a href="/about/">关于</a><a href="https://github.com/1zzxy1">GitHub</a></nav></div></header>
+  <main class="article-shell">
+    <article>
+      <header class="article-head">
+        <div class="post-meta"><span>2025-12-29</span><span>ROS2</span><span>网络</span></div>
+        <h1>ROS 通信链路学习笔记</h1>
+        <p class="hero-copy">理解 ROS 通信，需要把 DDS、网络协议和进程间协作放到同一张图里看。</p>
+        <figure class="article-cover"><img src="/img/7_ros-learn-cover.jpg" alt="ROS 通信链路"></figure>
+      </header>
+      <div class="article-body">
+        <h2>从网络开始</h2>
+        <p>TCP 关注可靠传输，UDP 关注轻量发送。ROS 2 背后的 DDS 会根据 QoS、发现机制和通信模式做更多抽象。</p>
+        <h2>发现与寻址</h2>
+        <p>mDNS、域 ID、节点发现这些概念决定了不同设备是否能互相看见。排查通信问题时，先确认网络，再确认 ROS 配置。</p>
+        <h2>动手建议</h2>
+        <p class="note">准备两台设备或两个容器，先跑最小 talker/listener，再逐步改变网络、QoS 和域 ID。每次只改一个变量。</p>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="site-shell"><span>© <span data-year></span> 1zzxy1</span><span><a href="/">返回首页</a></span></div></footer><script src="/js/site.js"></script>
+</body>
+</html>

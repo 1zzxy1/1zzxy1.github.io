@@ -1,1013 +1,140 @@
-
-
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#FFF">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-
-<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
-  <meta http-equiv="Cache-Control" content="no-transform">
-  <meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-<link rel="alternate" type="application/rss+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/rss.xml" />
-<link rel="alternate" type="application/atom+xml" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/atom.xml" />
-<link rel="alternate" type="application/json" title="Navi Terminal - CONNECTED" href="https://bakastream.icu/feed.json" />
-
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-
-<link rel="stylesheet" href="/css/app.css?v=0.2.6">
-
-
-<script src="/js/page-effects.js"></script>
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-<link rel="preload" href="/live2dw/lib/L2Dwidget.min.js" as="script">
-<link rel="preload" href="/live2dw/assets/miku.model.json" as="fetch" crossorigin>
-<link rel="preload" href="/live2dw/assets/moc/miku.moc" as="fetch" crossorigin>
-<link rel="preload" href="/live2dw/assets/moc/miku.2048/texture_00.png" as="image">
-<script>
-  // 尽早加载Live2D
-  (function() {
-    var script = document.createElement('script');
-    script.src = '/live2dw/lib/L2Dwidget.min.js';
-    script.onload = function() {
-      L2Dwidget.init({
-        "pluginRootPath": "live2dw/",
-        "pluginJsPath": "lib/",
-        "pluginModelPath": "assets/",
-        "tagMode": false,
-        "debug": false,
-        "model": {"jsonPath": "/live2dw/assets/miku.model.json"},
-        "display": {"position": "left", "width": 180, "height": 260, "hOffset": 30, "vOffset": 80},
-        "mobile": {"show": false},
-        "log": false
-      });
-    };
-    document.head.appendChild(script);
-  })();
-</script>
-
-  
-
-<link rel="canonical" href="https://bakastream.icu/">
-
-
-
-  <title>Cyberia = Navi Terminal - CONNECTED = No matter where you are, everyone is always connected.</title>
-<meta name="generator" content="Hexo 8.1.1"></head>
-<body itemscope itemtype="http://schema.org/WebPage" class="three-column-layout">
-  
-
-  
-  <div id="app-wrapper" class="app-wrapper">
-    
-    
-<aside id="left-nav" class="left-nav">
-  <div class="nav-inner">
-    
-    <div class="nav-logo">
-      <a href="/" rel="start">
-        <span class="site-title">Navi Terminal - CONNECTED</span>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ec">
+  <title>1zzxy1 的技术札记</title>
+  <meta name="description" content="记录 AI 工具、ROS、嵌入式与个人工程实践的技术博客。">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-shell nav">
+      <a class="brand" href="/">
+        <span class="brand-mark">1zzxy1</span>
+        <span class="brand-sub">技术札记 / AI / ROS / 嵌入式</span>
       </a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="/" aria-current="page">文章</a>
+        <a href="/archive/">归档</a>
+        <a href="/about/">关于</a>
+        <a href="https://github.com/1zzxy1">GitHub</a>
+      </nav>
     </div>
+  </header>
 
-    
-    <nav class="nav-menu">
-      <ul class="menu-list">
-          <li class="menu-item">
-            <a href="/" class="menu-link">
-              <i class="ic i-home"></i>
-              <span>首页</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/about/" class="menu-link">
-              <i class="ic i-user"></i>
-              <span>关于</span>
-            </a>
-          </li>
-      </ul>
-    </nav>
-
-    
-    <div class="nav-categories">
-      <h3 class="nav-title"><i class="ic i-folder"></i> 分类</h3>
-      <ul class="category-list">
-          <li class="category-item">
-            <a href="/categories/%E6%8A%80%E6%9C%AF/">
-              <span class="cat-name">技术</span>
-              <span class="cat-count">5</span>
-            </a>
-          </li>
-          <li class="category-item">
-            <a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/">
-              <span class="cat-name">AI工具</span>
-              <span class="cat-count">3</span>
-            </a>
-          </li>
-          <li class="category-item">
-            <a href="/categories/%E6%8A%80%E6%9C%AF/ROS/">
-              <span class="cat-name">ROS</span>
-              <span class="cat-count">2</span>
-            </a>
-          </li>
-          <li class="category-item">
-            <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
-              <span class="cat-name">碎碎念</span>
-              <span class="cat-count">2</span>
-            </a>
-          </li>
-      </ul>
-    </div>
-
-    
-    <div class="nav-tags">
-      <h3 class="nav-title"><i class="ic i-tags"></i> 热门标签</h3>
-      <div class="tag-cloud">
-          <a href="/tags/ROS2/" class="tag-item">ROS2</a>
-          <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="tag-item">机器人</a>
-          <a href="/tags/%E6%95%99%E7%A8%8B/" class="tag-item">教程</a>
-          <a href="/tags/AI/" class="tag-item">AI</a>
-          <a href="/tags/Gemini/" class="tag-item">Gemini</a>
-          <a href="/tags/Google/" class="tag-item">Google</a>
-          <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" class="tag-item">开发工具</a>
-          <a href="/tags/Claude/" class="tag-item">Claude</a>
-          <a href="/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/" class="tag-item">敏捷开发</a>
-          <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="tag-item">嵌入式</a>
-          <a href="/tags/NPU/" class="tag-item">NPU</a>
-          <a href="/tags/Qwen/" class="tag-item">Qwen</a>
+  <main class="site-shell">
+    <section class="hero">
+      <div>
+        <div class="hero-kicker">入尘写码，积累成路</div>
+        <h1>把每天学到的工程判断，留下来。</h1>
+        <p class="hero-copy">这里专注记录 AI 工具链、机器人系统、嵌入式推理和个人项目实践。内容会更偏向可复盘、可迁移、可再次动手的技术笔记。</p>
       </div>
-    </div>
+      <aside class="hero-panel">
+        <strong>今晚关注</strong>
+        <p>对 `refactoringhq/tolaria` 这类知识库工具保持观察：桌面端、本地 Markdown、知识组织，是很值得拆解的产品方向。</p>
+      </aside>
+    </section>
 
-    
-    <div class="nav-actions">
-      <a href="/search/" class="action-btn" title="搜索">
-        <i class="ic i-search"></i>
-      </a>
-      <span class="action-btn theme-toggle" title="切换主题">
-        <i class="ic i-sun"></i>
-      </span>
-    </div>
-  </div>
-</aside>
+    <div class="layout">
+      <section>
+        <div class="section-title">
+          <h2>最新文章</h2>
+          <span>5 篇技术笔记</span>
+        </div>
 
-
-    
-    <div id="container" class="main-container">
-      <header id="header" itemscope itemtype="http://schema.org/WPHeader">
-        <div class="inner">
-          <div id="brand">
-            <div class="pjax">
-            
-              <a href="/" class="logo" rel="start"><p class="artboard">Cyberia</p>
-                <h1 itemprop="name headline" class="title">Navi Terminal - CONNECTED</h1>
-              </a>
-              <p class="meta" itemprop="description">= No matter where you are, everyone is always connected. =</p>
-            
+        <div class="post-list">
+          <article class="post-card">
+            <a class="post-cover" href="/posts/ros-communication/"><img src="/img/7_ros-learn-cover.jpg" alt="ROS 通信链路学习笔记"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-29</span><span>ROS2</span><span>机器人</span></div>
+              <h3><a href="/posts/ros-communication/">ROS 通信链路学习笔记</a></h3>
+              <p>从 TCP/UDP、字节序、mDNS 到 Socket 编程，梳理 ROS 通信背后的网络基础。</p>
+              <a class="read-link" href="/posts/ros-communication/">阅读全文</a>
             </div>
-          </div>
-          <nav id="nav">
-  <div class="inner">
-    <div class="toggle">
-      <div class="lines" aria-label="切换导航栏">
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
-    </div>
-    <ul class="menu">
-      <li class="item title"><a href="/" rel="start">Cyberia</a></li>
-    </ul>
-    <ul class="right">
-      <li class="item theme">
-        <i class="ic i-sun"></i>
-      </li>
-      <li class="item search">
-        <i class="ic i-search"></i>
-      </li>
-    </ul>
-  </div>
-</nav>
+          </article>
 
+          <article class="post-card">
+            <a class="post-cover" href="/posts/orangepi-qwen/"><img src="/img/4_orangepi-cover.jpg" alt="香橙派 AIpro 部署 Qwen 实战笔记"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-18</span><span>AI</span><span>嵌入式</span></div>
+              <h3><a href="/posts/orangepi-qwen/">香橙派 AIpro 部署 Qwen 实战笔记</a></h3>
+              <p>记录 NPU 环境配置、FastLLM 编译和模型量化部署的完整实践路线。</p>
+              <a class="read-link" href="/posts/orangepi-qwen/">阅读全文</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <a class="post-cover" href="/posts/ai-dev-frameworks/"><img src="/img/3_ai-dev-cover.jpg" alt="Claude 开源框架学习笔记"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-17</span><span>AI</span><span>开发工具</span></div>
+              <h3><a href="/posts/ai-dev-frameworks/">Claude 的两个开源框架：BMAD Method 与 Claude-Flow</a></h3>
+              <p>把 AI 敏捷开发和多代理编排放在一起看，理解下一代 AI 编程工作流。</p>
+              <a class="read-link" href="/posts/ai-dev-frameworks/">阅读全文</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <a class="post-cover" href="/posts/ros-core/"><img src="/img/2_ros-cover.png" alt="ROS 2 核心概念"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-02</span><span>ROS2</span><span>教程</span></div>
+              <h3><a href="/posts/ros-core/">ROS 记录 1：ROS 2 核心概念大揭秘</a></h3>
+              <p>用直观方式理解 Node、Topic、Service、Action 这些 ROS 2 的关键概念。</p>
+              <a class="read-link" href="/posts/ros-core/">阅读全文</a>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <a class="post-cover" href="/posts/gemini-guide/"><img src="/img/1_gemini-cover.png" alt="Google Gemini 使用指南"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-01</span><span>AI</span><span>Gemini</span></div>
+              <h3><a href="/posts/gemini-guide/">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></h3>
+              <p>从模型能力、使用入口到实践场景，整理 Gemini 的上手路径。</p>
+              <a class="read-link" href="/posts/gemini-guide/">阅读全文</a>
+            </div>
+          </article>
         </div>
-        <div id="imgs" class="pjax">
+      </section>
+
+      <aside class="sidebar">
+        <section class="side-block profile">
+          <img class="avatar" src="/images/avatar.jpg" alt="1zzxy1">
+          <div>
+            <h2>1zzxy1</h2>
+            <p>电子信息工程在读，关注 AI 工具、机器人和本地知识管理。</p>
+          </div>
+        </section>
+        <section class="side-block">
+          <h3>分类</h3>
+          <div class="tag-cloud">
+            <a class="tag" href="/archive/#ai">AI 工具</a>
+            <a class="tag" href="/archive/#ros">ROS</a>
+            <a class="tag" href="/archive/#embedded">嵌入式</a>
+            <a class="tag" href="/archive/#notes">学习笔记</a>
+          </div>
+        </section>
+        <section class="side-block">
+          <h3>写作原则</h3>
           <ul>
-            <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg"></li>
-            <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
-            <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
-            <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
-            <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
-            <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeyonbf9j20zk0m8e81.jpg"></li>
+            <li>少写情绪，多写判断。</li>
+            <li>少堆链接，多留复盘。</li>
+            <li>每篇文章最好能指导一次动手。</li>
           </ul>
-        </div>
-      </header>
-      
-      <main>
-        <div class="inner">
-          <div id="main" class="pjax">
-            
-  <div class="index wrap">
-    <h2 class="divider">文章列表</h2>
-    <div class="segments posts">
-        
-<article class="item wpdx-card ">
-  
-  <h2 class="post-title"><a href="/2025/12/29/7_ROS_LEARN_note_1/" itemprop="url" title="ROS 通信链路学习笔记">ROS 通信链路学习笔记</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/29/7_ROS_LEARN_note_1/" itemprop="url" title="ROS 通信链路学习笔记"><img src="//img/7_ros-learn-cover.jpg" data-src="//img/7_ros-learn-cover.jpg" class="thumb-img lozad"></a>
+        </section>
+      </aside>
     </div>
+  </main>
 
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          ROS 通信链路详解：TCP/UDP协议、字节序、mDNS、Socket 编程等核心概念与代码示例。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/29/7_ROS_LEARN_note_1/" itemprop="url" title="ROS 通信链路学习笔记" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" itemprop="url" title="ROS">ROS</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-29T12:51:00+08:00">2025年12月29日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/ROS2/" rel="tag">ROS2</a>
-            <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag">机器人</a>
-            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
-        </span>
-      </div>
+  <footer class="footer">
+    <div class="site-shell">
+      <span>© <span data-year></span> 1zzxy1</span>
+      <span>Built as a clean static notebook.</span>
     </div>
-  </div>
-</article>
-
-        
-<article class="item wpdx-card ">
-  
-  <h2 class="post-title"><a href="/2025/12/18/4_orangepi-aipro-qwen/" itemprop="url" title="香橙派 AIpro 部署 Qwen 实战笔记">香橙派 AIpro 部署 Qwen 实战笔记</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/18/4_orangepi-aipro-qwen/" itemprop="url" title="香橙派 AIpro 部署 Qwen 实战笔记"><img src="//img/4_orangepi-cover.jpg" data-src="//img/4_orangepi-cover.jpg" class="thumb-img lozad"></a>
-    </div>
-
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          在香橙派 AIpro 开发板上部署 Qwen-14B 大模型的完整实战记录，包含 NPU 环境配置、FastLLM 编译、模型量化等全流程。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/18/4_orangepi-aipro-qwen/" itemprop="url" title="香橙派 AIpro 部署 Qwen 实战笔记" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" itemprop="url" title="AI工具">AI工具</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-18T10:00:00+08:00">2025年12月18日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
-            <a href="/tags/AI/" rel="tag">AI</a>
-            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag">嵌入式</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</article>
-
-        
-<article class="item wpdx-card ">
-  
-  <h2 class="post-title"><a href="/2025/12/17/3_ai-dev-frameworks-guide/" itemprop="url" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法">Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/17/3_ai-dev-frameworks-guide/" itemprop="url" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法"><img src="//img/3_ai-dev-cover.jpg" data-src="//img/3_ai-dev-cover.jpg" class="thumb-img lozad"></a>
-    </div>
-
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          深入介绍两款革命性的 AI 开发框架：BMAD Method（AI 敏捷开发）和 Claude-Flow（智能蜂群编排），助你驾驭 AI 编程新时代。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/17/3_ai-dev-frameworks-guide/" itemprop="url" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" itemprop="url" title="AI工具">AI工具</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-17T12:00:00+08:00">2025年12月17日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
-            <a href="/tags/AI/" rel="tag">AI</a>
-            <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</article>
-
-        
-<article class="item wpdx-card secret-post">
-  
-  <h2 class="post-title"><a href="/2025/12/12/6_college-observation/" itemprop="url" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/12/6_college-observation/" itemprop="url" title="深夜的树洞：苔藓仍在仰望星空"><img src="//img/6_college-cover.jpg" data-src="//img/6_college-cover.jpg" class="thumb-img lozad"></a>
-    </div>
-
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          关于大学生活的观察与思考。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/12/6_college-observation/" itemprop="url" title="深夜的树洞：苔藓仍在仰望星空" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" itemprop="url" title="碎碎念">碎碎念</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-12T03:00:00+08:00">2025年12月12日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/%E6%A0%91%E6%B4%9E/" rel="tag">树洞</a>
-            <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a>
-            <a href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</article>
-
-        
-<article class="item wpdx-card secret-post">
-  
-  <h2 class="post-title"><a href="/2025/12/05/5_midnight-talk-with-gemi/" itemprop="url" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/05/5_midnight-talk-with-gemi/" itemprop="url" title="深夜的树洞：对gemini诉苦?"><img src="//img/5_midnight-cover.png" data-src="//img/5_midnight-cover.png" class="thumb-img lozad"></a>
-    </div>
-
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          深夜的碎碎念，仅供自己回顾。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/05/5_midnight-talk-with-gemi/" itemprop="url" title="深夜的树洞：对gemini诉苦?" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" itemprop="url" title="碎碎念">碎碎念</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-05T03:00:00+08:00">2025年12月5日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/%E6%A0%91%E6%B4%9E/" rel="tag">树洞</a>
-            <a href="/tags/%E8%87%AA%E6%88%91%E6%95%91%E8%B5%8E/" rel="tag">自我救赎</a>
-            <a href="/tags/%E7%84%A6%E8%99%91/" rel="tag">焦虑</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</article>
-
-        
-<article class="item wpdx-card ">
-  
-  <h2 class="post-title"><a href="/2025/12/02/2_ros-note-1/" itemprop="url" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/02/2_ros-note-1/" itemprop="url" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘"><img src="//img/2_ros-cover.png" data-src="//img/2_ros-cover.png" class="thumb-img lozad"></a>
-    </div>
-
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          用最通俗易懂的方式讲解 ROS 2 的四大金刚：Node、Topic、Service、Action。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/02/2_ros-note-1/" itemprop="url" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" itemprop="url" title="ROS">ROS</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-02T23:50:00+08:00">2025年12月2日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/ROS2/" rel="tag">ROS2</a>
-            <a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag">机器人</a>
-            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</article>
-
-        
-<article class="item wpdx-card ">
-  
-  <h2 class="post-title"><a href="/2025/12/01/1_gemini-guide/" itemprop="url" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></h2>
-
-  <div class="post-content">
-    
-    <div class="post-thumb">
-      <a href="/2025/12/01/1_gemini-guide/" itemprop="url" title="探索 Google Gemini：新一代多模态 AI 模型使用指南"><img src="//img/1_gemini-cover.png" data-src="//img/1_gemini-cover.png" class="thumb-img lozad"></a>
-    </div>
-
-    
-    <div class="post-info">
-      
-      <div class="post-excerpt">
-          一篇关于如何高效使用 Google Gemini 模型的深度指南，涵盖基础交互、API 调用及提示词技巧。
-        
-      </div>
-
-      
-      <p class="read-more">
-        <a href="/2025/12/01/1_gemini-guide/" itemprop="url" title="探索 Google Gemini：新一代多模态 AI 模型使用指南" class="more-link">阅读全文</a>
-      </p>
-
-      
-      <div class="post-meta">
-        
-        <span class="meta-item author">
-          <i class="ic i-user"></i>
-          <span>自在逍遥</span>
-        </span>
-
-        
-        <span class="meta-item category">
-          <i class="ic i-folder"></i>
-          <a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" itemprop="url" title="AI工具">AI工具</a>
-        </span>
-
-        
-        <span class="meta-item date">
-          <i class="ic i-calendar"></i>
-          <time datetime="2025-12-01T10:00:00+08:00">2025年12月1日</time>
-        </span>
-
-        
-        <span class="meta-item tags">
-          <i class="ic i-tags"></i>
-            <a href="/tags/%E6%95%99%E7%A8%8B/" rel="tag">教程</a>
-            <a href="/tags/AI/" rel="tag">AI</a>
-            <a href="/tags/Gemini/" rel="tag">Gemini</a>
-        </span>
-      </div>
-    </div>
-  </div>
-</article>
-
-    </div>
-
-  </div>
-
-  
-
-
-
-          </div>
-          <div id="sidebar">
-            
-<div class="inner">
-
-  <div class="panels">
-    <div class="inner">
-      <div class="contents panel pjax" data-title="文章目录">
-      </div>
-      <div class="related panel pjax" data-title="系列文章">
-      </div>
-      <div class="overview panel" data-title="站点概览">
-        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <img class="image" itemprop="image" alt="自在逍遥"
-      data-src="/images/avatar.jpg">
-  <p class="name" itemprop="name">自在逍遥</p>
-  <div class="description" itemprop="description">Rainor DA!</div>
-</div>
-
-<nav class="state">
-    <div class="item posts">
-      <a href="/archives/">
-        <span class="count">7</span>
-        <span class="name">文章</span>
-      </a>
-    </div>
-    <div class="item categories">
-      <a href="/categories/">
-        <span class="count">4</span>
-        <span class="name">分类</span>
-      </a>
-    </div>
-    <div class="item tags">
-      <a href="/tags/">
-        <span class="count">19</span>
-        <span class="name">标签</span>
-      </a>
-    </div>
-</nav>
-
-<div class="social">
-      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tLzF6enh5MQ==" title="https:&#x2F;&#x2F;github.com&#x2F;1zzxy1"><i class="ic i-github"></i></span>
-      <span class="exturl item qq" data-url="dGVuY2VudDovL21lc3NhZ2UvP3Vpbj0xNTM1OTYwMTA0" title="tencent:&#x2F;&#x2F;message&#x2F;?uin&#x3D;1535960104"><i class="ic i-qq"></i></span>
-</div>
-
-<ul class="menu">
-  
-    
-  <li class="item">
-    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
-  </li>
-
-    
-  <li class="item">
-    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
-  </li>
-
-
-</ul>
-
-      </div>
-    </div>
-  </div>
-
-  <ul id="quick">
-    <li class="prev pjax">
-    </li>
-    <li class="up"><i class="ic i-arrow-up"></i></li>
-    <li class="down"><i class="ic i-arrow-down"></i></li>
-    <li class="next pjax">
-    </li>
-    <li class="percent"></li>
-  </ul>
-</div>
-
-          </div>
-          <div class="dimmer"></div>
-        </div>
-      </main>
-      <footer id="footer">
-        <div class="inner">
-          <div class="widgets">
-            
-<div class="rpost pjax">
-  <h2>随机文章</h2>
-  <ul>
-        
-  <li class="item secret-post">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
-</div>
-
-    <span><a href="/2025/12/05/5_midnight-talk-with-gemi/" title="深夜的树洞：对gemini诉苦?">深夜的树洞：对gemini诉苦?</a></span>
-  </li>
-
-        
-  <li class="item ">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
-</div>
-
-    <span><a href="/2025/12/02/2_ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘</a></span>
-  </li>
-
-        
-  <li class="item ">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
-</div>
-
-    <span><a href="/2025/12/18/4_orangepi-aipro-qwen/" title="香橙派 AIpro 部署 Qwen 实战笔记">香橙派 AIpro 部署 Qwen 实战笔记</a></span>
-  </li>
-
-        
-  <li class="item ">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF/ROS/" title="分类于 ROS">ROS</a>
-</div>
-
-    <span><a href="/2025/12/29/7_ROS_LEARN_note_1/" title="ROS 通信链路学习笔记">ROS 通信链路学习笔记</a></span>
-  </li>
-
-        
-  <li class="item ">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
-</div>
-
-    <span><a href="/2025/12/01/1_gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></span>
-  </li>
-
-        
-  <li class="item secret-post">
-    
-<div class="breadcrumb">
-<a href="/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" title="分类于 碎碎念">碎碎念</a>
-</div>
-
-    <span><a href="/2025/12/12/6_college-observation/" title="深夜的树洞：苔藓仍在仰望星空">深夜的树洞：苔藓仍在仰望星空</a></span>
-  </li>
-
-        
-  <li class="item ">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%8A%80%E6%9C%AF/" title="分类于 技术">技术</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E6%8A%80%E6%9C%AF/AI%E5%B7%A5%E5%85%B7/" title="分类于 AI工具">AI工具</a>
-</div>
-
-    <span><a href="/2025/12/17/3_ai-dev-frameworks-guide/" title="Claude的两个开源框架,&quot;BMAD Method&quot; &quot;Claude-Flow&quot;食用方法">Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法</a></span>
-  </li>
-
-  </ul>
-</div>
-<div class="rcomments">
-  <h2>最新评论</h2>
-  <ul id="giscus-recent-comments" class="giscus-recent-comment">
-    <li class="comment-item">
-      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions" target="_blank" rel="noopener">
-        <span class="comment-icon">💬</span>
-        <span class="comment-body">查看 GitHub Discussions 中的所有评论</span>
-      </a>
-    </li>
-    <li class="comment-item">
-      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions/categories/announcements" target="_blank" rel="noopener">
-        <span class="comment-icon">📢</span>
-        <span class="comment-body">公告 & 更新</span>
-      </a>
-    </li>
-    <li class="comment-item">
-      <a href="https://github.com/1zzxy1/1zzxy1.github.io/discussions/categories/general" target="_blank" rel="noopener">
-        <span class="comment-icon">💭</span>
-        <span class="comment-body">留言板</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-          </div>
-          <div class="status">
-  <div class="copyright">
-    
-    &copy; 2025 – 
-    <span itemprop="copyrightYear">2026</span>
-    <span class="with-love">
-      <i class="ic i-sakura rotate"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">自在逍遥 @ Cyberia</span>
-  </div>
-  <div class="powered-by">
-    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
-  </div>
-</div>
-
-        </div>
-      </footer>
-    </div>
-
-    
-    
-<aside id="right-panel" class="right-panel">
-  <div class="panel-inner">
-    
-    <div class="widget-box announcement-widget">
-      <div class="widget-title">
-        <i class="ic i-bullhorn"></i>
-        <h3>公告</h3>
-      </div>
-      <div class="widget-content">
-        <div class="announcement-list">
-          <div class="announcement-item">
-            <span class="ann-icon">🌸</span>
-            <span class="ann-text">欢迎来到 Rainor's Secret Garden!</span>
-          </div>
-          <div class="announcement-item">
-            <span class="ann-icon">✨</span>
-            <span class="ann-text">网站持续更新中...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="widget-box recent-posts-widget">
-      <div class="widget-title">
-        <i class="ic i-file-text"></i>
-        <h3>最新文章</h3>
-      </div>
-      <div class="widget-content">
-        <ul class="recent-list">
-            <li class="recent-item">
-              <a href="/2025/12/02/2_ros-note-1/" title="ROS记录_1：笨蛋也能看懂的 ROS 2 核心概念大揭秘">
-                <span class="post-title">ROS记录_1：笨蛋也能看懂的 ROS...</span>
-                <span class="post-date">12-02</span>
-              </a>
-            </li>
-            <li class="recent-item">
-              <a href="/2025/12/01/1_gemini-guide/" title="探索 Google Gemini：新一代多模态 AI 模型使用指南">
-                <span class="post-title">探索 Google...</span>
-                <span class="post-date">12-01</span>
-              </a>
-            </li>
-            <li class="recent-item">
-              <a href="/2025/12/17/3_ai-dev-frameworks-guide/" title="Claude的两个开源框架,"BMAD Method" "Claude-Flow"食用方法">
-                <span class="post-title">Claude的两个开源框架,"BMAD...</span>
-                <span class="post-date">12-17</span>
-              </a>
-            </li>
-            <li class="recent-item">
-              <a href="/2025/12/18/4_orangepi-aipro-qwen/" title="香橙派 AIpro 部署 Qwen 实战笔记">
-                <span class="post-title">香橙派 AIpro 部署 Qwen...</span>
-                <span class="post-date">12-18</span>
-              </a>
-            </li>
-        </ul>
-      </div>
-    </div>
-
-    
-    <div class="widget-box stats-widget">
-      <div class="widget-title">
-        <i class="ic i-chart-area"></i>
-        <h3>站点统计</h3>
-      </div>
-      <div class="widget-content">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-num">7</span>
-            <span class="stat-label">文章</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">4</span>
-            <span class="stat-label">分类</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-num">19</span>
-            <span class="stat-label">标签</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="widget-box links-widget">
-      <div class="widget-title">
-        <i class="ic i-link"></i>
-        <h3>友情链接</h3>
-      </div>
-      <div class="widget-content">
-        <div class="links-list">
-            <span class="no-links">暂无链接</span>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="widget-box music-widget">
-      <div class="widget-title">
-        <i class="ic i-music"></i>
-        <h3>音乐</h3>
-      </div>
-      <div class="widget-content">
-        <iframe
-          frameborder="no"
-          border="0"
-          marginwidth="0"
-          marginheight="0"
-          width="100%"
-          height="86"
-          src="//music.163.com/outchain/player?type=0&id=17504219915&auto=0&height=66">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</aside>
-
-  </div>
-<script data-config type="text/javascript">
-  var LOCAL = {
-    path: '',
-    favicon: {
-      show: "多喝热水~",
-      hide: "不进来看看嘛(´Д｀)"
-    },
-    search : {
-      placeholder: "文章搜索",
-      empty: "关于 「 ${query} 」，什么也没搜到",
-      stats: "${time} ms 内找到 ${hits} 条结果"
-    },
-    valine: true,fancybox: true,
-    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
-    ignores : [
-      function(uri) {
-        return uri.includes('#');
-      },
-      function(uri) {
-        return new RegExp(LOCAL.path+"$").test(uri);
-      }
-    ]
-  };
-</script>
-
-<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
-
-<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
-
-<script src="/js/app.js?v=0.2.6"></script>
-
-
-
-
-
-<script>
-(function() {
-  // 立即加载 #imgs 的背景图（不等待懒加载）
-  function loadImgsBackground() {
-    var items = document.querySelectorAll('#imgs .item[data-background-image]');
-    items.forEach(function(item) {
-      var bgUrl = item.getAttribute('data-background-image');
-      if (bgUrl && !item.style.backgroundImage) {
-        item.style.backgroundImage = 'url("' + bgUrl + '")';
-      }
-    });
-  }
-
-  // 页面加载时执行
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadImgsBackground);
-  } else {
-    loadImgsBackground();
-  }
-
-  // PJAX 导航后也执行
-  document.addEventListener('pjax:complete', loadImgsBackground);
-})();
-</script>
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":180,"height":260,"hOffset":30,"vOffset":80},"mobile":{"show":false},"log":false});</script></body>
+  </footer>
+  <script src="/js/site.js"></script>
+</body>
 </html>
