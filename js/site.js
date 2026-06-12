@@ -1,8 +1,8 @@
 const posts = [
   {
-    title: "让 Codex 和 Claude 调起 MATLAB：matlab-agentic-toolkit 部署随笔",
+    title: "我让 AI 帮我调用 MATLAB：matlab-agentic-toolkit 随笔",
     url: "/posts/matlab-agentic-toolkit/",
-    desc: "用随笔方式整理 MATLAB Agentic Toolkit 的部署路线、验证方法和我会给 agent 立下的边界。",
+    desc: "不太会 MATLAB 又懒得从头学，于是试试 matlab-agentic-toolkit，让三巨头帮我跑仿真、画图、看报错。",
     tags: "AI Agent MATLAB MCP Codex Claude"
   },
   {

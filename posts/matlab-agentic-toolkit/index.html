@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#faf8f3">
-  <title>让 Codex 和 Claude 调起 MATLAB | Rainor‘s Wire</title>
-  <meta name="description" content="一篇随笔式部署记录：使用 matlab/matlab-agentic-toolkit 让 Codex、Claude 等 AI agent 通过 MCP 调用 MATLAB。">
+  <title>我让 AI 帮我调用 MATLAB | Rainor‘s Wire</title>
+  <meta name="description" content="一篇不太正式的随笔：我不太会 MATLAB，也懒得系统学，于是用 matlab-agentic-toolkit 让 Claude、Codex、Gemini 帮我调用 MATLAB。">
   <link rel="canonical" href="https://1zzxy1.github.io/posts/matlab-agentic-toolkit/">
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" href="/images/favicon.ico">
@@ -19,112 +19,103 @@
     <article>
       <header class="article-head">
         <div class="post-meta"><span>2026-06-13</span><span>AI Agent</span><span>MATLAB</span><span>MCP</span></div>
-        <h1>让 Codex 和 Claude 调起 MATLAB：matlab-agentic-toolkit 部署随笔</h1>
-        <p class="hero-copy">有些工具不是为了“替你写代码”，而是为了把一扇门打开：让 agent 真正能跑 MATLAB、看报错、查 toolbox、跑测试，然后少一点凭空想象。</p>
-        <figure class="article-cover"><img src="/img/matlab-agentic-toolkit-cover.svg" alt="MATLAB Agentic Toolkit 部署随笔封面"></figure>
+        <h1>我让 AI 帮我调用 MATLAB：matlab-agentic-toolkit 随笔</h1>
+        <p class="hero-copy">我个人并不太会用 MATLAB，也懒得从头系统学一遍。所以更现实的路线是：让 AI 帮我调用 MATLAB，把该跑的仿真、该画的图、该验证的东西先跑起来。</p>
+        <figure class="article-cover"><img src="/img/matlab-agentic-toolkit-cover.svg" alt="我让 AI 帮我调用 MATLAB 文章封面"></figure>
       </header>
       <div class="article-body">
-        <p>今晚想看的仓库是 <a class="read-link" href="https://github.com/matlab/matlab-agentic-toolkit">matlab/matlab-agentic-toolkit</a>。它的定位很直接：把 MATLAB 接到支持 MCP 和 skills 的 AI coding agent 上，让 Claude Code、OpenAI Codex、Gemini CLI 这类工具不只是“写一段看起来像 MATLAB 的代码”，而是能真的调用 MATLAB 环境。</p>
+        <p>今天看到的仓库是 <a class="read-link" href="https://github.com/matlab/matlab-agentic-toolkit">matlab/matlab-agentic-toolkit</a>。我第一眼就觉得它挺适合我这种人：不是完全不会 MATLAB，但也谈不上熟；需要它的时候通常又很急，比如要跑个路径追踪仿真、画个轨迹图、看一下控制效果。</p>
 
-        <p>这件事有点像给 agent 配了一间实验室。没有它的时候，agent 靠记忆猜函数、猜 toolbox、猜错误原因；接上之后，它至少可以问 MATLAB：你是什么版本？装了哪些工具箱？这段代码能不能跑？测试结果是什么？从“猜”变成“试”，价值就出来了。</p>
+        <p>说白了，我不是想成为 MATLAB 高手。我是想在需要 MATLAB 的时候，让 Codex、Claude、Gemini 这三巨头能替我把 MATLAB 调起来，帮我跑代码、看输出、画图、改错。能少学一点是一点，先把结果跑出来再说。</p>
 
-        <h2>它到底装了什么</h2>
-        <p>官方说明里有两个核心部件：一个是 MATLAB MCP Core Server，负责把 MATLAB 能力暴露成 MCP 工具；另一个是 MATLAB skills，给 agent 一组更贴近 MATLAB 工作流的上下文和约定。</p>
+        <h2>它解决的是啥问题</h2>
+        <p>以前让 AI 写 MATLAB，经常有一种很微妙的感觉：它写得像那么回事，但你不知道到底能不能跑。它可能会编一个函数名，或者凭印象写一段语法，最后还是得我打开 MATLAB 自己查、自己改、自己跑。那就有点失去偷懒的意义了。</p>
 
-        <p>装好之后，agent 理论上可以使用这些能力：</p>
+        <p>这个 toolkit 的意义就是把 AI 从“嘴上会 MATLAB”往“真的能操作 MATLAB”推了一步。它不是单纯给 AI 塞一份文档，而是让 agent 能通过 MCP 去调用本地 MATLAB。</p>
+
+        <p class="note">我的理解很简单：skill 负责寻思，MCP 负责动手。skill 告诉 AI MATLAB 这活儿大概该怎么干，MCP 让 AI 真的去 MATLAB 里跑一下。</p>
+
+        <h2>skill + MCP 这套东西</h2>
+        <p>它用的是 skill + MCP 的形式。这个组合我还挺喜欢，因为职责比较清楚。</p>
+
         <ul>
-          <li>运行一段 MATLAB 代码，并拿到命令行输出。</li>
-          <li>运行一个 <code>.m</code> 文件。</li>
-          <li>通过 <code>runtests</code> 跑测试并读取结构化结果。</li>
-          <li>调用 Code Analyzer 做静态检查。</li>
-          <li>检测 MATLAB 版本和已安装 toolbox。</li>
+          <li>skill：更像是经验包，告诉 AI MATLAB 的工作流、习惯、最佳实践，别上来就乱猜。</li>
+          <li>MCP：更像是手和脚，负责运行 MATLAB 代码、执行文件、跑测试、检测 toolbox。</li>
+          <li>agent：就是 Codex、Claude、Gemini 这些负责对话和拆任务的脑子。</li>
         </ul>
 
-        <p class="note">我会把它理解成“给 Codex/Claude 加 MATLAB 手脚”。skills 负责少走弯路，MCP server 负责真的动手。</p>
+        <p>装好以后，AI 可以做的事情就比较实在了：检测 MATLAB 版本、列出已安装工具箱、运行一段 MATLAB 代码、运行 <code>.m</code> 文件、跑测试、看 Code Analyzer 的检查结果。至少它不只是生成一段代码，然后把烂摊子留给我。</p>
 
         <h2>前置条件</h2>
-        <p>先别急着复制命令。这个仓库不是纯 Node 工具，也不是普通 Python 包，它背后需要你本机真的有 MATLAB。</p>
+        <p>这个东西不是云端魔法，前置条件还是得有。最重要的是：你本地得真的装了 MATLAB。没有 MATLAB，它也没东西可调。</p>
 
         <ul>
-          <li>MATLAB R2021a 或更新版本。</li>
-          <li>本机能用 Git。</li>
-          <li>一个支持 MCP server 和 skills 的 agent，比如 Claude Code、OpenAI Codex、Gemini CLI 等。</li>
-          <li>如果你想让它直接连当前 MATLAB，会需要 MATLAB 能正常启动；如果要跑 Simulink，则应另外看 Simulink Agentic Toolkit。</li>
+          <li>本地安装 MATLAB，官方要求是 R2021a 或更新版本。</li>
+          <li>本机有 Git，因为安装和配置过程会拉仓库、找文件。</li>
+          <li>有一个能用 MCP 和 skills 的 agent，比如 Claude Code、OpenAI Codex、Gemini CLI。</li>
         </ul>
 
-        <h2>推荐路线：从 MATLAB 里装</h2>
-        <p>最稳的方式不是让 agent 上来就乱配，而是先用 MathWorks 提供的 installer。流程大概是这样：</p>
+        <p>官方还提到 GitHub Copilot、Sourcegraph Amp 也在支持列表里。但对我来说，重点就是三巨头：Claude、Codex、Gemini。能把这几个都接上 MATLAB，就够我折腾一阵子了。</p>
 
-        <h3>1. 下载 installer add-on</h3>
-        <p>去官方 release 下载 <code>agenticToolkitInstaller.mltbx</code>，双击安装到 MATLAB。官方 README 指向的是 Agentic Toolkit Installer，它可以同时处理 MATLAB 和 Simulink toolkit。</p>
+        <h2>下载和安装</h2>
+        <p>官方比较正经的安装方式，是下载 <code>agenticToolkitInstaller.mltbx</code>，然后在 MATLAB 里运行：</p>
 
-        <h3>2. 在 MATLAB 里运行安装命令</h3>
         <pre><code class="language-matlab">setupAgenticToolkit("install")</code></pre>
 
-        <p>安装器会让你选择要装哪些 skill group，也会处理 agent 配置范围：是只给当前项目用，还是全局可用。我的倾向是先项目级，等确认 workflow 稳了再全局。工具越强，边界越要清楚。</p>
+        <p>这个方式应该是最稳的。它会让你选择要装哪些 skill group，也能选择是给单个项目配置，还是全局配置。以后真要长期用，我应该会回到这条路线，老老实实装一遍。</p>
 
-        <h3>3. 控制 skill 数量</h3>
-        <p>官方也提醒：只装和当前工作相关的 skill groups。这个建议很实在。skills 不是越多越聪明，很多时候上下文太杂，agent 反而更难触发正确能力。</p>
+        <p>但我这次比较偷懒。我直接把仓库链接丢给 Claude，让它帮我安。大概就是告诉它：</p>
 
-        <h2>懒人路线：让 Codex 或 Claude 代装</h2>
-        <p>如果你就是想看看它能不能被 agent 自动配置，也可以走仓库路线：</p>
+        <pre><code>这是 MATLAB Agentic Toolkit：
+https://github.com/matlab/matlab-agentic-toolkit
 
-        <pre><code class="language-bash">git clone https://github.com/matlab/matlab-agentic-toolkit.git
-cd matlab-agentic-toolkit</code></pre>
+帮我按官方说明配置一下，让 Claude / Codex 可以调用本地 MATLAB。</code></pre>
 
-        <p>然后在这个目录里打开 Claude Code、Codex 或 Gemini CLI，直接说：</p>
+        <p>官方也支持这种思路：克隆仓库，然后让 agent 执行“Set up the MATLAB Agentic Toolkit”。它会找最近的 MATLAB 安装，把 MCP server 放到 <code>~/.matlab/agentic-toolkits/bin/</code> 下面，再写 agent 的配置和 skills。也就是说，连安装这一步都可以让 AI 先替我试试。</p>
 
-        <pre><code>Set up the MATLAB Agentic Toolkit</code></pre>
+        <p>当然，这种偷懒路线有个代价：它可能会把 skill group 装得比较全。后面如果发现上下文太多、触发混乱，再回来删也不迟。对我来说，先跑通，比一开始就追求完美配置更重要。</p>
 
-        <p>官方描述里，这条路线会寻找最近的 MATLAB 安装，把 MCP server binary 下载到 <code>~/.matlab/agentic-toolkits/bin/</code>，写入 agent 的全局配置，并注册 skills。它省事，但会默认安装所有 skill groups；如果你只想要一小组能力，还是 MATLAB installer 更适合。</p>
-
-        <h2>装完以后怎么验收</h2>
-        <p>我不会用“能启动”当验收标准。真正有意义的验收，是让 agent 做一件必须依赖 MATLAB 现场状态的事。</p>
+        <h2>怎么确认装好了</h2>
+        <p>装完以后，我觉得最简单的验证不是看配置文件，而是直接问 agent：</p>
 
         <pre><code>What version of MATLAB is running? List the installed toolboxes.</code></pre>
 
-        <p>如果它能准确返回版本和 toolbox，就说明 MCP 连接至少通了。接着可以让它跑一个最小脚本：</p>
+        <p>如果它能真的返回 MATLAB 版本和 toolbox，基本就说明 MCP 通了。接着可以让它跑一点简单代码，比如生成一个矩阵、画一张图、保存一张图片。别一上来就让它干大活，先确认管道是通的。通了以后再慢慢加难度。</p>
 
-        <pre><code>Use MATLAB to create a 3-by-3 magic matrix, compute its eigenvalues, and explain the result briefly.</code></pre>
+        <h2>我准备用在哪</h2>
+        <p>我个人最想用的场景是在智能车里。比如做路径追踪的时候，需要看轨迹、误差、控制量变化，有些东西用 MATLAB 画图和仿真会比较顺手。但问题是，我又不想为了画个图、调个模型，把 MATLAB 从头学一遍。</p>
 
-        <p>再进一步，可以让它写一个 <code>my_add.m</code> 和对应测试，然后用 MATLAB 跑测试。这个动作能同时验证写文件、运行 MATLAB 文件、运行测试和读取结果。</p>
+        <p>所以我希望以后可以这样用：</p>
 
-        <h2>我会怎么让 Codex 用它</h2>
-        <p>我更喜欢把提示词写得像工程委托，而不是一句“帮我做完”。例如：</p>
+        <pre><code>我现在有一组智能车路径点和车辆轨迹数据。
+请用 MATLAB 帮我画出参考路径、实际轨迹和横向误差曲线。
+如果代码跑不通，先读取 MATLAB 报错，再修改。</code></pre>
 
-        <pre><code>你现在可以通过 MATLAB MCP 工具工作。
-请先检测 MATLAB 版本和已安装 toolbox。
-然后在当前目录创建一个最小 MATLAB 函数和测试文件。
-运行测试，贴出测试结果。
-如果失败，不要猜，先读取 MATLAB 报错再修改。</code></pre>
+        <p>或者做仿真时：</p>
 
-        <p>重点是最后一句：不要猜。agent 一旦能运行 MATLAB，我们就应该要求它基于真实输出行动。否则 MCP 只是装饰。</p>
+        <pre><code>帮我用 MATLAB 搭一个简单的路径追踪仿真。
+先用纯脚本生成参考路径和车辆轨迹，不要上来就搞复杂工程。
+运行后把图保存出来，并解释结果哪里不对。</code></pre>
 
-        <h2>Claude Code 的用法会稍微不一样</h2>
-        <p>Claude Code 更适合“长一点的工程任务”：比如整理一个 MATLAB 项目、补测试、修函数签名、解释 toolbox 依赖。它有 skills 后，可以更稳定地遵守 MATLAB 的项目习惯。你甚至可以让它先读项目结构，再决定哪些文件需要检查。</p>
+        <p>还有一些图形可视化也适合交给它。比如传感器数据、控制曲线、拟合结果、仿真对比图。MATLAB 的强项本来就在这些地方，只是我不想每次都和语法搏斗。让 AI 去搏斗，我负责看图。</p>
 
-        <pre><code>Read this MATLAB project first.
-Use MATLAB tools only after you explain what you plan to run.
-Do not modify generated data files.
-Add or update tests before changing the implementation.</code></pre>
+        <h2>给 AI 的几条规矩</h2>
+        <p>虽然我想偷懒，但也不能完全放飞。尤其 MATLAB 经常会和数据文件、仿真文件、实验结果混在一起，agent 如果乱删乱改就很麻烦。所以我会提前说清楚：</p>
 
-        <p>这类约束听起来啰嗦，但很值。MATLAB 项目里经常有数据、模型、脚本混在一起，agent 如果没有边界，很容易把“能跑”变成“乱跑”。</p>
-
-        <h2>几个我会提前立下的规矩</h2>
         <ul>
-          <li>第一次只在测试项目里装，不要直接接重要课题或生产目录。</li>
-          <li>让 agent 每次运行 MATLAB 前说明要跑什么，为什么跑。</li>
-          <li>不要让 agent 自动删除数据文件、模型文件或实验结果。</li>
-          <li>能项目级配置就先项目级配置，确认稳定后再全局。</li>
-          <li>把验证命令和失败日志写进 README，后面复现会轻松很多。</li>
+          <li>跑 MATLAB 前先说要跑什么，不要静悄悄执行一堆东西。</li>
+          <li>不要删除原始数据、模型文件和实验结果。</li>
+          <li>先写小脚本验证思路，不要一上来搞复杂工程结构。</li>
+          <li>报错了先看 MATLAB 的真实输出，不要靠猜。</li>
+          <li>能保存图就保存图，方便我直接看结果。</li>
         </ul>
 
-        <h2>这东西适合学什么</h2>
-        <p>对我来说，它不只是“AI 调 MATLAB”。更有意思的是它把几件事串起来了：MCP、agent skills、本地专业软件、可验证执行、测试反馈。以后很多专业软件大概都会走这个方向：agent 不是替代工具，而是成为工具的操作层。</p>
+        <h2>一点感想</h2>
+        <p>我觉得这个仓库有意思的地方，不只是 MATLAB 本身，而是它代表了一种方向：AI 不只是聊天，也不只是生成代码，而是通过 MCP 去操作本地专业软件。专业软件不用被 AI 替代，但可以被 AI 调用。</p>
 
-        <p>所以这篇先写成部署随笔。下一步如果真要动手，我会按一个小项目来试：创建函数、生成测试、跑 MATLAB、读失败、改代码，再把整个过程写成第二篇。</p>
+        <p>对我来说，这就够了。我不会 MATLAB 没关系，我可以让 AI 帮我跑 MATLAB；我不想系统学也没关系，我可以先让它把智能车路径追踪和图形可视化这些事情跑起来。真遇到关键地方，再回头补知识。</p>
 
-        <p class="note">一句话收尾：别让 agent 只会说 MATLAB，让它真的跑 MATLAB。</p>
+        <p class="note">一句话总结：我不是要精通 MATLAB，我是要让 MATLAB 变成 AI 能帮我调用的工具。</p>
 
         <h2>参考</h2>
         <ul>

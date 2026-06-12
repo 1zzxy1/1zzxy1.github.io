@@ -45,6 +45,6 @@
     </g>
   </g>
   <text x="120" y="84" font-family="Georgia, 'Songti SC', serif" font-size="30" font-weight="700" fill="#c85540">AI Agent x MATLAB</text>
-  <text x="120" y="660" font-family="Georgia, 'Songti SC', serif" font-size="54" font-weight="800" fill="#24231f">让 Codex 和 Claude 调起 MATLAB</text>
-  <text x="122" y="696" font-family="Georgia, 'Songti SC', serif" font-size="22" fill="#756f66">matlab-agentic-toolkit 部署随笔</text>
+  <text x="120" y="660" font-family="Georgia, 'Songti SC', serif" font-size="54" font-weight="800" fill="#24231f">我让 AI 帮我调用 MATLAB</text>
+  <text x="122" y="696" font-family="Georgia, 'Songti SC', serif" font-size="22" fill="#756f66">matlab-agentic-toolkit 随笔</text>
 </svg>
