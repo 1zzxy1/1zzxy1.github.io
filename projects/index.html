@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf8f3">
+  <title>项目 | 1zzxy1 的数字庭院</title>
+  <meta name="description" content="1zzxy1 的项目地图，整理 AI coding、ROS、嵌入式 AI 与本地知识管理方向。">
+  <link rel="canonical" href="https://1zzxy1.github.io/projects/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="loading-screen" data-loading><div class="loading-ring" aria-hidden="true"></div><p>LOADING...</p></div>
+  <header class="site-header">
+    <div class="site-shell nav">
+      <a class="brand" href="/"><span class="brand-mark">1zzxy1</span><span class="brand-sub">数字庭院 / 技术札记</span></a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/blog/">博客</a>
+        <a href="/projects/" aria-current="page">项目</a>
+        <a href="/tools/">工具箱</a>
+        <a href="/links/">友链</a>
+        <a href="/about/">关于</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="ghost-button" type="button" data-search-open>搜索</button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换明暗主题">明暗</button>
+      </div>
+    </div>
+  </header>
+  <main class="site-shell">
+    <section class="page-hero">
+      <div>
+        <div class="hero-kicker">Projects</div>
+        <h1>项目与学习路线</h1>
+        <p class="hero-copy">这里不是作品墙，更像一张持续更新的路线图：每个方向都对应一组可拆解、可复盘、可写成文章的工程问题。</p>
+      </div>
+    </section>
+    <section class="project-grid">
+      <article class="project-card">
+        <span class="project-label">AI Coding</span>
+        <h2>多代理开发工作流</h2>
+        <p>研究 Codex、BMAD、Claude-Flow 等工具如何拆任务、协作、验证和沉淀上下文。</p>
+        <a class="read-link" href="/posts/ai-dev-frameworks/">阅读相关笔记</a>
+      </article>
+      <article class="project-card">
+        <span class="project-label">Robotics</span>
+        <h2>ROS 2 工程基础</h2>
+        <p>从概念、通信链路、网络基础到仿真部署，按真实机器人系统需要的知识拆开学。</p>
+        <a class="read-link" href="/posts/ros-communication/">阅读相关笔记</a>
+      </article>
+      <article class="project-card">
+        <span class="project-label">Edge AI</span>
+        <h2>边缘设备大模型部署</h2>
+        <p>围绕香橙派 AIpro、NPU 环境、模型量化和 FastLLM 记录能跑起来的实践路径。</p>
+        <a class="read-link" href="/posts/orangepi-qwen/">阅读相关笔记</a>
+      </article>
+      <article class="project-card">
+        <span class="project-label">Local First</span>
+        <h2>本地优先知识库工具</h2>
+        <p>观察 Tolaria 等热门仓库，拆解桌面端、Markdown、本地索引和知识组织体验。</p>
+        <a class="read-link" href="https://github.com/refactoringhq/tolaria">查看 Tolaria</a>
+      </article>
+    </section>
+  </main>
+  <footer class="footer"><div class="site-shell"><span>© <span data-year></span> 1zzxy1</span><span>Projects are maps, not trophies.</span></div></footer>
+  <div class="search-modal" data-search-modal aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="站内搜索">
+      <button class="modal-close" type="button" data-search-close aria-label="关闭搜索">×</button>
+      <h2>搜索技术笔记</h2>
+      <input data-search-input type="search" placeholder="输入 AI、ROS、Qwen、Gemini..." autocomplete="off">
+      <div class="search-results" data-search-results></div>
+    </div>
+  </div>
+  <script src="/js/site.js"></script>
+</body>
+</html>

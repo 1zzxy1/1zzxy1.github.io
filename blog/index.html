@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf8f3">
+  <title>博客 | 1zzxy1 的数字庭院</title>
+  <meta name="description" content="1zzxy1 的技术博客索引，记录 AI 工具、ROS、嵌入式与个人工程实践。">
+  <link rel="canonical" href="https://1zzxy1.github.io/blog/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="loading-screen" data-loading><div class="loading-ring" aria-hidden="true"></div><p>LOADING...</p></div>
+  <header class="site-header">
+    <div class="site-shell nav">
+      <a class="brand" href="/"><span class="brand-mark">1zzxy1</span><span class="brand-sub">数字庭院 / 技术札记</span></a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="/">首页</a>
+        <a href="/blog/" aria-current="page">博客</a>
+        <a href="/projects/">项目</a>
+        <a href="/tools/">工具箱</a>
+        <a href="/links/">友链</a>
+        <a href="/about/">关于</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="ghost-button" type="button" data-search-open>搜索</button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换明暗主题">明暗</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-shell">
+    <section class="page-hero">
+      <div>
+        <div class="hero-kicker">Blog</div>
+        <h1>我的博客</h1>
+        <p class="hero-copy">只保留公开、技术向、可复盘的内容。后续每篇文章都尽量回答一个问题：这件事以后还能不能指导我再动手一次？</p>
+      </div>
+      <div class="category-tabs" aria-label="文章分组">
+        <a href="#ai">AI 工具</a>
+        <a href="#ros">ROS</a>
+        <a href="#embedded">嵌入式</a>
+        <a href="#notes">学习笔记</a>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section>
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">Notes</span>
+            <h2>全部文章</h2>
+          </div>
+          <span>5 篇技术笔记</span>
+        </div>
+        <div class="post-list">
+          <article class="post-card" id="ros">
+            <a class="post-cover" href="/posts/ros-communication/"><img src="/img/7_ros-learn-cover.jpg" alt="ROS 通信链路学习笔记"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-29</span><span>ROS2</span><span>机器人</span></div>
+              <h3><a href="/posts/ros-communication/">ROS 通信链路学习笔记</a></h3>
+              <p>从 TCP/UDP、字节序、mDNS 到 Socket 编程，梳理 ROS 通信背后的网络基础。</p>
+              <a class="read-link" href="/posts/ros-communication/">阅读全文</a>
+            </div>
+          </article>
+          <article class="post-card" id="embedded">
+            <a class="post-cover" href="/posts/orangepi-qwen/"><img src="/img/4_orangepi-cover.jpg" alt="香橙派 AIpro 部署 Qwen 实战笔记"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-18</span><span>AI</span><span>嵌入式</span></div>
+              <h3><a href="/posts/orangepi-qwen/">香橙派 AIpro 部署 Qwen 实战笔记</a></h3>
+              <p>记录 NPU 环境配置、FastLLM 编译和模型量化部署的完整实践路线。</p>
+              <a class="read-link" href="/posts/orangepi-qwen/">阅读全文</a>
+            </div>
+          </article>
+          <article class="post-card" id="ai">
+            <a class="post-cover" href="/posts/ai-dev-frameworks/"><img src="/img/3_ai-dev-cover.jpg" alt="Claude 开源框架学习笔记"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-17</span><span>AI</span><span>开发工具</span></div>
+              <h3><a href="/posts/ai-dev-frameworks/">Claude 的两个开源框架：BMAD Method 与 Claude-Flow</a></h3>
+              <p>把 AI 敏捷开发和多代理编排放在一起看，理解下一代 AI 编程工作流。</p>
+              <a class="read-link" href="/posts/ai-dev-frameworks/">阅读全文</a>
+            </div>
+          </article>
+          <article class="post-card">
+            <a class="post-cover" href="/posts/ros-core/"><img src="/img/2_ros-cover.png" alt="ROS 2 核心概念"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-02</span><span>ROS2</span><span>教程</span></div>
+              <h3><a href="/posts/ros-core/">ROS 记录 1：ROS 2 核心概念大揭秘</a></h3>
+              <p>用直观方式理解 Node、Topic、Service、Action 这些 ROS 2 的关键概念。</p>
+              <a class="read-link" href="/posts/ros-core/">阅读全文</a>
+            </div>
+          </article>
+          <article class="post-card" id="notes">
+            <a class="post-cover" href="/posts/gemini-guide/"><img src="/img/1_gemini-cover.png" alt="Google Gemini 使用指南"></a>
+            <div>
+              <div class="post-meta"><span>2025-12-01</span><span>AI</span><span>Gemini</span></div>
+              <h3><a href="/posts/gemini-guide/">探索 Google Gemini：新一代多模态 AI 模型使用指南</a></h3>
+              <p>从模型能力、使用入口到实践场景，整理 Gemini 的上手路径。</p>
+              <a class="read-link" href="/posts/gemini-guide/">阅读全文</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section class="side-block profile">
+          <img class="avatar" src="/images/avatar.jpg" alt="1zzxy1">
+          <div>
+            <h2>1zzxy1</h2>
+            <p>电子信息工程在读，关注 AI 工具、机器人和本地知识管理。</p>
+          </div>
+        </section>
+        <section class="side-block">
+          <h3>分类</h3>
+          <div class="tag-cloud">
+            <a class="tag" href="#ai">AI 工具</a>
+            <a class="tag" href="#ros">ROS</a>
+            <a class="tag" href="#embedded">嵌入式</a>
+            <a class="tag" href="#notes">学习笔记</a>
+          </div>
+        </section>
+        <section class="side-block">
+          <h3>写作原则</h3>
+          <ul>
+            <li>少写情绪，多写判断。</li>
+            <li>少堆链接，多留复盘。</li>
+            <li>每篇文章最好能指导一次动手。</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="site-shell"><span>© <span data-year></span> 1zzxy1</span><span>Keep writing, keep shipping.</span></div></footer>
+  <div class="search-modal" data-search-modal aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="站内搜索">
+      <button class="modal-close" type="button" data-search-close aria-label="关闭搜索">×</button>
+      <h2>搜索技术笔记</h2>
+      <input data-search-input type="search" placeholder="输入 AI、ROS、Qwen、Gemini..." autocomplete="off">
+      <div class="search-results" data-search-results></div>
+    </div>
+  </div>
+  <script src="/js/site.js"></script>
+</body>
+</html>

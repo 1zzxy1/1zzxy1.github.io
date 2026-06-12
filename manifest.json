@@ -1,0 +1,22 @@
+{
+  "name": "1zzxy1 的数字庭院",
+  "short_name": "1zzxy1",
+  "description": "AI 工具、ROS、嵌入式推理与本地知识管理笔记。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f3",
+  "theme_color": "#55a2a0",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
