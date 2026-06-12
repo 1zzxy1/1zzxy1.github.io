@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">MATLAB Agentic Toolkit cover</title>
+  <desc id="desc">A calm technical cover with MATLAB, Codex, Claude, and MCP nodes connected on paper texture.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="0.52" stop-color="#f7efe0"/>
+      <stop offset="1" stop-color="#e9f4ef"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#55a2a0"/>
+      <stop offset="1" stop-color="#2f7c73"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#3c301f" flood-opacity="0.18"/>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0v44" fill="none" stroke="#55a2a0" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#paper)"/>
+  <rect width="1200" height="720" fill="url(#grid)"/>
+  <circle cx="158" cy="132" r="180" fill="#c85540" opacity="0.13"/>
+  <circle cx="1038" cy="92" r="220" fill="#55a2a0" opacity="0.16"/>
+  <circle cx="950" cy="608" r="190" fill="#c59645" opacity="0.12"/>
+  <g filter="url(#shadow)">
+    <rect x="120" y="112" width="960" height="496" rx="34" fill="#fffdf7" fill-opacity="0.88" stroke="#d6cbb6"/>
+    <path d="M236 410C325 260 373 234 444 324c65 82 128-38 211-66 82-27 143 68 206 136 50 54 98 73 161 32" fill="none" stroke="#2f7c73" stroke-width="10" stroke-linecap="round"/>
+    <path d="M236 410C294 364 349 374 409 421c65 50 123 43 171-5 67-66 115-55 178 28 56 74 129 73 264-18" fill="none" stroke="#c85540" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+    <g fill="#fffdf7" stroke="#2f7c73" stroke-width="4">
+      <circle cx="262" cy="398" r="48"/>
+      <circle cx="472" cy="322" r="48"/>
+      <circle cx="708" cy="274" r="48"/>
+      <circle cx="948" cy="420" r="48"/>
+    </g>
+    <g font-family="Georgia, 'Songti SC', serif" text-anchor="middle" font-weight="700">
+      <text x="262" y="391" font-size="22" fill="#2f7c73">Codex</text>
+      <text x="262" y="418" font-size="18" fill="#756f66">CLI</text>
+      <text x="472" y="316" font-size="22" fill="#2f7c73">Claude</text>
+      <text x="472" y="343" font-size="18" fill="#756f66">Code</text>
+      <text x="708" y="269" font-size="22" fill="#2f7c73">MCP</text>
+      <text x="708" y="296" font-size="18" fill="#756f66">Server</text>
+      <text x="948" y="414" font-size="22" fill="#2f7c73">MATLAB</text>
+      <text x="948" y="441" font-size="18" fill="#756f66">Engine</text>
+    </g>
+  </g>
+  <text x="120" y="84" font-family="Georgia, 'Songti SC', serif" font-size="30" font-weight="700" fill="#c85540">AI Agent x MATLAB</text>
+  <text x="120" y="660" font-family="Georgia, 'Songti SC', serif" font-size="54" font-weight="800" fill="#24231f">让 Codex 和 Claude 调起 MATLAB</text>
+  <text x="122" y="696" font-family="Georgia, 'Songti SC', serif" font-size="22" fill="#756f66">matlab-agentic-toolkit 部署随笔</text>
+</svg>

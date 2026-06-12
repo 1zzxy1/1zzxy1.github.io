@@ -1,5 +1,11 @@
 const posts = [
   {
+    title: "让 Codex 和 Claude 调起 MATLAB：matlab-agentic-toolkit 部署随笔",
+    url: "/posts/matlab-agentic-toolkit/",
+    desc: "用随笔方式整理 MATLAB Agentic Toolkit 的部署路线、验证方法和我会给 agent 立下的边界。",
+    tags: "AI Agent MATLAB MCP Codex Claude"
+  },
+  {
     title: "ROS 通信链路学习笔记",
     url: "/posts/ros-communication/",
     desc: "从 TCP/UDP、字节序、mDNS 到 Socket 编程，梳理 ROS 通信背后的网络基础。",
