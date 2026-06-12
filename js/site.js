@@ -2,7 +2,7 @@ const posts = [
   {
     title: "我让 AI 帮我调用 MATLAB：matlab-agentic-toolkit 随笔",
     url: "/posts/matlab-agentic-toolkit/",
-    desc: "不太会 MATLAB 又懒得从头学，于是试试 matlab-agentic-toolkit，让三巨头帮我跑仿真、画图、看报错。",
+    desc: "不太会 MATLAB，又懒得学。先让 AI 帮我跑仿真、画图。",
     tags: "AI Agent MATLAB MCP Codex Claude"
   },
   {
