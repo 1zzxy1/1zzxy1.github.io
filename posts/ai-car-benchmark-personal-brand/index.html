@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf8f3">
+  <title>一个 AI 小车 benchmark 的起号想法 | Rainor‘s Wire</title>
+  <meta name="description" content="从一段聊天里记下来的想法：用 AI 写小车代码、调 PID、做路径追踪，做一个小型私域 benchmark。">
+  <link rel="canonical" href="https://1zzxy1.github.io/posts/ai-car-benchmark-personal-brand/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.7.0/style.css">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <header class="site-header"><div class="site-shell nav"><a class="brand" href="/"><span class="brand-mark">Rainor‘s Wire</span><span class="brand-sub">数字库房 / 技术札记</span></a><nav class="nav-links"><a href="/">首页</a><a href="/blog/" aria-current="page">博客</a><a href="/projects/">项目</a><a href="/tools/">工具箱</a><a href="/links/">友链</a><a href="/about/">关于</a></nav><div class="nav-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="切换明暗主题">明暗</button></div></div></header>
+  <main class="article-shell">
+    <article>
+      <header class="article-head">
+        <div class="post-meta"><span>2026-06-13</span><span>AI</span><span>智能车</span><span>Benchmark</span></div>
+        <h1>一个 AI 小车 benchmark 的起号想法</h1>
+        <p class="hero-copy">聊天的时候听到一个思路：别硬发生活流量，试试做一个 AI 写小车代码的私域 benchmark。</p>
+      </header>
+      <div class="article-body">
+        <p>今天聊到小红书起号。一个点挺有意思：xhs 不只是生活化，它更像很多小社群叠在一起。不同圈子之间互相看不见，但号养对了，也能刷到 LLM、学术、留学生、实验室这些圈子。</p>
+
+        <p>所以如果想做一点个人品牌，不一定非要装成很大的技术博主。可以从自己手边的东西切进去。</p>
+
+        <p class="note">我的方向：AI + 智能车。</p>
+
+        <h2>核心想法</h2>
+        <p>收集一些“让 AI 改小车”的任务，统一 prompt，然后搭一个简单测评流水线。</p>
+
+        <p>比如：</p>
+        <ul>
+          <li>让 AI 写巡线代码。</li>
+          <li>让 AI 调 PID。</li>
+          <li>让 AI 做路径追踪。</li>
+          <li>让 AI 看传感器数据然后改控制逻辑。</li>
+          <li>让 AI 生成 MATLAB / Python 可视化图。</li>
+        </ul>
+
+        <h2>怎么评</h2>
+        <p>先别整太复杂。最小版本就 10 个任务，看每个模型能跑通几个。</p>
+
+        <ul>
+          <li>能不能编译。</li>
+          <li>能不能跑通。</li>
+          <li>延迟高不高。</li>
+          <li>路径误差大不大。</li>
+          <li>调参是不是乱来。</li>
+        </ul>
+
+        <p>后面再细一点，就可以加识别准确率、控制稳定性、超调、收敛时间这些指标。</p>
+
+        <h2>为什么有用</h2>
+        <p>公开 benchmark 容易被刷。私域 benchmark 反而有价值。</p>
+
+        <p>如果这些任务真的贴近做小车的人实际体验，那结果就有参考意义。比如有人看了之后发现某个模型写嵌入式小车代码确实更靠谱，那这个东西就不是纯整活了。</p>
+
+        <h2>起号叙事</h2>
+        <p>可以包装成：尝试构建具身智能 / 工业多模态领域的私有测试数据集。</p>
+
+        <p>说人话就是：我拿自己的小车任务，测 AI 到底会不会写、会不会调、会不会跑。</p>
+
+        <p>能不能成不知道，可能要点运气。但比单纯发“我今天又学了啥”有意思。</p>
+
+        <p class="note">先记着。暑假如果没实习，就拿这个整着玩玩。</p>
+      </div>
+    </article>
+  </main>
+  <footer class="footer"><div class="site-shell"><span>© <span data-year></span> Rainor‘s Wire</span><span><a href="/blog/">返回博客</a></span></div></footer><script src="/js/site.js"></script>
+</body>
+</html>

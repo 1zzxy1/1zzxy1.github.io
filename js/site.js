@@ -1,5 +1,11 @@
 const posts = [
   {
+    title: "一个 AI 小车 benchmark 的起号想法",
+    url: "/posts/ai-car-benchmark-personal-brand/",
+    desc: "收集小车任务，统一 prompt，测 AI 写代码、调 PID、做路径追踪到底行不行。",
+    tags: "AI 智能车 Benchmark PID 路径追踪 个人品牌"
+  },
+  {
     title: "我让 AI 帮我调用 MATLAB：matlab-agentic-toolkit 随笔",
     url: "/posts/matlab-agentic-toolkit/",
     desc: "不太会 MATLAB，又懒得学。先让 AI 帮我跑仿真、画图。",
