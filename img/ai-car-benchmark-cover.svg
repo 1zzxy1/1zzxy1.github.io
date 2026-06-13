@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">AI car benchmark cover</title>
+  <desc id="desc">A warm technical cover about AI car benchmark, model scoreboards, and small car control.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff7e8"/>
+      <stop offset="0.52" stop-color="#edf6ee"/>
+      <stop offset="1" stop-color="#eaf1ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#1e2b2b" flood-opacity="0.18"/>
+    </filter>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse">
+      <path d="M42 0H0v42" fill="none" stroke="#315f5b" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect width="1200" height="720" fill="url(#grid)"/>
+  <circle cx="150" cy="126" r="170" fill="#d75b42" opacity="0.13"/>
+  <circle cx="1010" cy="118" r="210" fill="#3f8d82" opacity="0.15"/>
+  <circle cx="958" cy="606" r="190" fill="#d4a24b" opacity="0.13"/>
+  <g filter="url(#shadow)">
+    <rect x="116" y="120" width="968" height="470" rx="34" fill="#fffdf7" fill-opacity="0.9" stroke="#d9cbb5"/>
+    <path d="M220 416C310 314 414 310 500 372C592 438 706 438 808 342C875 278 944 272 1014 312" fill="none" stroke="#2f7c73" stroke-width="10" stroke-linecap="round"/>
+    <path d="M220 438C324 384 420 402 512 452C630 516 760 496 880 406C930 370 978 360 1014 374" fill="none" stroke="#d75b42" stroke-width="6" stroke-linecap="round" opacity="0.75"/>
+    <g transform="translate(244 284)">
+      <rect x="0" y="94" width="218" height="58" rx="22" fill="#253f3d"/>
+      <circle cx="54" cy="160" r="31" fill="#fffdf7" stroke="#253f3d" stroke-width="12"/>
+      <circle cx="164" cy="160" r="31" fill="#fffdf7" stroke="#253f3d" stroke-width="12"/>
+      <path d="M34 94l36-68h90l44 68" fill="#3f8d82"/>
+      <rect x="86" y="44" width="50" height="32" rx="8" fill="#fff7e8"/>
+      <circle cx="188" cy="116" r="10" fill="#d4a24b"/>
+    </g>
+    <g font-family="Georgia, 'Songti SC', serif" font-weight="700">
+      <rect x="708" y="206" width="250" height="176" rx="22" fill="#f6efe1" stroke="#d9cbb5"/>
+      <text x="742" y="252" font-size="26" fill="#253f3d">Scoreboard</text>
+      <text x="742" y="294" font-size="22" fill="#d75b42">Model A  8 / 10</text>
+      <text x="742" y="332" font-size="22" fill="#2f7c73">Model B  6 / 10</text>
+      <text x="742" y="370" font-size="22" fill="#7a7164">Model C  5 / 10</text>
+    </g>
+  </g>
+  <text x="120" y="84" font-family="Georgia, 'Songti SC', serif" font-size="30" font-weight="700" fill="#d75b42">AI Car Benchmark</text>
+  <text x="120" y="656" font-family="Georgia, 'Songti SC', serif" font-size="54" font-weight="800" fill="#24231f">AI 写小车代码，到底行不行</text>
+  <text x="122" y="696" font-family="Georgia, 'Songti SC', serif" font-size="22" fill="#756f66">私域 benchmark / 起号想法 / 工科工具流量</text>
+</svg>
